@@ -63,7 +63,6 @@ export default {
     },
     click_signUp (payload) {
       alert(`你点了注册按钮`)
-      this.$router.push('person')
     }
   },
   components: {

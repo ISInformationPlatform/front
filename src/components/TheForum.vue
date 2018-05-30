@@ -1,37 +1,52 @@
 <template>
-    <article>
-        <ForumItem :item="item"
-            :viewlogo="viewlogo"
-            :key="index"
-            @click_title="click_title"
-            @click_icon="click_icon"
-            @click_tag="click_tag"
-            v-for="(item,index) in list" />
-    </article>
+  <article>
+    <VBtnList v-if="tag" :list="links" @click="click_type" />
+
+    <ForumItem :item="item" :viewlogo="viewlogo" :key="index" @click_title="click_title" @click_icon="click_icon" @click_tag="click_tag" v-for="(item,index) in list" />
+  </article>
 </template>
 
 <script>
 import ForumItem from '@/components/ForumItem'
+import VBtnList from '@/components/VBtnList'
 
 export default {
   name: 'TheForum',
   components: {
-    'ForumItem': ForumItem
+    'ForumItem': ForumItem,
+    'VBtnList': VBtnList
   },
   methods: {
+    click_type (payload) {
+      alert(`你点了另一个导航栏：${payload.title}`)
+      this.tag = false
+    },
     click_title (payload) {
       alert(`你点了标题：${payload.title}`)
     },
     click_icon (payload) {
       alert(`你点了头像或者用户名：${payload.title}`)
+      this.$router.push('information')
     },
     click_tag (payload) {
       alert(`你点了标签：${payload.title}`)
+      this.tag = true
       this.$router.push('tag')
     }
   },
   data () {
     return {
+      tag: true,
+      links: [
+        {
+          title: '日程',
+          url: 'www.baidu.com'
+        },
+        {
+          title: '基础科学',
+          url: 'www.baidu.com'
+        }
+      ],
       list: [
         {
           title: '法国萨瓦大学',

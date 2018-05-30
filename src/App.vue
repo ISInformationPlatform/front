@@ -3,9 +3,6 @@
     <TheHeader>
     </TheHeader>
 
-    <router-view id="Nav"
-      name="Nav"></router-view>
-
     <div id="container">
       <router-view id="Forum"
         name="Forum"></router-view>

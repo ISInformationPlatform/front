@@ -1,11 +1,10 @@
 <template>
-<div>
-<img :src="icon"
- @click="click">
-<strong @click="click">
-{{username}}
-</strong>
-</div>
+  <div>
+    <img :src="icon" @click="click">
+    <strong @click="click">
+      {{username}}
+    </strong>
+  </div>
 </template>
 
 <script>

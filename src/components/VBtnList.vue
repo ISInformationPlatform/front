@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <VButton v-for="(item,index) in links"
+    <VButton v-for="(item,index) in list"
       :title="item.title"
       :key="index"
       @click="click" />
@@ -18,21 +18,9 @@ export default {
   },
   methods: {
     click (payload) {
-      alert(`你点了另一个导航栏：${payload.title}`)
-    }
-  },
-  data () {
-    return {
-      links: [
-        {
-          title: '日程',
-          url: 'www.baidu.com'
-        },
-        {
-          title: '基础科学',
-          url: 'www.baidu.com'
-        }
-      ]
+      this.$emit('click', {
+        title: payload.title
+      })
     }
   }
 }

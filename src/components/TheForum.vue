@@ -23,6 +23,7 @@ export default {
     },
     click_title (payload) {
       alert(`你点了标题：${payload.title}`)
+      this.$router.push('article')
     },
     click_icon (payload) {
       alert(`你点了头像或者用户名：${payload.title}`)

@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import home from '@/router/home'
-import tag from '@/router/tag'
-import information from '@/router/information'
+import TheForum from '@/components/TheForum'
+import TheBillboard from '@/components/TheBillboard'
+import ThePerson from '@/components/ThePerson'
+import ThePost from '@/components/ThePost'
 
 Vue.use(Router)
 
@@ -12,17 +13,31 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      components: home
+      components: {
+        Forum: TheForum,
+        SideBar: TheBillboard
+      }
     },
     {
       path: '/tag',
       name: 'tag',
-      components: tag
+      components: {
+        Forum: TheForum
+      }
+    },
+    {
+      path: '/article',
+      name: 'article',
+      components: {
+        Content: ThePost
+      }
     },
     {
       path: '/information',
       name: 'information',
-      components: information
+      components: {
+        Content: ThePerson
+      }
     }
   ]
 })

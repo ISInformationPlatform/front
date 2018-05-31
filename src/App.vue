@@ -37,10 +37,6 @@ body {
   padding: 0;
 }
 
-#Nav {
-  margin: 20px 10% 0 10%;
-}
-
 #container {
   margin: 0 10%;
 

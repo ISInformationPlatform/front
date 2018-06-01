@@ -10,18 +10,24 @@
         :content="item.content"/>
 
     </section>
+
+    <VEditor class="poster_body">
+    </VEditor>
+
   </article>
 </template>
 
 <script>
 import PostUser from '@/components/PostUser'
 import PostArticle from '@/components/PostArticle'
+import VEditor from '@/components/VEditor'
 
 export default {
   name: 'TheForum',
   components: {
     'PostUser': PostUser,
-    'PostArticle': PostArticle
+    'PostArticle': PostArticle,
+    'VEditor': VEditor
   },
   methods: {
     click_type (payload) {
@@ -98,5 +104,9 @@ h2 {
 
 .right{
   width: 70%;
+}
+
+.poster_body{
+  margin: 20px 0;
 }
 </style>

@@ -2,7 +2,16 @@
   <article>
     <VBtnList v-if="tag" :list="links" @click="click_type" />
 
-    <ForumItem :item="item" :viewlogo="viewlogo" :key="index" @click_title="click_title" @click_icon="click_icon" @click_tag="click_tag" v-for="(item,index) in list" />
+    <ForumItem
+      :item="item"
+      :viewlogo="viewlogo"
+      :key="index"
+      @click_title="click_title"
+      @click_icon="click_icon"
+      @click_tag="click_tag"
+      v-for="(item,index) in list" />
+
+    <button @click="post">发帖</button>
   </article>
 </template>
 
@@ -33,6 +42,9 @@ export default {
       alert(`你点了标签：${payload.title}`)
       this.tag = true
       this.$router.push('tag')
+    },
+    post () {
+      alert('你点了发帖按钮')
     }
   },
   data () {
@@ -88,3 +100,9 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+button{
+  margin: 20px 0;
+}
+</style>

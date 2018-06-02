@@ -4,6 +4,7 @@
     </TheHeader>
 
     <div id="container">
+
       <router-view id="Forum"
         name="Forum"></router-view>
       <router-view id="SideBar"

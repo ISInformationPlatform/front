@@ -52,9 +52,11 @@ export default {
   methods: {
     click_nav (payload) {
       alert(`你点了导航按钮：${payload.title}`)
+      this.$router.push('/')
     },
     click_signIn (payload) {
       alert(`你点了登陆按钮：${payload.title}`)
+      this.$router.push('/Signin')
       this.$http.get('/test').then(response => {
         console.log(response)
       }, response => {
@@ -63,6 +65,7 @@ export default {
     },
     click_signUp (payload) {
       alert(`你点了注册按钮`)
+      this.$router.push('SignUp')
     }
   },
   components: {

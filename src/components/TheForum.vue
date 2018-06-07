@@ -1,6 +1,6 @@
 <template>
   <article>
-    <VBtnList v-if="tag" :list="links" @click="click_type" />
+    <TheNav :list="links" @click="click_type" />
 
     <slot/>
 
@@ -19,13 +19,13 @@
 
 <script>
 import ForumItem from '@/components/ForumItem'
-import VBtnList from '@/components/VBtnList'
+import TheNav from '@/components/TheNav'
 
 export default {
   name: 'TheForum',
   components: {
     'ForumItem': ForumItem,
-    'VBtnList': VBtnList
+    'TheNav': TheNav
   },
   methods: {
     click_type (payload) {
@@ -49,7 +49,6 @@ export default {
   },
   data () {
     return {
-      tag: true,
       links: [
         {
           title: '日程',

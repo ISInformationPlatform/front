@@ -1,12 +1,15 @@
 <template>
-  <article>
-    <h2>{{title}}</h2>
+  <div>
+    <Article
+      :title="article.title"
+      :content="article.content"/>
+
     <section class="item" :key="index" v-for="(item,index) in list">
 
-      <PostUser class="left"
+      <User class="left"
         :username="item.username"/>
 
-      <PostContent class="right"
+      <Content class="right"
         :content="item.content"/>
 
     </section>
@@ -14,19 +17,21 @@
     <VEditor class="poster_body">
     </VEditor>
 
-  </article>
+  </div>
 </template>
 
 <script>
 import PostUser from '@/components/PostUser'
 import PostContent from '@/components/PostContent'
+import PostArticle from '@/components/PostArticle'
 import VEditor from '@/components/VEditor'
 
 export default {
   name: 'TheForum',
   components: {
-    'PostUser': PostUser,
-    'PostContent': PostContent,
+    'User': PostUser,
+    'Content': PostContent,
+    'Article': PostArticle,
     'VEditor': VEditor
   },
   methods: {
@@ -49,7 +54,6 @@ export default {
   },
   data () {
     return {
-      title: '讨论下电子科大',
       list: [
         {
           username: '张飞',
@@ -71,15 +75,19 @@ export default {
           content: '不知道你在说啥',
           icon: '/static/icon.jpg'
         }
-      ]
+      ],
+      article: {
+        title: '挖草',
+        content: '<p>啊打发二阿斯蒂芬安抚阿斯顿发e阿斯蒂</p><p>阿斯蒂芬阿斯顿f</p><p>阿斯蒂芬阿斯顿</p><p><br></p><p>阿斯顿发射点范德萨阿斯蒂芬</p><p><br></p><p>阿斯蒂芬阿斯顿发</p>'
+      }
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-article{
-  padding: 20px 0;
+div{
+  padding: 20px 20%;
 }
 
 h2 {

@@ -1,10 +1,12 @@
 <template>
   <nav>
-    <VButton v-for="(item,index) in list"
-      :title="item.title"
+    <div v-for="(list,index) in menu" :key="index">
+     <VButton v-for="(item,index) in list"
+      :title="item.tag"
       :key="index"
       @click="click" />
-  </nav>
+    </div>
+ </nav>
 </template>
 
 <script>
@@ -12,10 +14,10 @@ import VButton from '@/components/VButton'
 
 export default {
   name: 'TheNav',
-  props: ['list'],
   components: {
     'VButton': VButton
   },
+  props: ['menu'],
   methods: {
     click (payload) {
       this.$emit('click', {

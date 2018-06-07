@@ -2,6 +2,8 @@
   <article>
     <VBtnList v-if="tag" :list="links" @click="click_type" />
 
+    <slot/>
+
     <ForumItem
       :item="item"
       :viewlogo="viewlogo"
@@ -31,20 +33,18 @@ export default {
       this.tag = false
     },
     click_title (payload) {
-      alert(`你点了标题：${payload.title}`)
-      this.$router.push('article')
+      this.$router.push('/article')
     },
     click_icon (payload) {
-      alert(`你点了头像或者用户名：${payload.title}`)
-      this.$router.push('information')
+      this.$router.push('/information')
     },
     click_tag (payload) {
       alert(`你点了标签：${payload.title}`)
       this.tag = true
-      this.$router.push('tag')
+      this.$router.push('/tag')
     },
     post () {
-      alert('你点了发帖按钮')
+      this.$router.push('/newPost')
     }
   },
   data () {

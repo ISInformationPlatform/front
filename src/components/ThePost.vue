@@ -6,7 +6,7 @@
       <PostUser class="left"
         :username="item.username"/>
 
-      <PostArticle class="right"
+      <PostContent class="right"
         :content="item.content"/>
 
     </section>
@@ -19,14 +19,14 @@
 
 <script>
 import PostUser from '@/components/PostUser'
-import PostArticle from '@/components/PostArticle'
+import PostContent from '@/components/PostContent'
 import VEditor from '@/components/VEditor'
 
 export default {
   name: 'TheForum',
   components: {
     'PostUser': PostUser,
-    'PostArticle': PostArticle,
+    'PostContent': PostContent,
     'VEditor': VEditor
   },
   methods: {

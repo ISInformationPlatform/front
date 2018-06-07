@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import forum from '@/page/forum'
+import newPost from '@/page/newPost'
+
 import TheForum from '@/components/TheForum'
-import TheBillboard from '@/components/TheBillboard'
 import ThePerson from '@/components/ThePerson'
 import ThePost from '@/components/ThePost'
-import TheSignin from '@/components/TheSignin'
+import TheSignIn from '@/components/TheSignIn'
 import TheSignUp from '@/components/TheSignUp'
 
 Vue.use(Router)
@@ -14,10 +16,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'home'
+    },
+    {
+      path: '/forum/:forumId',
+      name: 'forum',
       components: {
-        Forum: TheForum,
-        SideBar: TheBillboard
+        Content: forum
+      }
+    },
+    {
+      path: '/newPost',
+      name: 'post',
+      components: {
+        Content: newPost
       }
     },
     {
@@ -42,10 +54,10 @@ export default new Router({
       }
     },
     {
-      path: '/Signin',
-      name: 'Signin',
+      path: '/SignIn',
+      name: 'SignIn',
       components: {
-        Content: TheSignin
+        Content: TheSignIn
       }
     },
     {

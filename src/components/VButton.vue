@@ -7,11 +7,12 @@
 <script>
 export default {
   name: 'VButton',
-  props: ['title'],
+  props: ['title', 'data'],
   methods: {
     click (event) {
       this.$emit('click', {
-        title: this.title
+        title: this.title,
+        data: this.data
       })
     }
   }

@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-  name: 'Signin'
+  name: 'SignIn'
 }
 </script>
 <style lang="less" scoped>

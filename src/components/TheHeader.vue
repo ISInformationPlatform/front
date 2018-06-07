@@ -7,21 +7,23 @@
     </div>
 
     <nav>
-      <span class="left">
+      <div>
         <VButton class="navbar"
           v-for="(item,index) in links"
           :title="item.title"
+          :data="item.url"
           :key="index"
           @click="click_nav" />
-      </span>
-      <span class="right">
+      </div>
+
+      <div>
         <VButton class="navbar"
           :title="signIn"
           @click="click_signIn" />
         <VButton class="navbar"
           :title="signUp"
           @click="click_signUp" />
-      </span>
+      </div>
     </nav>
 
   </header>
@@ -39,24 +41,25 @@ export default {
       icon: '/static/icon.jpg',
       logo: '/static/icon.jpg',
       links: [{
-        title: '小木虫',
-        url: 'http://www.baidu.com'
+        title: '工作',
+        url: '/forum/1'
       },
       {
-        title: '哇哈哈',
-        url: 'http://www.baidu.com'
-      }
-      ]
+        title: '出国',
+        url: '/forum/2'
+      },
+      {
+        title: '读研',
+        url: '/forum/3'
+      }]
     }
   },
   methods: {
     click_nav (payload) {
-      alert(`你点了导航按钮：${payload.title}`)
-      this.$router.push('/')
+      this.$router.push(payload.data)
     },
     click_signIn (payload) {
-      alert(`你点了登陆按钮：${payload.title}`)
-      this.$router.push('/Signin')
+      this.$router.push('/SignIn')
       this.$http.get('/test').then(response => {
         console.log(response)
       }, response => {
@@ -64,8 +67,7 @@ export default {
       })
     },
     click_signUp (payload) {
-      alert(`你点了注册按钮`)
-      this.$router.push('SignUp')
+      this.$router.push('/SignUp')
     }
   },
   components: {

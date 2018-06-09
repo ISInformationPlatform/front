@@ -1,11 +1,19 @@
 <template>
   <main>
-    <TheForum class="left">
-      <TheNav :menu="menu"/>
-      <h2>{{title}}板块</h2>
-    </TheForum>
+    <template>
+      <TheForum class="left">
+        <template slot="before">
+          <TheNav :menu="menu"/>
+          <h2>{{title}}板块</h2>
+        </template>
 
-    <TheBillboard class="right"/>
+        <template slot="after">
+          <button @click="post">发帖</button>
+        </template>
+      </TheForum>
+
+      <TheBillboard class="right"/>
+    </template>
   </main>
 </template>
 
@@ -56,7 +64,6 @@ const hash = [
       ]
     ]
   }
-
 ]
 
 export default {
@@ -70,12 +77,18 @@ export default {
     init (id) {
       this.title = hash[id].title
       this.menu = hash[id].type
+    },
+    post () {
+      let forumId = 1
+
+      this.$router.push(`/forum/${forumId}/post`)
     }
   },
   mounted () {
     this.init(this.$route.params.forumId - 1)
   },
   beforeRouteUpdate (to, from, next) {
+    this.edit = false
     this.init(to.params.forumId - 1)
 
     next()
@@ -88,23 +101,50 @@ export default {
 }
 </script>
 
-<style lang="less">
-h2{
-  color: #1990ff;
-}
-
+<style lang="less" scoped>
 main{
   display: flex;
   justify-content: space-between;
+
+.editor {
+  width: 60%;
+  margin: 20px 20%;
 }
 
 .left {
+  h2{
+    color: #1990ff;
+  }
+
   padding: 10px 0 30px 0;
   width: 70%;
 }
 
-.right {
-  margin: 30px 0 30px 20px;
-  width: 25%;
+  .right {
+    margin: 30px 0 30px 20px;
+    width: 25%;
+  }
+}
+
+input{
+  border: none;
+  outline: none;
+
+  font-size: 2em;
+  width: 100%;
+}
+
+.btn_cnt{
+  text-align: center;
+
+  button{
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 1em;
+    width: 50%;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
 }
 </style>

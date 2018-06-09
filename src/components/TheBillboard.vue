@@ -24,7 +24,8 @@ export default {
   },
   methods: {
     click_title (payload) {
-      alert(`你点了标题：${payload.title}`)
+      let noticeId = 1
+      this.$router.push(`/notice/${noticeId}`)
     },
     click_date (payload) {
       alert(`你点了时间：${payload.title}`)

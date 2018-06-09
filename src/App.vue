@@ -3,15 +3,8 @@
     <TheHeader>
     </TheHeader>
 
-    <div id="container">
-
-      <router-view id="Forum"
-        name="Forum"></router-view>
-      <router-view id="SideBar"
-        name="SideBar"></router-view>
-      <router-view id="Content"
-        name="Content"></router-view>
-    </div>
+    <router-view id="Content"
+      name="Content"></router-view>
 
     <TheFooter>
     </TheFooter>
@@ -32,27 +25,21 @@ export default {
 </script>
 
 <style lang="less">
+.w-e-text{
+  overflow-y: auto;
+  /*
+   * 取消 wangeditor 的编辑框滚动条
+   * 详见 https://github.com/wangfupeng1988/wangEditor/issues/1558
+   */
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
 }
 
-#container {
-  margin: 0 10%;
-
-  display: flex;
-  justify-content: space-between;
-}
-#Forum {
-  padding: 10px 0 30px 0;
-  width: 70%;
-}
-#SideBar {
-  margin: 30px 0 30px 20px;
-  width: 25%;
-}
 #Content {
-  width: 100%;
+  margin: 0 10%;
 }
 </style>

@@ -1,8 +1,6 @@
 <template>
   <article>
-    <TheNav :list="links" @click="click_type" />
-
-    <slot/>
+    <slot name="before"/>
 
     <ForumItem
       :item="item"
@@ -13,7 +11,8 @@
       @click_tag="click_tag"
       v-for="(item,index) in list" />
 
-    <button @click="post">发帖</button>
+    <slot name="after"/>
+
   </article>
 </template>
 
@@ -33,18 +32,19 @@ export default {
       this.tag = false
     },
     click_title (payload) {
-      this.$router.push('/article')
+      let forumId = this.$route.params.forumId
+      let postId = 1
+
+      this.$router.push(`/forum/${forumId}/post/${postId}`)
     },
     click_icon (payload) {
-      this.$router.push('/information')
+      let personId = 1
+      this.$router.push(`/person/${personId}`)
     },
     click_tag (payload) {
       alert(`你点了标签：${payload.title}`)
       this.tag = true
       this.$router.push('/tag')
-    },
-    post () {
-      this.$router.push('/newPost')
     }
   },
   data () {

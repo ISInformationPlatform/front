@@ -30,7 +30,7 @@ export default {
 <style lang="less" scoped>
 img{
   cursor: pointer;
-  width: 100px;
+  width: 50px;
 }
 
 h3{

@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <div ref="editor" style="text-align:left"></div>
-        <button @click="getContent">查看内容</button>
+    <div class="container">
+      <slot name="before"/>
+      <div class="top" ref="toolbar"/>
+      <div class="down" ref="editor"/>
+      <slot name="after"/>
     </div>
 </template>
 
@@ -21,8 +23,10 @@ export default {
     }
   },
   mounted () {
-    var editor = new E(this.$refs.editor)
+    var editor = new E(this.$refs.toolbar, this.$refs.editor)
+
     editor.customConfig.onchange = html => { this.editorContent = html }
+
     editor.customConfig.uploadImgShowBase64 = true
     editor.customConfig.menus = [
       'head',
@@ -43,8 +47,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
-div{
-    margin: 20px 0;
+.top{
+  width: 100%;
+  margin-top: 20px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 }
 
+.down{
+  width: 100%;
+  margin-bottom: 20px;
+  min-height: 400px;
+}
 </style>

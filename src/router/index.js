@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import forum from '@/page/forum'
+import post from '@/page/post'
+import notice from '@/page/notice'
 import newPost from '@/page/newPost'
 
-import TheForum from '@/components/TheForum'
 import ThePerson from '@/components/ThePerson'
-import ThePost from '@/components/ThePost'
 import TheSignIn from '@/components/TheSignIn'
 import TheSignUp from '@/components/TheSignUp'
 
@@ -26,29 +26,29 @@ export default new Router({
       }
     },
     {
-      path: '/newPost',
-      name: 'post',
+      path: '/forum/:forumId/post/:postId',
+      name: 'forum',
+      components: {
+        Content: post
+      }
+    },
+    {
+      path: '/forum/:forumId/post',
+      name: 'newPost',
       components: {
         Content: newPost
       }
     },
     {
-      path: '/tag',
-      name: 'tag',
+      path: '/notice/:noticeId',
+      name: 'notice',
       components: {
-        Forum: TheForum
+        Content: notice
       }
     },
     {
-      path: '/article',
-      name: 'article',
-      components: {
-        Content: ThePost
-      }
-    },
-    {
-      path: '/information',
-      name: 'information',
+      path: '/person/:personId',
+      name: 'person',
       components: {
         Content: ThePerson
       }

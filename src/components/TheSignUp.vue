@@ -3,21 +3,53 @@
         <div class="outside">
             <div class="SUp">
                 <span>用户名</span><br>
-                <input type="text" value placeholder="请输入用户名"><br><br>
+                <input type="text" v-model="NewUser.Name" value placeholder="请输入用户名">
+                <img v-show="!validation.name" :src="fail">
+                <img v-show="validation.name" :src="success"><br>
                 <span>请输入密码</span><br>
-                <input type="text" value placeholder="请输入不少于6位数的密码"><br><br>
+                <input type="text" v-model="NewUser.Password" value placeholder="请输入不少于6位数的密码">
+                <img v-show="!validation.password" :src="fail">
+                <img v-show="validation.password" :src="success"><br>
                 <span>再次输入密码</span><br>
-                <input type="text" value placeholder="再次输入密码"><br><br>
+                <input type="text" v-model="NewUser.IsPassword" value placeholder="再次输入密码">
+                <img v-show="!validation.ispassword" :src="fail">
+                <img v-show="validation.ispassword" :src="success"><br>
                 <span>请输入邮箱地址</span><br>
-                <input type="text" value placeholder="请输入有效的邮箱地址"><br><br>
+                <input type="text" v-model="NewUser.Email" value placeholder="请输入有效的邮箱地址">
+                <img v-show="!validation.email" :src="fail">
+                <img v-show="validation.email" :src="success"><br>
                 <input type="button" value="注册">
             </div>
         </div>
     </form>
 </template>
 <script>
+var emailRE = /[0-9]+/
 export default {
-  name: 'TheSignUp'
+  name: 'TheSignUp',
+  data () {
+    return {
+      NewUser: {
+        Name: '',
+        Password: '',
+        IsPassword: '',
+        Email: ''
+      },
+      fail: '/static/false.png',
+      success: '/static/right.png'
+    }
+  },
+
+  computed: {
+    validation: function () {
+      return {
+        name: !!this.NewUser.Name.trim(),
+        password: !!this.NewUser.Password.trim(),
+        ispassword: this.NewUser.Password === this.NewUser.IsPassword && this.NewUser.IsPassword !== '' ? 1 : 0,
+        email: emailRE.test(this.NewUser.Email)
+      }
+    }
+  }
 }
 </script>
 <style>
@@ -50,6 +82,10 @@ export default {
 }
 .SUp input[type="button"]:hover{
     background: #1990ff;
+}
+img{
+  width:20px;
+  height:20px;
 }
 
 </style>

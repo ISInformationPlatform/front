@@ -1,9 +1,10 @@
 <template>
   <nav>
-    <div v-for="(list,index) in menu" :key="index">
-     <VButton v-for="(item,index) in list"
+    <div v-for="(list,i) in menu" :key="i">
+     <VButton v-for="(item,j) in list"
       :title="item.tag"
-      :key="index"
+      :data="item.id"
+      :key="j"
       @click="click" />
     </div>
  </nav>
@@ -20,9 +21,33 @@ export default {
   props: ['menu'],
   methods: {
     click (payload) {
-      this.$emit('click', {
-        title: payload.title
+      let id = payload.data
+      this.isActive[id].active = !this.isActive[id].active
+
+      let tag = 0
+
+      this.isActive.forEach(item => {
+        if (item.active) tag += 1 << item.id
       })
+
+      console.log(tag)
+    }
+  },
+  watch: {
+    menu: function () {
+      this.$children.forEach(item => {
+        item.isActive = false
+      })
+
+      let isActive = []
+
+      this.menu.forEach(item => {
+        item.forEach(item => isActive.push(
+          { active: false, id: item.id }
+        ))
+      })
+
+      this.isActive = isActive
     }
   }
 }
@@ -38,5 +63,10 @@ button {
   font-size: 20px;
   background-color: white;
   color: #1990ff;
+}
+
+.active {
+  background-color: #1990ff;
+  color: white;
 }
 </style>

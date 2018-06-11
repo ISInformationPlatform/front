@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <button @click="click">
+        <button @click="clickTag">
             {{tag}}
         </button>
         <ul>
@@ -9,16 +9,29 @@
                 <span>{{view}}</span>
             </li>
         </ul>
+        <button v-show="isShow" class="toggleContent" @click="toggleContent" >{{toggleValue}}</button>
     </footer>
 </template>
 
 <script>
 export default {
   name: 'ForumItemFooter',
-  props: ['tag', 'viewlogo', 'view'],
+  props: ['tag', 'viewlogo', 'view', 'toggleValue', 'content'],
   methods: {
-    click (event) {
-      this.$emit('click', { title: this.tag })
+    clickTag (event) {
+      this.$emit('click-tag', { title: this.tag })
+    },
+    toggleContent () {
+      this.$emit('click-toggle')
+    }
+  },
+  computed: {
+    isShow: function () {
+      if (this.content.length > 99) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
@@ -35,6 +48,9 @@ footer {
     background-color: white;
     border: 1px solid #aaaaaa;
     border-radius: 5px;
+  }
+  .toggleContent{
+    float: right;
   }
   ul {
     li {

@@ -7,12 +7,16 @@
             :username="item.username"
             @click="click_icon" />
 
-        <ForumItemContent :content="item.content" />
+        <ForumItemContent :content="item.content"
+        :toggleValue="toggleValue"/>
 
         <ForumItemFooter :tag="item.tag"
             :viewlogo="viewlogo"
             :view="item.view"
-            @click="click_tag" />
+            :content="item.content"
+            :toggleValue="toggleValue"
+            @click-tag="click_tag"
+            @click-toggle="click_toggle"/>
     </section>
 </template>
 
@@ -25,6 +29,11 @@ import ForumItemFooter from '@/components/ForumItemFooter'
 export default {
   name: 'ForumItem',
   props: ['item', 'viewlogo'],
+  data () {
+    return {
+      toggleValue: '展开'
+    }
+  },
   components: {
     'ForumItemTitle': ForumItemTitle,
     'ForumItemIcon': ForumItemIcon,
@@ -40,6 +49,13 @@ export default {
     },
     click_tag (payload) {
       this.$emit('click_tag', payload)
+    },
+    click_toggle () {
+      if (this.toggleValue === '展开') {
+        this.toggleValue = '收起'
+      } else {
+        this.toggleValue = '展开'
+      }
     }
   }
 }

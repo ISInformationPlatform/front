@@ -1,22 +1,22 @@
 <template>
     <section>
         <ForumItemTitle :title="item.title"
-            @click="click_title" />
+          @click="click_title" />
 
         <ForumItemIcon :icon="item.icon"
-            :username="item.username"
-            @click="click_icon" />
+          :username="item.username"
+          @click="click_icon" />
 
         <ForumItemContent :content="item.content"
-        :toggleValue="toggleValue"/>
+          :isToggle="isToggle"/>
 
         <ForumItemFooter :tag="item.tag"
-            :viewlogo="viewlogo"
-            :view="item.view"
-            :content="item.content"
-            :toggleValue="toggleValue"
-            @click-tag="click_tag"
-            @click-toggle="click_toggle"/>
+           :viewlogo="viewlogo"
+           :view="item.view"
+           :isToggle="isToggle"
+           :content="item.content"
+           @click-tag="click_tag"
+           @click-toggle="click_toggle"/>
     </section>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   props: ['item', 'viewlogo'],
   data () {
     return {
-      toggleValue: '展开'
+      isToggle: true
     }
   },
   components: {
@@ -51,11 +51,7 @@ export default {
       this.$emit('click_tag', payload)
     },
     click_toggle () {
-      if (this.toggleValue === '展开') {
-        this.toggleValue = '收起'
-      } else {
-        this.toggleValue = '展开'
-      }
+      this.isToggle = !this.isToggle
     }
   }
 }

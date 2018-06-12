@@ -1,8 +1,10 @@
 <template>
     <div class="container">
       <slot name="before"/>
+
       <div class="top" ref="toolbar"/>
       <div class="down" ref="editor"/>
+
       <slot name="after"/>
     </div>
 </template>

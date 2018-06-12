@@ -9,14 +9,18 @@
                 <span>{{view}}</span>
             </li>
         </ul>
-        <button v-show="isShow" class="toggleContent" @click="toggleContent" >{{toggleValue}}</button>
+        <button class="toggleContent"
+          v-show="this.content.length > 99"
+          @click="toggleContent" >
+            {{btn}}
+          </button>
     </footer>
 </template>
 
 <script>
 export default {
   name: 'ForumItemFooter',
-  props: ['tag', 'viewlogo', 'view', 'toggleValue', 'content'],
+  props: ['tag', 'viewlogo', 'view', 'content', 'isToggle'],
   methods: {
     clickTag (event) {
       this.$emit('click-tag', { title: this.tag })
@@ -26,11 +30,11 @@ export default {
     }
   },
   computed: {
-    isShow: function () {
-      if (this.content.length > 99) {
-        return true
+    btn: function () {
+      if (this.isToggle) {
+        return '展开'
       } else {
-        return false
+        return '隐藏'
       }
     }
   }

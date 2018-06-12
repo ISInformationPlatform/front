@@ -13,13 +13,13 @@
                 <img v-show="validation.password" :src="success"><br>
                 <span>再次输入密码</span><br>
                 <input :type="disP.isPwdType" v-model="NewUser.IsPassword" value placeholder="再次输入密码">
-                <img :src="eyesShow" @click="pwdDisplay" class="eyesShow">
+                <img :src="eyesShow" @click="isPwdDisplay" class="eyesShow">
                 <img v-show="!validation.ispassword" :src="fail">
                 <img v-show="validation.ispassword" :src="success"><br>
                 <span>请输入邮箱地址</span><br>
                 <input type="text" v-model="NewUser.Email" value placeholder="请输入有效的邮箱地址">
                 <img v-show="!validation.email" :src="fail">
-                <img v-show="validation.email" :src="success"><br>
+                <img v-show="validation.email" :src="success"><br><br>
                 <input type="button" value="注册">
             </div>
         </div>
@@ -49,7 +49,9 @@ export default {
   methods: {
     pwdDisplay () {
       this.disP.pwdType = this.disP.pwdType === 'password' ? 'text' : 'password'
-      this.disP.IsPwdtye = this.disP.IsPwdtye === 'password' ? 'text' : 'password'
+    },
+    isPwdDisplay () {
+      this.disP.isPwdType = this.disP.isPwdType === 'password' ? 'text' : 'password'
     }
   },
   computed: {

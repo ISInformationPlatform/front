@@ -3,7 +3,7 @@
         <ForumItemTitle :title="item.title"
           @click="click_title" />
 
-        <ForumItemIcon :icon="item.icon"
+        <VPin class="pin" :icon="item.icon"
           :username="item.username"
           @click="click_icon" />
 
@@ -21,8 +21,8 @@
 </template>
 
 <script>
+import VPin from '@/components/VPin'
 import ForumItemTitle from '@/components/ForumItemTitle'
-import ForumItemIcon from '@/components/ForumItemIcon'
 import ForumItemContent from '@/components/ForumItemContent'
 import ForumItemFooter from '@/components/ForumItemFooter'
 
@@ -35,8 +35,8 @@ export default {
     }
   },
   components: {
+    'VPin': VPin,
     'ForumItemTitle': ForumItemTitle,
-    'ForumItemIcon': ForumItemIcon,
     'ForumItemContent': ForumItemContent,
     'ForumItemFooter': ForumItemFooter
   },
@@ -61,5 +61,8 @@ export default {
 section {
   border-bottom: 1px solid #cccccc;
   padding: 20px 0;
+}
+.pin {
+  margin-top: 20px;
 }
 </style>

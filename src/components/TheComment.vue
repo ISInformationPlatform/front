@@ -1,26 +1,31 @@
 <template>
-  <div class="container">
-    <section class="item" :key="index" v-for="(item,index) in list">
+  <ul class="container">
+    <li :key="index" v-for="(item,index) in list">
+      <icon class="icon" :icon="item.icon"
+        :username="item.username"
+        @click="click_icon" />
 
-      <User class="left"
-        :username="item.username"/>
+      <div class="content">
+        {{item.content}}
+      </div>
 
-      <Content class="right"
-        :content="item.content"/>
-
-    </section>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
-import User from '@/components/CommentUser'
-import Content from '@/components/CommentContent'
+import VPin from '@/components/VPin'
 
 export default {
   name: 'TheForum',
   components: {
-    'User': User,
-    'Content': Content
+    'icon': VPin
+  },
+  methods: {
+    click_icon (payload) {
+      let personId = 1
+      this.$router.push(`/person/${personId}`)
+    }
   },
   data () {
     return {
@@ -56,17 +61,23 @@ export default {
   padding: 20px;
 }
 
-.item{
-  display: flex;
-  border-bottom: 1px solid #bbbbbb;
+ul {
+  list-style: none;
 
-  &:first-child{
-    border-top: 1px solid #bbbbbb;
+  li{
+    border-bottom: 1px solid #eeeeee;
+
+    &:first-child{
+      border-top: 1px solid #eeeeee;
+    }
   }
 
-  .left{
-    width: 10%;
-    min-width: 100px;
+  .icon {
+    margin-top: 10px;
+  }
+
+  .content {
+    padding: 10px 0;
   }
 }
 </style>

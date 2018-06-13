@@ -35,9 +35,7 @@ export default {
   },
   watch: {
     menu: function () {
-      this.$children.forEach(item => {
-        item.isActive = false
-      })
+      this.$children.forEach(item => { item.isActive = false })
 
       let isActive = []
 

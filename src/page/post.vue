@@ -1,12 +1,8 @@
 <template>
   <main>
-    <ThePost>
-      <div class="poster_body">
-        <VEditor>
-        </VEditor>
-      </div>
-   </ThePost>
-   <TheComment class="comment"/>
+    <ThePost/>
+
+    <TheComment class="comment"/>
   </main>
 </template>
 

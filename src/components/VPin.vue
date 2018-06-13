@@ -23,7 +23,6 @@ export default {
 div {
   display: flex;
   height: 36px;
-  margin-top: 20px;
 
   img {
     cursor: pointer;
@@ -33,7 +32,6 @@ div {
   strong {
     cursor: pointer;
 
-    margin-left: 5px;
     line-height: 36px;
     color: #cccccc;
   }

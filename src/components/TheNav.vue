@@ -56,8 +56,6 @@ button {
   margin: 10px 10px 10px 0;
   padding: 0;
 
-  border: none;
-  outline: 0;
   font-size: 20px;
   background-color: white;
   color: #1990ff;

@@ -33,5 +33,8 @@ export default {
 <style lang="less" scoped>
 button {
   cursor: pointer;
+  background: none;
+  border: none;
+  outline: 0;
 }
 </style>

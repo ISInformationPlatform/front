@@ -3,8 +3,9 @@
     <template>
       <TheForum class="left">
         <template slot="before">
-          <TheNav :menu="menu"/>
           <h2>{{title}}板块</h2>
+          <TheNav :menu="menu"/>
+          <TheFocus/>
         </template>
 
         <template slot="after">
@@ -20,6 +21,7 @@
 <script>
 import config from '@/page/config'
 
+import TheFocus from '@/components/TheFocus'
 import TheNav from '@/components/TheNav'
 import TheForum from '@/components/TheForum'
 import TheBillboard from '@/components/TheBillboard'
@@ -53,6 +55,7 @@ export default {
   components: {
     'TheNav': TheNav,
     'TheForum': TheForum,
+    'TheFocus': TheFocus,
     'TheBillboard': TheBillboard
   }
 }

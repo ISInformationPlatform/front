@@ -29,8 +29,6 @@ export default {
       this.isActive.forEach(item => {
         if (item.active) tag += 1 << item.id
       })
-
-      console.log(tag)
     }
   },
   watch: {

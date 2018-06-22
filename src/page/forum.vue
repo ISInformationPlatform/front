@@ -1,7 +1,7 @@
 <template>
   <main>
     <template>
-      <TheForum class="left">
+      <TheForum :list="list" class="left">
         <template slot="before">
           <h2>{{title}}板块</h2>
           <TheNav :menu="menu"/>
@@ -30,13 +30,21 @@ export default {
   data () {
     return {
       title: '',
-      menu: []
+      menu: [],
+      list: []
     }
   },
   methods: {
     init (id) {
       this.title = config[id].title
       this.menu = config[id].type
+      let obj = this
+
+      this.$http.get(`/forum/${id + 1}/post`).then(response => {
+        obj.list = response.body.data
+      }, err => {
+
+      })
     },
     post () {
       let forumId = 1

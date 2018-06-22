@@ -1,20 +1,22 @@
 <template>
     <section>
-        <ForumItemTitle :title="item.title"
+        <ForumItemTitle :title="item.post_title"
           @click="click_title" />
 
-        <VPin class="pin" :icon="item.icon"
-          :username="item.username"
+        <VPin class="pin" 
+          :icon="icon"
+          :username="item.author"
           @click="click_icon" />
 
-        <ForumItemContent :content="item.content"
+        <ForumItemContent :content="item.post_content"
           :isToggle="isToggle"/>
 
         <ForumItemFooter :tag="item.tag"
            :viewlogo="viewlogo"
-           :view="item.view"
+           :view="item.visited"
+           :content="item.post_title"
+
            :isToggle="isToggle"
-           :content="item.content"
            @click-tag="click_tag"
            @click-toggle="click_toggle"/>
     </section>
@@ -31,7 +33,9 @@ export default {
   props: ['item', 'viewlogo'],
   data () {
     return {
-      isToggle: true
+      isToggle: true,
+      viewlogo: '/static/viewLogo.png',
+      icon: '/static/icon.jpg'
     }
   },
   components: {

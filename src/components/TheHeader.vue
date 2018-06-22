@@ -60,11 +60,6 @@ export default {
     },
     click_signIn (payload) {
       this.$router.push('/SignIn')
-      this.$http.get('/test').then(response => {
-        console.log(response)
-      }, response => {
-
-      })
     },
     click_signUp (payload) {
       this.$router.push('/SignUp')

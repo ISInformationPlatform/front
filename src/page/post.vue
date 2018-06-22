@@ -10,7 +10,6 @@
 import ThePost from '@/components/ThePost'
 import TheComment from '@/components/TheComment'
 import VEditor from '@/components/VEditor'
-
 export default {
   data () {
     return {
@@ -18,6 +17,31 @@ export default {
       title: '',
       menu: []
     }
+  },
+  methods: {
+    init (forumId, postId) {
+      let obj = this
+
+      this.$http.get(`/forum/${forumId}/post/${postId}`).then(response => {
+        console.log(response)
+        obj.list = response.body.data
+      }, err => {
+
+      })
+    },
+    post () {
+      let forumId = 1
+
+      this.$router.push(`/forum/${forumId}/post`)
+    }
+  },
+  mounted () {
+    this.init(this.$route.params.forumId,this.$route.params.postId)
+  },
+  beforeRouteUpdate (to, from, next) {
+    this.init(this.$route.params.forumId,this.$route.params.postId)
+
+    next()
   },
   components: {
     'ThePost': ThePost,

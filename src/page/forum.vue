@@ -37,6 +37,13 @@ export default {
     init (id) {
       this.title = config[id].title
       this.menu = config[id].type
+      let obj = this
+
+      this.$http.get(`/forum/${id + 1}/post`).then(response => {
+        obj.list = JSON.parse(response)
+      }, response => {
+
+      })
     },
     post () {
       let forumId = 1

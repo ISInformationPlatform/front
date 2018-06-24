@@ -5,6 +5,7 @@ import forum from '@/page/forum'
 import post from '@/page/post'
 import notice from '@/page/notice'
 import newPost from '@/page/newPost'
+import home from '@/page/home'
 
 import ThePerson from '@/components/ThePerson'
 import TheSignIn from '@/components/TheSignIn'
@@ -16,7 +17,10 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home'
+      name: 'home',
+      components: {
+        Content: home
+      }
     },
     {
       path: '/forum/:forumId',

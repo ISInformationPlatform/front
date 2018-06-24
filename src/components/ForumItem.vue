@@ -1,10 +1,10 @@
 <template>
     <section>
-        <ForumItemTitle :title="item.title"
+        <ForumItemTitle :title="item.post_title"
           @click="click_title" />
 
         <VPin class="pin" :icon="item.icon"
-          :username="item.username"
+          :username="item.author"
           @click="click_icon" />
 
         <ForumItemContent :content="item.content"
@@ -12,9 +12,10 @@
 
         <ForumItemFooter :tag="item.tag"
            :viewlogo="viewlogo"
-           :view="item.view"
+           :view="item.visited"
+           :content="item.post_title"
+
            :isToggle="isToggle"
-           :content="item.content"
            @click-tag="click_tag"
            @click-toggle="click_toggle"/>
     </section>

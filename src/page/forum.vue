@@ -22,7 +22,6 @@
 import config from '@/page/config'
 
 import TheFocus from '@/components/TheFocus'
-import TheNav from '@/components/TheNav'
 import TheForum from '@/components/TheForum'
 import TheBillboard from '@/components/TheBillboard'
 
@@ -43,7 +42,7 @@ export default {
       this.$http.get(`/forum/${id + 1}/post`).then(response => {
         obj.list = response.body.data
       }, err => {
-
+        throw err
       })
     },
     post () {
@@ -61,7 +60,6 @@ export default {
     next()
   },
   components: {
-    'TheNav': TheNav,
     'TheForum': TheForum,
     'TheFocus': TheFocus,
     'TheBillboard': TheBillboard

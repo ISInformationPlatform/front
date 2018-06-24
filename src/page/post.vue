@@ -1,8 +1,10 @@
 <template>
   <main>
-    <ThePost/>
+    <ThePost
+      :title="title"
+      :content="content"/>
 
-    <TheComment class="comment"/>
+    <TheComment :list="list" class="comment"/>
   </main>
 </template>
 
@@ -13,9 +15,9 @@ import VEditor from '@/components/VEditor'
 export default {
   data () {
     return {
-      edit: false,
       title: '',
-      menu: []
+      content: '',
+      list: []
     }
   },
   methods: {
@@ -23,10 +25,18 @@ export default {
       let obj = this
 
       this.$http.get(`/forum/${forumId}/post/${postId}`).then(response => {
-        console.log(response)
+        obj.title = response.body.data.post_title
+        obj.content = response.body.data.post_content
+        console.log(response.body.data)
+        console.log(obj)
+      }, err => {
+        console.log(err)
+      })
+
+      this.$http.get(`/forum/${forumId}/post/${postId}/comment`).then(response => {
         obj.list = response.body.data
       }, err => {
-
+        console.log(err)
       })
     },
     post () {
@@ -36,10 +46,10 @@ export default {
     }
   },
   mounted () {
-    this.init(this.$route.params.forumId,this.$route.params.postId)
+    this.init(this.$route.params.forumId, this.$route.params.postId)
   },
   beforeRouteUpdate (to, from, next) {
-    this.init(this.$route.params.forumId,this.$route.params.postId)
+    this.init(this.$route.params.forumId, this.$route.params.postId)
 
     next()
   },

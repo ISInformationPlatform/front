@@ -3,7 +3,7 @@
         <ForumItemTitle :title="item.post_title"
           @click="click_title" />
 
-        <VPin class="pin" 
+        <VPin class="pin"
           :icon="icon"
           :username="item.author"
           @click="click_icon" />
@@ -30,7 +30,7 @@ import ForumItemFooter from '@/components/ForumItemFooter'
 
 export default {
   name: 'ForumItem',
-  props: ['item', 'viewlogo'],
+  props: ['item', 'ID'],
   data () {
     return {
       isToggle: true,
@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     click_title (payload) {
+      payload.ID = this.ID
       this.$emit('click_title', payload)
     },
     click_icon (payload) {

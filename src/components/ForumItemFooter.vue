@@ -1,7 +1,7 @@
 <template>
     <footer>
         <button @click="clickTag">
-            {{tag}}
+            {{tag[0]}}
         </button>
         <ul>
             <li>

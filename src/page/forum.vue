@@ -1,7 +1,7 @@
 <template>
   <main>
     <template>
-      <TheForum class="left">
+      <TheForum :list="list" class="left">
         <template slot="before">
           <h2>{{title}}板块</h2>
           <TheNav :menu="menu"/>
@@ -22,7 +22,6 @@
 import config from '@/page/config'
 
 import TheFocus from '@/components/TheFocus'
-import TheNav from '@/components/TheNav'
 import TheForum from '@/components/TheForum'
 import TheBillboard from '@/components/TheBillboard'
 
@@ -30,7 +29,8 @@ export default {
   data () {
     return {
       title: '',
-      menu: []
+      menu: [],
+      list: []
     }
   },
   methods: {
@@ -40,9 +40,15 @@ export default {
       let obj = this
 
       this.$http.get(`/forum/${id + 1}/post`).then(response => {
+<<<<<<< HEAD
         obj.list = JSON.parse(response)
       }, response => {
 
+=======
+        obj.list = response.body.data
+      }, err => {
+        throw err
+>>>>>>> 708dbd01f63c21889a1adeb9dbd7c36e9b511ef3
       })
     },
     post () {
@@ -60,7 +66,6 @@ export default {
     next()
   },
   components: {
-    'TheNav': TheNav,
     'TheForum': TheForum,
     'TheFocus': TheFocus,
     'TheBillboard': TheBillboard

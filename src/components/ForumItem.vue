@@ -3,11 +3,16 @@
         <ForumItemTitle :title="item.post_title"
           @click="click_title" />
 
+<<<<<<< HEAD
         <VPin class="pin" :icon="item.icon"
+=======
+        <VPin class="pin"
+          :icon="icon"
+>>>>>>> 708dbd01f63c21889a1adeb9dbd7c36e9b511ef3
           :username="item.author"
           @click="click_icon" />
 
-        <ForumItemContent :content="item.content"
+        <ForumItemContent :content="item.post_content"
           :isToggle="isToggle"/>
 
         <ForumItemFooter :tag="item.tag"
@@ -29,10 +34,12 @@ import ForumItemFooter from '@/components/ForumItemFooter'
 
 export default {
   name: 'ForumItem',
-  props: ['item', 'viewlogo'],
+  props: ['item', 'ID'],
   data () {
     return {
-      isToggle: true
+      isToggle: true,
+      viewlogo: '/static/viewLogo.png',
+      icon: '/static/icon.jpg'
     }
   },
   components: {
@@ -43,6 +50,7 @@ export default {
   },
   methods: {
     click_title (payload) {
+      payload.ID = this.ID
       this.$emit('click_title', payload)
     },
     click_icon (payload) {

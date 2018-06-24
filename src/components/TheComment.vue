@@ -1,12 +1,13 @@
 <template>
   <ul class="container">
     <li :key="index" v-for="(item,index) in list">
-      <icon class="icon" :icon="item.icon"
-        :username="item.username"
+      <icon class="icon" 
+        :icon="icon"
+        :username="item.comment_author"
         @click="click_icon" />
 
       <div class="content">
-        {{item.content}}
+        {{item.comment_content}}
       </div>
 
     </li>
@@ -18,6 +19,7 @@ import VPin from '@/components/VPin'
 
 export default {
   name: 'TheForum',
+  props: ['list'],
   components: {
     'icon': VPin
   },
@@ -29,28 +31,7 @@ export default {
   },
   data () {
     return {
-      list: [
-        {
-          username: '张飞',
-          content: ' 你见过这么整齐的15字 吗？',
-          icon: '/static/icon.jpg'
-        },
-        {
-          username: '牛顿',
-          content: '太强了',
-          icon: '/static/icon.jpg'
-        },
-        {
-          username: '张飞',
-          content: '牛逼',
-          icon: '/static/icon.jpg'
-        },
-        {
-          username: '刘备',
-          content: '不知道你在说啥不知道你在说啥不知道你在说啥不知道你在说啥不知道你在说啥不知道你在说啥不知道你在说啥',
-          icon: '/static/icon.jpg'
-        }
-      ]
+      icon: '/static/icon.jpg'
     }
   }
 }

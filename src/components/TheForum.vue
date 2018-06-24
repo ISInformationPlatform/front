@@ -3,6 +3,7 @@
     <slot name="before"/>
 
     <ForumItem
+      :ID="item._id"
       :item="item"
       :viewlogo="viewlogo"
       :key="index"
@@ -18,23 +19,21 @@
 
 <script>
 import ForumItem from '@/components/ForumItem'
-import TheNav from '@/components/TheNav'
 
 export default {
   name: 'TheForum',
   components: {
-    'ForumItem': ForumItem,
-    'TheNav': TheNav
+    'ForumItem': ForumItem
+  },
+  props: ['list'],
+  mounted () {
+    console.log(this)
   },
   props: ['list'],
   methods: {
-    click_type (payload) {
-      alert(`你点了另一个导航栏：${payload.title}`)
-      this.tag = false
-    },
     click_title (payload) {
       let forumId = this.$route.params.forumId
-      let postId = 1
+      let postId = payload.ID
 
       this.$router.push(`/forum/${forumId}/post/${postId}`)
     },

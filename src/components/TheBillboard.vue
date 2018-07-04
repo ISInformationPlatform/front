@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import BillboardTitle from '@/components/BillboardTitle'
-import BillboardItem from '@/components/BillboardItem'
+import BillboardTitle from '@/components/BillboardTitle';
+import BillboardItem from '@/components/BillboardItem';
 
 export default {
   name: 'TheBullet',
@@ -24,11 +24,11 @@ export default {
   },
   methods: {
     click_title (payload) {
-      let noticeId = 1
-      this.$router.push(`/notice/${noticeId}`)
+      let noticeId = 1;
+      this.$router.push(`/notice/${noticeId}`);
     },
     click_date (payload) {
-      alert(`你点了时间：${payload.title}`)
+      alert(`你点了时间：${payload.title}`);
     }
   },
   data () {
@@ -50,9 +50,9 @@ export default {
       }
       ],
       title: '公告'
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

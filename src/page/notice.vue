@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import ThePost from '@/components/ThePost'
-import VEditor from '@/components/VEditor'
+import ThePost from '@/components/ThePost';
+import VEditor from '@/components/VEditor';
 
 export default {
   data () {
@@ -14,13 +14,13 @@ export default {
       edit: false,
       title: '',
       menu: []
-    }
+    };
   },
   components: {
     'ThePost': ThePost,
     'VEditor': VEditor
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

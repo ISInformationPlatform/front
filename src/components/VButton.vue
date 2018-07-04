@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       isActive: false
-    }
+    };
   },
   methods: {
     click (event) {
@@ -19,15 +19,15 @@ export default {
         title: this.title,
         data: this.data,
         event: event
-      })
-      this.isActive = !this.isActive
+      });
+      this.isActive = !this.isActive;
     }
   },
   beforeRouteUpdate (to, from, next) {
-    alert('sdf')
-    this.isActive = false
+    alert('sdf');
+    this.isActive = false;
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -11,11 +11,11 @@ export default {
   computed: {
     contentCut: function () {
       if (this.content.length > 99 && this.isToggle) {
-        return `${this.content.substring(0, 99)} ......`
+        return `${this.content.substring(0, 99)} ......`;
       } else {
-        return this.content
+        return this.content;
       }
     }
   }
-}
+};
 </script>

@@ -6,7 +6,7 @@
 export default {
   name: 'BulletTitle',
   props: ['title']
-}
+};
 </script>
 
 <style lang="less" scoped>

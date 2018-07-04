@@ -32,9 +32,9 @@ export default {
         url: 'http://www.baidu.com'
       }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

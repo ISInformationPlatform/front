@@ -13,10 +13,10 @@ export default {
   name: 'ForumItemIcon',
   methods: {
     click (event) {
-      this.$emit('click', { title: this.username })
+      this.$emit('click', { title: this.username });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

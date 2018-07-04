@@ -6,10 +6,34 @@
 </template>
 
 <script>
+import { getPost } from '@/service/getData';
+
 export default {
   name: 'ThePost',
-  props: ['title', 'content']
-}
+  props: ['forumId', 'postId'],
+  data () {
+    return {
+      title: '',
+      content: ''
+    }
+  },
+  watch: {
+    forumId: 'update',
+    postId: 'update'
+  },
+  methods: {
+    update () {
+      let obj = this;
+
+      getPost(this.forumId, this.postId)
+        .then(data => {
+          obj.title = data.post_title;
+          obj.content = data.post_content;
+        });
+    }
+  },
+  mounted () { this.update(); }
+};
 </script>
 
 <style lang="less" scoped>

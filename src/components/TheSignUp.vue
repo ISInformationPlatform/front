@@ -26,7 +26,7 @@
     </form>
 </template>
 <script>
-var emailRE = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+var emailRE = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 export default {
   name: 'TheSignUp',
   data () {
@@ -44,14 +44,14 @@ export default {
       fail: '/static/false.png',
       success: '/static/right.png',
       eyesShow: '/static/viewLogo.png'
-    }
+    };
   },
   methods: {
     pwdDisplay () {
-      this.disP.pwdType = this.disP.pwdType === 'password' ? 'text' : 'password'
+      this.disP.pwdType = this.disP.pwdType === 'password' ? 'text' : 'password';
     },
     isPwdDisplay () {
-      this.disP.isPwdType = this.disP.isPwdType === 'password' ? 'text' : 'password'
+      this.disP.isPwdType = this.disP.isPwdType === 'password' ? 'text' : 'password';
     }
   },
   computed: {
@@ -61,10 +61,10 @@ export default {
         password: this.NewUser.Password.length > 5 ? 1 : 0,
         ispassword: this.NewUser.Password === this.NewUser.IsPassword && this.NewUser.IsPassword !== '' ? 1 : 0,
         email: emailRE.test(this.NewUser.Email)
-      }
+      };
     }
   }
-}
+};
 </script>
 <style>
 .outside{

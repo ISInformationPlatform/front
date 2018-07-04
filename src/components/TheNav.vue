@@ -11,42 +11,45 @@
 </template>
 
 <script>
-import VButton from '@/components/VButton'
+import VButton from '@/components/VButton';
 
 export default {
   name: 'TheNav',
   components: {
     'VButton': VButton
   },
+  data () {
+    return {
+      tag: 0
+    };
+  },
   props: ['menu'],
   methods: {
     click (payload) {
-      let id = payload.data
-      this.isActive[id].active = !this.isActive[id].active
-
-      let tag = 0
+      let id = payload.data;
+      this.isActive[id].active = !this.isActive[id].active;
 
       this.isActive.forEach(item => {
-        if (item.active) tag += 1 << item.id
-      })
+        if (item.active) { this.tag += 1 << item.id; }
+      });
     }
   },
   watch: {
     menu: function () {
-      this.$children.forEach(item => { item.isActive = false })
+      this.$children.forEach(item => { item.isActive = false; });
 
-      let isActive = []
+      let isActive = [];
 
       this.menu.forEach(item => {
         item.forEach(item => isActive.push(
           { active: false, id: item.id }
-        ))
-      })
+        ));
+      });
 
-      this.isActive = isActive
+      this.isActive = isActive;
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

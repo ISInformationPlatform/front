@@ -23,22 +23,22 @@ export default {
   props: ['tag', 'viewlogo', 'view', 'content', 'isToggle'],
   methods: {
     clickTag (event) {
-      this.$emit('click-tag', { title: this.tag })
+      this.$emit('click-tag', { title: this.tag });
     },
     toggleContent () {
-      this.$emit('click-toggle')
+      this.$emit('click-toggle');
     }
   },
   computed: {
     btn: function () {
       if (this.isToggle) {
-        return '展开'
+        return '展开';
       } else {
-        return '隐藏'
+        return '隐藏';
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -10,16 +10,20 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
     "lint": "eslint --fix --ext .js,.vue src test/unit",
+    "lint-not-fix": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "eslint-config-recommended": "^3.0.0",
+    "eslint-config-standard": "^11.0.0",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "wangeditor": "^3.1.1"
+    "wangeditor": "^3.1.1",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -39,7 +43,6 @@
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^4.15.0",
-    "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.7.0",

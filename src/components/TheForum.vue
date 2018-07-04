@@ -18,37 +18,16 @@
 </template>
 
 <script>
-import ForumItem from '@/components/ForumItem'
+import { getPostList } from '@/service/getData';
+import ForumItem from '@/components/ForumItem';
 
 export default {
-  name: 'TheForum',
   components: {
     'ForumItem': ForumItem
   },
-  props: ['list'],
-  mounted () {
-    console.log(this)
-  },
-  props: ['list'],
-  methods: {
-    click_title (payload) {
-      let forumId = this.$route.params.forumId
-      let postId = payload.ID
-
-      this.$router.push(`/forum/${forumId}/post/${postId}`)
-    },
-    click_icon (payload) {
-      let personId = 1
-      this.$router.push(`/person/${personId}`)
-    },
-    click_tag (payload) {
-      alert(`你点了标签：${payload.title}`)
-      this.tag = true
-      this.$router.push('/tag')
-    }
-  },
   data () {
     return {
+      list: '',
       links: [
         {
           title: '日程',
@@ -61,9 +40,40 @@ export default {
       ],
       viewlogo: '/static/viewLogo.png',
       title: '分享'
+    };
+  },
+  props: ['forumId'],
+  watch: {
+    forumId: 'update'
+  },
+  mounted () { 
+    this.update()
+  },
+  methods: {
+    update () {
+      let obj = this;
+
+      getPostList(this.forumId).then(data => {
+        obj.list = data;
+      });
+    },
+    click_title (payload) {
+      let forumId = this.$route.params.forumId;
+      let postId = payload.ID;
+
+      this.$router.push(`/forum/${forumId}/post/${postId}`);
+    },
+    click_icon (payload) {
+      let personId = 1;
+      this.$router.push(`/pkerson/${personId}`);
+    },
+    click_tag (payload) {
+      alert(`你点了标签：${payload.title}`);
+      this.tag = true;
+      this.$router.push('/tag');
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

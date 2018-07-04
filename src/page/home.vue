@@ -1,7 +1,7 @@
 <template>
     <main>
         <ul>
-            <li 
+            <li
             :key="index"
             v-for="(item,index) in List">
                 <div class="out"
@@ -16,30 +16,30 @@
 
 <script>
 export default {
-    data () {
-        return {
-            List: [
-                {
-                    pic:'/static/dy.png',
-                    name: '工 作'
-                },
-                {
-                    pic: '/static/ei.png',
-                    name: '出 国'
-                },
-                {
-                    pic: '/static/pt.png',
-                    name: '读 研'
-                }
-            ]
+  data () {
+    return {
+      List: [
+        {
+          pic: '/static/dy.png',
+          name: '工 作'
+        },
+        {
+          pic: '/static/ei.png',
+          name: '出 国'
+        },
+        {
+          pic: '/static/pt.png',
+          name: '读 研'
         }
-    },
-    methods: {
-        clickpush (index) {
-            this.$router.push(`/forum/${index + 1}`)
-        }
+      ]
+    };
+  },
+  methods: {
+    clickpush (index) {
+      this.$router.push(`/forum/${index + 1}`);
     }
-}
+  }
+};
 </script>
 <style lang="less" scoped>
 ul{
@@ -76,4 +76,3 @@ img{
 }
 
 </style>
-

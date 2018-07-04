@@ -10,26 +10,20 @@
 </template>
 
 <script>
-import E from 'wangeditor'
+import E from 'wangeditor';
 
 export default {
   name: 'editor',
-  data () {
-    return {
-      editorContent: ''
-    }
-  },
-  methods: {
-    getContent: function () {
-      alert(this.editorContent)
-    }
-  },
   mounted () {
-    var editor = new E(this.$refs.toolbar, this.$refs.editor)
+    var editor = new E(this.$refs.toolbar, this.$refs.editor);
 
-    editor.customConfig.onchange = html => { this.editorContent = html }
+    editor.customConfig.onchange = html => {
+      this.$emit('input', {
+        html
+      });
+    };
 
-    editor.customConfig.uploadImgShowBase64 = true
+    editor.customConfig.uploadImgShowBase64 = true;
     editor.customConfig.menus = [
       'head',
       'bold',
@@ -42,10 +36,10 @@ export default {
       'image',
       'table',
       'code'
-    ]
-    editor.create()
+    ];
+    editor.create();
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

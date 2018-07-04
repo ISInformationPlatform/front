@@ -15,13 +15,13 @@ export default {
   props: ['title', 'date', 'url'],
   methods: {
     click_title (event) {
-      this.$emit('click_title', { title: this.title })
+      this.$emit('click_title', { title: this.title });
     },
     click_date (event) {
-      this.$emit('click_date', { title: this.date })
+      this.$emit('click_date', { title: this.date });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

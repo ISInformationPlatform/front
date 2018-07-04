@@ -1,7 +1,7 @@
 <template>
   <main>
     <template>
-      <TheForum :list="list" class="left">
+      <TheForum :forumId="forumId" class="left">
         <template slot="before">
           <h2>{{title}}板块</h2>
           <TheNav :menu="menu"/>
@@ -19,58 +19,45 @@
 </template>
 
 <script>
-import config from '@/page/config'
+import config from '@/page/config';
 
-import TheFocus from '@/components/TheFocus'
-import TheForum from '@/components/TheForum'
-import TheBillboard from '@/components/TheBillboard'
+import TheFocus from '@/components/TheFocus';
+import TheNav from '@/components/TheNav';
+import TheForum from '@/components/TheForum';
+import TheBillboard from '@/components/TheBillboard';
 
 export default {
   data () {
     return {
-      title: '',
-      menu: [],
-      list: []
-    }
+      title: config[0].title,
+      menu: config[0].type,
+      forumId: 1
+    };
   },
   methods: {
     init (id) {
-      this.title = config[id].title
-      this.menu = config[id].type
-      let obj = this
+      let num = id - 1;
 
-      this.$http.get(`/forum/${id + 1}/post`).then(response => {
-<<<<<<< HEAD
-        obj.list = JSON.parse(response)
-      }, response => {
-
-=======
-        obj.list = response.body.data
-      }, err => {
-        throw err
->>>>>>> 708dbd01f63c21889a1adeb9dbd7c36e9b511ef3
-      })
+      this.title = config[num].title;
+      this.menu = config[num].type;
+      this.forumId = id;
     },
     post () {
-      let forumId = 1
-
-      this.$router.push(`/forum/${forumId}/post`)
+      this.$router.push(`/forum/${this.forumId}/post`);
     }
   },
-  mounted () {
-    this.init(this.$route.params.forumId - 1)
-  },
   beforeRouteUpdate (to, from, next) {
-    this.init(to.params.forumId - 1)
+    this.init(to.params.forumId);
 
-    next()
+    next();
   },
   components: {
     'TheForum': TheForum,
+    'TheNav': TheNav,
     'TheFocus': TheFocus,
     'TheBillboard': TheBillboard
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

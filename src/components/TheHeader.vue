@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import VButton from '@/components/VButton'
+import VButton from '@/components/VButton';
 
 export default {
   name: 'TheHeader',
@@ -52,23 +52,23 @@ export default {
         title: '读研',
         url: '/forum/3'
       }]
-    }
+    };
   },
   methods: {
     click_nav (payload) {
-      this.$router.push(payload.data)
+      this.$router.push(payload.data);
     },
     click_signIn (payload) {
-      this.$router.push('/SignIn')
+      this.$router.push('/SignIn');
     },
     click_signUp (payload) {
-      this.$router.push('/SignUp')
+      this.$router.push('/SignUp');
     }
   },
   components: {
     'VButton': VButton
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

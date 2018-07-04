@@ -16,7 +16,7 @@
 <script>
 export default {
   name: 'SignIn'
-}
+};
 </script>
 <style lang="less" scoped>
 .outside{

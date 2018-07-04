@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import VButton from '@/components/VButton'
+import VButton from '@/components/VButton';
 
 export default {
   name: 'TheFocus',
@@ -28,9 +28,9 @@ export default {
         title: '读很重要的通知',
         url: '/forum/3'
       }]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -1,10 +1,10 @@
 <template>
   <main>
-    <VEditor class="editor">
-      <input placeholder="请输入标题" slot="before" type="text">
+    <VEditor @input="updateHtml" class="editor">
+      <input v-model="title" placeholder="请输入标题" slot="before" type="text">
       <div class="btn_cnt" slot="after">
         <VButton
-          @click="getContent"
+          @click="upload"
           :title="'发布'"/>
       </div>
    </VEditor>
@@ -12,15 +12,31 @@
 </template>
 
 <script>
-import VEditor from '@/components/VEditor'
-import VButton from '@/components/VButton'
+import { uploadPost } from '@/service/getData';
+
+import VEditor from '@/components/VEditor';
+import VButton from '@/components/VButton';
 
 export default {
   components: {
     'VEditor': VEditor,
     'VButton': VButton
+  },
+  data () {
+    return {
+      title: '',
+      content: ''
+    };
+  },
+  methods: {
+    updateHtml (payload) {
+      this.content = payload.html;
+    },
+    upload () {
+      uploadPost(this.title, 'hwfhc', this.content);
+    }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

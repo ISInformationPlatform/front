@@ -10,5 +10,5 @@
 export default {
   name: 'PersonDetail',
   props: ['username']
-}
+};
 </script>

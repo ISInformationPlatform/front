@@ -5,7 +5,7 @@
 
         <VPin class="pin"
           :icon="icon"
-          :username="item.author"
+          :username="item.post_author"
           @click="click_icon" />
 
         <ForumItemContent :content="item.post_content"

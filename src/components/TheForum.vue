@@ -65,7 +65,7 @@ export default {
     },
     click_icon (payload) {
       let personId = 1;
-      this.$router.push(`/pkerson/${personId}`);
+      this.$router.push(`/person/${personId}`);
     },
     click_tag (payload) {
       alert(`你点了标签：${payload.title}`);

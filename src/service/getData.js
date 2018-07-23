@@ -22,7 +22,7 @@ export const uploadPost = async (title, author, content) => {
     },
     body: JSON.stringify({
       post_title: title,
-      author: author,
+      post_author: author,
       post_content: content
     })
   });

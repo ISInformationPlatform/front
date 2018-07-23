@@ -33,7 +33,10 @@ export default {
       this.content = payload.html;
     },
     upload () {
-      uploadPost(this.title, 'hwfhc', this.content);
+      uploadPost(this.title, 'hwfhc', this.content)
+      .then(() => {
+        alert("上传成功");
+      });
     }
   }
 };

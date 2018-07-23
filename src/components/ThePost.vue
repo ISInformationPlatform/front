@@ -15,7 +15,7 @@ export default {
     return {
       title: '',
       content: ''
-    }
+    };
   },
   watch: {
     forumId: 'update',

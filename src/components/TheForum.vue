@@ -46,8 +46,8 @@ export default {
   watch: {
     forumId: 'update'
   },
-  mounted () { 
-    this.update()
+  mounted () {
+    this.update();
   },
   methods: {
     update () {

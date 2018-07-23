@@ -34,9 +34,9 @@ export default {
     },
     upload () {
       uploadPost(this.title, 'hwfhc', this.content)
-      .then(() => {
-        alert("上传成功");
-      });
+        .then(() => {
+          alert('上传成功');
+        });
     }
   }
 };

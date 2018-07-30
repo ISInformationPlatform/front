@@ -18,8 +18,8 @@ import VEditor from '@/components/VEditor';
 export default {
   data () {
     return {
-      forumId: 1,
-      postId: 1
+      forumId: null,
+      postId: null 
     };
   },
   mounted () {

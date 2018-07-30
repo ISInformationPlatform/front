@@ -25,6 +25,9 @@ export default {
     update () {
       let obj = this;
 
+      if(!this.forumId || !this.postId) 
+        return;
+
       getPost(this.forumId, this.postId)
         .then(data => {
           obj.title = data.post_title;

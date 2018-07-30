@@ -34,3 +34,16 @@ export const getComment = async (forumId, postId) => {
 
   return json.data;
 };
+
+export const submitComment = async (author, content, postId) => {
+  fetch(`/forum/1/post/${postId}/comment`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      comment_author: author,
+      comment_content: content
+    })
+  });
+};

@@ -6,6 +6,7 @@ import post from '@/page/post';
 import notice from '@/page/notice';
 import newPost from '@/page/newPost';
 import home from '@/page/home';
+import newBill from '@/page/newBill';
 
 import ThePerson from '@/components/ThePerson';
 import TheSignIn from '@/components/TheSignIn';
@@ -61,6 +62,12 @@ export default new Router({
       path: '/SignUp',
       components: {
         Content: TheSignUp
+      }
+    },
+    {
+      path: '/forum/:forumId/newBill',
+      components: {
+        Content: newBill
       }
     }
   ]

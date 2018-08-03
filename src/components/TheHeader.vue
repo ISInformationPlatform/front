@@ -56,6 +56,7 @@ export default {
   },
   methods: {
     click_nav (payload) {
+      console.log(payload.data);
       this.$router.push(payload.data);
     },
     click_signIn (payload) {

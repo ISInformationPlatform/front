@@ -1,16 +1,20 @@
 <template>
   <article>
     <slot name="before"/>
-
-    <ForumItem
-      :ID="item._id"
-      :item="item"
-      :viewlogo="viewlogo"
-      :key="index"
-      @click_title="click_title"
-      @click_icon="click_icon"
-      @click_tag="click_tag"
-      v-for="(item,index) in list" />
+      <div class="title">
+          <span>帖子</span>
+      </div>
+      <div class="comment">
+      <ForumItem
+        :ID="item._id"
+        :item="item"
+        :viewlogo="viewlogo"
+        :key="index"
+        @click_title="click_title"
+        @click_icon="click_icon"
+        @click_tag="click_tag"
+        v-for="(item,index) in list" />
+    </div>
 
     <slot name="after"/>
 
@@ -77,7 +81,22 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.comment{
+  border:2px solid #eeeeee;
+}
 button{
   margin: 20px 0;
+}
+.title{
+  position: relative;
+  margin-top: 30px;
+  height:40px;
+  background-color: rgb(235,235,235);
+  font-size: 1em;
+  font-weight: bold;
+  span{
+    position: absolute;
+    top: 10px;
+  }
 }
 </style>

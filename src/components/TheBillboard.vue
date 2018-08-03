@@ -9,6 +9,10 @@
             :date="item.date"
             @click_title="click_title"
             @click_date="click_date" />
+
+        <div class="submit">
+          <button @click="newBill">发帖</button>
+        </div>
     </aside>
 </template>
 
@@ -58,5 +62,6 @@ export default {
 <style lang="less" scoped>
 aside {
   margin: 0;
+  background-color: rgb(235, 235, 235);
 }
 </style>

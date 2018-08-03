@@ -21,7 +21,7 @@ export default {
 h4 {
   cursor: pointer;
   margin: 0;
-  font-size: 1.25em;
-  color: blue;
+  font-size: 1.1em;
+  color: #1990ff;
 }
 </style>

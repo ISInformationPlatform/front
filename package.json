@@ -16,6 +16,7 @@
   "dependencies": {
     "eslint-config-recommended": "^3.0.0",
     "eslint-config-standard": "^11.0.0",
+    "js-striphtml": "^1.1.2",
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
     "vue": "^2.5.2",

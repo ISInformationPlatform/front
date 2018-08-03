@@ -66,7 +66,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="less" scoped>
 .outside{
         margin:120px auto 100px;
         width: 500px;

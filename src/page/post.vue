@@ -19,7 +19,7 @@ export default {
   data () {
     return {
       forumId: null,
-      postId: null 
+      postId: null
     };
   },
   mounted () {

@@ -1,9 +1,10 @@
 <template>
   <nav>
     <div v-for="(list,i) in menu" :key="i">
-     <VButton v-for="(item,j) in list"
-      :title="item.tag"
+     <IMButton v-for="(item,j) in list"
+      :images="item.tag"
       :data="item.id"
+      :title="item.title"
       :key="j"
       @click="click" />
     </div>
@@ -11,12 +12,12 @@
 </template>
 
 <script>
-import VButton from '@/components/VButton';
+import IMButton from '@/components/IMButton';
 
 export default {
   name: 'TheNav',
   components: {
-    'VButton': VButton
+    'IMButton': IMButton
   },
   data () {
     return {
@@ -54,7 +55,7 @@ export default {
 
 <style lang="less" scoped>
 button {
-  margin: 10px 10px 10px 0;
+  margin-bottom: 30px;
   padding: 0;
 
   font-size: 20px;
@@ -65,5 +66,10 @@ button {
 .active {
   background-color: #1990ff;
   color: white;
+}
+div{
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
 }
 </style>

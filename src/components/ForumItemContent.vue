@@ -19,3 +19,10 @@ export default {
   }
 };
 </script>
+<style lang="less" scoped>
+p{
+  margin-top:5px;
+  font-size: .9em;
+  word-wrap: break-word;
+}
+</style>

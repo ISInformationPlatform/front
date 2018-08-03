@@ -23,15 +23,19 @@ export default {
 div {
   display: flex;
   height: 36px;
+    border-bottom: 1px solid #eeeee;
 
   img {
     cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-top: 8px;
 
-    height: 100%;
   }
   strong {
     cursor: pointer;
 
+    font-size: 0.7em;
     line-height: 36px;
     color: #cccccc;
   }

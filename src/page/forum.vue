@@ -1,7 +1,9 @@
 <template>
   <main>
     <template>
-      <TheForum :forumId="forumId" class="left">
+      <TheBillboard class="left" :forumId="forumId"/>
+
+      <TheForum :forumId="forumId" class="right">
         <template slot="before">
           <h2>{{title}}板块</h2>
           <TheNav :menu="menu"/>
@@ -9,11 +11,12 @@
         </template>
 
         <template slot="after">
-          <button @click="post">发帖</button>
+          <div class="submit">
+            <button @click="post">发帖</button>
+          </div>
         </template>
       </TheForum>
 
-      <TheBillboard class="right"/>
     </template>
   </main>
 </template>
@@ -26,20 +29,26 @@ import TheNav from '@/components/TheNav';
 import TheForum from '@/components/TheForum';
 import TheBillboard from '@/components/TheBillboard';
 
+const forumMap = new Map();
+
+config.forum.forEach(item => {
+  forumMap.set(item.section_id, item);
+});
+
 export default {
   data () {
     return {
-      title: config[0].title,
-      menu: config[0].type,
-      forumId: 1
+      title: config.forum[0].title,
+      menu: config.forum[0].type,
+      forumId: config.forum[0].section_id
     };
   },
   methods: {
     init (id) {
-      let num = id - 1;
+      let item = forumMap.get(id);
 
-      this.title = config[num].title;
-      this.menu = config[num].type;
+      this.title = item.title;
+      this.menu = item.type;
       this.forumId = id;
     },
     post () {
@@ -47,7 +56,7 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    this.init(to.params.forumId);
+    this.init(parseInt(to.params.forumId));
 
     next();
   },
@@ -63,25 +72,26 @@ export default {
 <style lang="less" scoped>
 main{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
 .editor {
   width: 60%;
   margin: 20px 20%;
 }
 
-.left {
+.right {
   h2{
     color: #1990ff;
   }
-
+  margin-left: 5%;
   padding: 10px 0 30px 0;
   width: 70%;
 }
 
-  .right {
+  .left {
     margin: 30px 0 30px 20px;
-    width: 25%;
+    width: 20%;
+    padding:2%;
   }
 }
 
@@ -105,5 +115,10 @@ input{
     padding: 10px 20px;
     border-radius: 5px;
   }
+}
+.submit > button{
+  border:2px solid #cccccc;
+  background: none;
+  color: #cccccc;
 }
 </style>

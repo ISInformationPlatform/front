@@ -25,8 +25,7 @@ export default {
     update () {
       let obj = this;
 
-      if(!this.forumId || !this.postId) 
-        return;
+      if (!this.forumId || !this.postId) { return; }
 
       getPost(this.forumId, this.postId)
         .then(data => {

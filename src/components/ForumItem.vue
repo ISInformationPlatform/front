@@ -64,10 +64,9 @@ export default {
 
 <style lang="less" scoped>
 section {
-  border-bottom: 1px solid #cccccc;
-  padding: 20px 0;
+  padding-bottom: 30px;
 }
 .pin {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 </style>

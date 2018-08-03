@@ -31,8 +31,8 @@ p {
   cursor: pointer;
 
   color: black;
-  background-color: white;
   font-family: Arial, "Microsoft YaHei", sans-serif;
+  font-size: .9em;
 
   &:hover {
     color: blue;
@@ -42,7 +42,8 @@ p {
 section {
   margin: 0;
   padding: 10px 0 10px 0;
-
-  border-bottom: 1px solid #cccccc;
+}
+.date{
+  text-align: right;
 }
 </style>

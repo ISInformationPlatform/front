@@ -47,3 +47,24 @@ export const submitComment = async (author, content, postId) => {
     })
   });
 };
+
+export const uploadBill = async (author, title, content, forumId) => {
+  fetch(`/forum/${forumId}`, {
+    methods: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      notice_author: author,
+      notice_title: title,
+      notice_content: content
+    })
+  });
+};
+
+export const getBill = async (forumId) => {
+  let res = await fetch(`/forum/${forumId}/`);
+  let json = await res.json();
+
+  return json.data;
+};

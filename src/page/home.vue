@@ -1,16 +1,14 @@
 <template>
     <main>
-        <ul>
-            <li
+            <button
             :key="index"
-            v-for="(item,index) in List">
-                <div class="out"
-                @click="clickpush(index)">
+            v-for="(item,index) in List"
+            @click="clickpush(index)">
+                <div class="out">
                     <div class="pic"><img :src="item.pic"></div>
                     <div class="name">{{item.name}}</div>
                 </div>
-            </li>
-        </ul>
+            </button>
     </main>
 </template>
 
@@ -20,15 +18,15 @@ export default {
     return {
       List: [
         {
-          pic: '/static/dy.png',
+          pic: '/static/work.png',
           name: '工 作'
         },
         {
-          pic: '/static/ei.png',
+          pic: '/static/abroad.png',
           name: '出 国'
         },
         {
-          pic: '/static/pt.png',
+          pic: '/static/graduate.png',
           name: '读 研'
         }
       ]
@@ -42,37 +40,23 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-ul{
-    margin-top:40px;
-    margin-bottom:40px;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
+main{
+  display: flex;
+  justify-content: space-around;
 }
-ul li{
-    height:500px;
-    width:350px;
-    float: left;
-    border-radius: 20px;
-}
-.pic{
-    width:350px;
-    height:400px;
-    padding-left:50px;
-    padding-top:25px;
-}
-img{
-    width:250px;
-    height:300px;
+button {
+  width: 30%;
+  margin: 1% 0;
+  padding: 0;
+  font-size: 20px;
+  background-color: white;
+  color: #1990ff;
+  background: none;
+  border: 2px solid #eeeeee;
+  cursor: pointer;
 }
 .name{
-    text-align: center;
-    font-size: 3em;
-    color: #1990ff;
+  font-weight: bold;
+  font-weight: 1.4em;
 }
-.out{
-    box-shadow: 2px 2px 4px 4px gray;
-}
-
 </style>

@@ -1,7 +1,7 @@
 <template>
   <main>
     <template>
-      <TheBillboard class="left" :forumId="forumId"/>
+      <TheBillboard class="left"/>
 
       <TheForum :forumId="forumId" class="right">
         <template slot="before">

@@ -12,28 +12,32 @@
 </template>
 
 <script>
-import { uploadPost } from '@/service/getData';
+import { submitPost } from '@/service/getData';
 
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
 
 export default {
-  components: {
-    'VEditor': VEditor,
-    'VButton': VButton
-  },
   data () {
     return {
       title: '',
-      content: ''
+      content: '',
+      sectionId: 1
     };
+  },
+  mounted () {
+    this.sectionId = this.$route.params.forumId;
+  },
+  components: {
+    'VEditor': VEditor,
+    'VButton': VButton
   },
   methods: {
     updateHtml (payload) {
       this.content = payload.html;
     },
     upload () {
-      uploadPost(this.title, 'hwfhc', this.content)
+      submitPost(this.sectionId, this.title, 'hwfhc', this.content)
         .then(() => {
           alert('上传成功');
         });

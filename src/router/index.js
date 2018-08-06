@@ -3,7 +3,6 @@ import Router from 'vue-router';
 
 import forum from '@/page/forum';
 import post from '@/page/post';
-import notice from '@/page/notice';
 import newPost from '@/page/newPost';
 import home from '@/page/home';
 import newBill from '@/page/newBill';
@@ -43,7 +42,7 @@ export default new Router({
     {
       path: '/notice/:noticeId',
       components: {
-        Content: notice
+        Content: newBill
       }
     },
     {
@@ -62,12 +61,6 @@ export default new Router({
       path: '/SignUp',
       components: {
         Content: TheSignUp
-      }
-    },
-    {
-      path: '/forum/:forumId/newBill',
-      components: {
-        Content: newBill
       }
     }
   ]

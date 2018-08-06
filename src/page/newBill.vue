@@ -3,6 +3,14 @@
     <VEditor @input="updateHtml" class="editor">
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
       <div class="btn_cnt" slot="after">
+        <form>
+          <select v-model="select">
+            <option  v-for="(item,index) in lists"
+            :key="index"
+            :id="item.section_id"
+            :value="item.title">{{item.title}}</option>
+          </select>
+        </form>
         <VButton
           @click="upload"
           :title="'发布'"/>
@@ -12,8 +20,8 @@
 </template>
 
 <script>
-import { uploadBill } from '@/service/getData';
-
+import config from '@/page/config';
+import { submitNotice } from '@/service/getData';
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
 
@@ -22,26 +30,26 @@ export default {
     'VEditor': VEditor,
     'VButton': VButton
   },
-  watch: {
-    forumId: 'update'
+  mounted () {
+    this.sectionId = this.$route.params.noticeId;
   },
   data () {
     return {
       title: '',
-      content: ''
+      content: '',
+      select: '',
+      sectionId: '',
+      lists: config.notice
     };
-  },
-  mounted () {
-    this.forumId = this.$route.params.forumId;
   },
   methods: {
     updateHtml (payload) {
       this.content = payload.html;
     },
     upload () {
-      uploadBill('hwfhc', this.title, this.content, this.forumId)
+      submitNotice(this.sectionId, this.title, 'hwfhc', this.content)
         .then(() => {
-          alert('上传成功');
+          alert('发布成功');
         });
     }
   }
@@ -51,7 +59,6 @@ export default {
 <style lang="less" scoped>
 main{
   display: flex;
-  justify-content: space-between;
 
 .editor {
   width: 60%;

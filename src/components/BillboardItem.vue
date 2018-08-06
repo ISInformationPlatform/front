@@ -1,10 +1,10 @@
 <template>
   <section>
 
-    <p @click="click_title">{{title}}</p>
+    <p @click="click_title">{{item.notice_title}}</p>
 
     <footer class="date"
-      @click="click_date">{{date}}</footer>
+      @click="click_date">{{item.notice_time}}</footer>
 
   </section>
 </template>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'BillboardItem',
-  props: ['title', 'date', 'url'],
+  props: ['item'],
   methods: {
     click_title (event) {
       this.$emit('click_title', { title: this.title });

@@ -1,7 +1,9 @@
 <template>
-  <p>
-    {{contentCut}}
-  </p>
+  <main>
+    <p v-html="contentCut">
+    </p>
+        <p>{{contentCut}}</p>
+  </main>
 </template>
 
 <script>

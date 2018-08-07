@@ -14,6 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "dayjs": "^1.7.4",
     "eslint-config-recommended": "^3.0.0",
     "eslint-config-standard": "^11.0.0",
     "js-striphtml": "^1.1.2",

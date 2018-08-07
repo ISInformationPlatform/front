@@ -4,18 +4,27 @@
     <p @click="click_title">{{item.notice_title}}</p>
 
     <footer class="date"
-      @click="click_date">{{item.notice_time}}</footer>
+      @click="click_date">{{newdate}}</footer>
 
   </section>
 </template>
 
 <script>
+import dayjs from 'dayjs';
+
 export default {
   name: 'BillboardItem',
   props: ['item'],
+  computed: {
+    newdate: function () {
+      return dayjs(this.item.notice_time * 1000).format('YYYY-MM-DD');
+    }
+  },
   methods: {
-    click_title (event) {
-      this.$emit('click_title', { title: this.title });
+    click_title (payload) {
+      let forumId = this.$route.params.forumId;
+      let noticeId = this.item._id;
+      this.$router.push(`/forum/${forumId}/notice/${noticeId}`);
     },
     click_date (event) {
       this.$emit('click_date', { title: this.date });

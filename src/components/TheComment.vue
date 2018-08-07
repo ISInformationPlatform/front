@@ -56,7 +56,7 @@ export default {
       this.content = payload.html;
     },
     submit () {
-      submitComment('hwfhc', this.content, this.postId)
+      submitComment(this.forumId, this.postId, 'hwfhc', this.content, this.postId)
         .then(() => {
           alert('上传成功');
         });

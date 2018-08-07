@@ -29,20 +29,6 @@ export const submitPost = async (sectionId, title, author, content) => {
   });
 };
 
-export const updatePost = async (sectionId, postId, title, content) => {
-  fetch(`/forum/${sectionId}/post/${postId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      post_title: title,
-      tag: null,
-      post_content: content
-    })
-  });
-};
-
 export const getComment = async (sectionId, postId) => {
   let res = await fetch(`/forum/${sectionId}/post/${postId}/comment`);
   let json = await res.json();

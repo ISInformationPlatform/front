@@ -8,25 +8,28 @@
                 <img v-show="validation.name" :src="success"><br>
                 <span>请输入密码</span><br>
                 <input :type="disP.pwdType" v-model="NewUser.Password" value placeholder="请输入不少于6位数的密码">
-                <img :src="eyesShow" @click="pwdDisplay" class="eyesShow">
+                <!--<img :src="eyesShow" @click="pwdDisplay" class="eyesShow">-->
                 <img v-show="!validation.password" :src="fail">
                 <img v-show="validation.password" :src="success"><br>
                 <span>再次输入密码</span><br>
                 <input :type="disP.isPwdType" v-model="NewUser.IsPassword" value placeholder="再次输入密码">
-                <img :src="eyesShow" @click="isPwdDisplay" class="eyesShow">
+                <!--<img :src="eyesShow" @click="isPwdDisplay" class="eyesShow">-->
                 <img v-show="!validation.ispassword" :src="fail">
                 <img v-show="validation.ispassword" :src="success"><br>
                 <span>请输入邮箱地址</span><br>
                 <input type="text" v-model="NewUser.Email" value placeholder="请输入有效的邮箱地址">
                 <img v-show="!validation.email" :src="fail">
                 <img v-show="validation.email" :src="success"><br><br>
-                <input type="button" value="注册">
+                <input @click="signUp" type="button" value="注册">
             </div>
         </div>
     </form>
 </template>
 <script>
+import { signUp } from '@/service/getData';
+
 var emailRE = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
 export default {
   name: 'TheSignUp',
   data () {
@@ -47,6 +50,14 @@ export default {
     };
   },
   methods: {
+    signUp () {
+      let username = this.NewUser.Name;
+      let password = this.NewUser.Password;
+
+      signUp(username, password).then(() => {
+        alert('注册成功');
+      });
+    },
     pwdDisplay () {
       this.disP.pwdType = this.disP.pwdType === 'password' ? 'text' : 'password';
     },

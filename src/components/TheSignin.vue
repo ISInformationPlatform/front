@@ -4,18 +4,40 @@
             <div class="sig">
             <br><br>
             <span>用户名</span><br>
-            <input type="text" value placeholder="请输入用户名"><br><br>
+            <input type="text" v-model="username" placeholder="请输入用户名"><br><br>
             <span>密码</span><br>
-            <input type="text" value placeholder="请输入密码"><br><br>
-            <input class="login" type="button" value="登陆" >
+            <input type="text" v-model="password" placeholder="请输入密码"><br><br>
+            <input class="login" @click="signIn" type="button" value="登陆" >
             <input class="forget" type="button" value="忘记密码" >
             </div>
         </div>
     </form>
 </template>
 <script>
+import { signIn } from '@/service/getData';
+
 export default {
-  name: 'SignIn'
+  data () {
+    return {
+      username: '',
+      password: ''
+    };
+  },
+  methods: {
+    signIn () {
+      let username = this.username;
+      let password = this.password;
+
+      signIn(username, password).then((result) => {
+        if (result) {
+          alert('登录成功');
+        } else {
+          alert('登录失败');
+        }
+      });
+    }
+  }
+
 };
 </script>
 <style lang="less" scoped>

@@ -3,10 +3,12 @@
     <template>
       <TheBillboard class="left"/>
 
-      <TheForum :forumId="forumId" class="right">
+      <TheForum :tag_filter="tag_filter" :forumId="forumId" class="right">
         <template slot="before">
           <h2>{{title}}板块</h2>
-          <TheNav :menu="menu"/>
+
+          <VTagSelect @select="tagSelected" :menu="menu"/>
+
           <TheFocus/>
         </template>
 
@@ -25,7 +27,7 @@
 import config from '@/page/config';
 
 import TheFocus from '@/components/TheFocus';
-import TheNav from '@/components/TheNav';
+import VTagSelect from '@/components/VTagSelect';
 import TheForum from '@/components/TheForum';
 import TheBillboard from '@/components/TheBillboard';
 
@@ -40,10 +42,14 @@ export default {
     return {
       title: config.forum[0].title,
       menu: config.forum[0].type,
-      forumId: config.forum[0].section_id
+      forumId: config.forum[0].section_id,
+      tag_filter: 0
     };
   },
   methods: {
+    tagSelected (payload) {
+      this.tag_filter = payload.tag;
+    },
     init (id) {
       let item = forumMap.get(id);
 
@@ -62,7 +68,7 @@ export default {
   },
   components: {
     'TheForum': TheForum,
-    'TheNav': TheNav,
+    'VTagSelect': VTagSelect,
     'TheFocus': TheFocus,
     'TheBillboard': TheBillboard
   }
@@ -103,19 +109,6 @@ input{
   width: 100%;
 }
 
-.btn_cnt{
-  text-align: center;
-
-  button{
-    border: none;
-    background-color: cornflowerblue;
-    color: white;
-    font-size: 1em;
-    width: 50%;
-    padding: 10px 20px;
-    border-radius: 5px;
-  }
-}
 .submit > button{
   border:2px solid #cccccc;
   background: none;

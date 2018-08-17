@@ -4,11 +4,12 @@
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
       <div class="btn_cnt" slot="after">
         <form>
-          <select v-model="select">
-            <option  v-for="(item,index) in lists"
-            :key="index"
-            :id="item.section_id"
-            :value="item.title">{{item.title}}</option>
+          <select v-model="sectionId">
+            <option  v-for="(item,index) in list"
+              :key="index"
+              :value="item.section_id">
+              {{item.title}}
+            </option>
           </select>
         </form>
         <VButton
@@ -31,15 +32,14 @@ export default {
     'VButton': VButton
   },
   mounted () {
-    this.sectionId = this.$route.params.noticeId;
+    this.sectionId = this.$route.params.sectionId;
   },
   data () {
     return {
       title: '',
       content: '',
-      select: '',
       sectionId: '',
-      lists: config.notice
+      list: config.notice
     };
   },
   methods: {

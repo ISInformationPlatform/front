@@ -12,7 +12,8 @@
         </div>
       </li>
     </ul>
-    <VEditor @input="updateHtml" class="editor">
+
+    <VEditor @input="updateHtml" :type="'simple'" class="editor">
       <div class="btn_cnt" slot="after">
         <VButton
           @click="submit"

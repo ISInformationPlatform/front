@@ -1,10 +1,12 @@
 <template>
   <article>
     <slot name="before"/>
-      <div class="title">
-          <span>帖子</span>
-      </div>
-      <div class="comment">
+
+    <div class="title">
+        <span>帖子</span>
+    </div>
+    <div class="postContainer">
+
       <ForumItem
         :ID="item._id"
         :item="item"
@@ -16,6 +18,11 @@
         v-for="(item,index) in list" />
     </div>
 
+    <VPagination
+      @click_page="click_page"
+      :totalNum="total_page_num"
+      :currentPage="current_page"/>
+
     <slot name="after"/>
 
   </article>
@@ -24,14 +31,18 @@
 <script>
 import { getPostList } from '@/service/getData';
 import ForumItem from '@/components/ForumItem';
+import VPagination from '@/components/VPagination';
 
 export default {
   components: {
-    'ForumItem': ForumItem
+    'ForumItem': ForumItem,
+    'VPagination': VPagination
   },
   data () {
     return {
       list: '',
+      total_page_num: 0,
+      current_page: 0,
       links: [
         {
           title: '日程',
@@ -46,9 +57,10 @@ export default {
       title: '分享'
     };
   },
-  props: ['forumId'],
+  props: ['forumId', 'tag_filter'],
   watch: {
-    forumId: 'update'
+    forumId: 'update',
+    tag_filter: 'update'
   },
   mounted () {
     this.update();
@@ -57,8 +69,11 @@ export default {
     update () {
       let obj = this;
 
-      getPostList(this.forumId).then(data => {
-        obj.list = data;
+      getPostList(this.forumId, {
+        tag_filter: this.tag_filter
+      }).then(data => {
+        obj.list = data.post_list;
+        obj.total_page_num = data.total_page_num;
       });
     },
     click_title (payload) {
@@ -75,6 +90,18 @@ export default {
       alert(`你点了标签：${payload.title}`);
       this.tag = true;
       this.$router.push('/tag');
+    },
+    click_page (payload) {
+      let obj = this;
+      let pageNum = payload.page_num;
+      let tagFilter = this.tag_filter;
+
+      getPostList(this.forumId, {
+        page_num: pageNum, tag_filter: tagFilter
+      }).then(data => {
+        obj.list = data.post_list;
+        obj.total_page_num = data.total_page_num;
+      });
     }
   }
 };

@@ -23,7 +23,7 @@ export default {
 div {
   display: flex;
   height: 36px;
-    border-bottom: 1px solid #eeeee;
+  border-bottom: 1px solid #eeeeee;
 
   img {
     cursor: pointer;

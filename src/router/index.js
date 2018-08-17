@@ -41,7 +41,7 @@ export default new Router({
       }
     },
     {
-      path: '/notice/:noticeId',
+      path: '/notice',
       components: {
         Content: newBill
       }

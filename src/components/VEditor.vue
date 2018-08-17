@@ -14,6 +14,7 @@ import E from 'wangeditor';
 
 export default {
   name: 'editor',
+  props: ['type'],
   mounted () {
     var editor = new E(this.$refs.toolbar, this.$refs.editor);
 
@@ -37,6 +38,9 @@ export default {
       'table',
       'code'
     ];
+    if (this.type === 'simple') {
+      editor.customConfig.menus = [];
+    }
     editor.create();
   }
 };
@@ -51,6 +55,7 @@ export default {
 }
 
 .down{
+  overflow-y: auto;
   width: 100%;
   margin-bottom: 20px;
   min-height: 400px;

@@ -6,38 +6,58 @@
         <VButton
           @click="upload"
           :title="'发布'"/>
+        <VTagSelect @select="tagSelected" :menu="menu"/>
       </div>
    </VEditor>
   </main>
 </template>
 
 <script>
+import config from '@/page/config';
+
 import { submitPost } from '@/service/getData';
 
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
+import VTagSelect from '@/components/VTagSelect';
 
 export default {
   data () {
     return {
       title: '',
       content: '',
+      menu: [],
+      tag: 0,
       sectionId: 1
     };
   },
   mounted () {
-    this.sectionId = this.$route.params.forumId;
+    let obj = this;
+    this.sectionId = parseInt(this.$route.params.forumId);
+
+    config.forum.forEach(item => {
+      if (item.section_id !== obj.sectionId) {
+        return;
+      }
+
+      obj.menu = item.type;
+    });
   },
   components: {
     'VEditor': VEditor,
-    'VButton': VButton
+    'VButton': VButton,
+    'VTagSelect': VTagSelect
   },
   methods: {
+    tagSelected (payload) {
+      this.tag = payload.tag;
+      console.log(payload.tag);
+    },
     updateHtml (payload) {
       this.content = payload.html;
     },
     upload () {
-      submitPost(this.sectionId, this.title, 'hwfhc', this.content)
+      submitPost(this.sectionId, this.title, 'hwfhc', this.content, this.tag)
         .then(() => {
           alert('上传成功');
         });
@@ -90,6 +110,7 @@ input{
     width: 50%;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-bottom: 20px;
   }
 }
 </style>

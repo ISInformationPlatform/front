@@ -1,14 +1,12 @@
 <template>
-    <button
-    :class="{active:isActive}" @click="click">
-    <div>
-      <img :src="images" ><p>{{title}}</p>
-    </div>
+  <button :class="{ active: isActive }" @click="click">
+    <img :src="images" >
+    <p>{{title}}</p>
   </button>
 </template>
 
 <script>
-export default{
+export default {
   name: 'IMButton',
   props: ['images', 'data', 'title'],
   data () {
@@ -27,7 +25,6 @@ export default{
     }
   },
   beforeRouteUpdate (to, from, next) {
-    alert('sdf');
     this.isActive = false;
   }
 };
@@ -35,19 +32,20 @@ export default{
 
 <style lang="less" scoped>
 button{
-  width: 23%;
   background: none;
   border: 2px solid #eeeeee;
   cursor: pointer;
+
+  padding: 0 20px;
+
   p{
-    width: 15px;
     font-size: 15px;
-    word-wrap: break-word;
-    letter-spacing: 10px;
   }
 }
-div{
-  display: inline-flex;
-  justify-content: space-around;
+
+img {
+  margin: 10px 0;
+  width: 50px;
+  height: 50px;
 }
 </style>

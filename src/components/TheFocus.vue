@@ -5,25 +5,27 @@
     </div>
     <div class="list">
       <ul>
-          <li v-for="(item,index) in list"
-          :key="index"
-          v-show="item.tag">
-            <VButton
-            :title="item.title"
-            :data="item.url"/>
-              <footer>
-                {{item.date}}
-              </footer>
-          </li>
+        <li v-for="(item,index) in list"
+        :key="index"
+        v-show="item.tag">
+          <VButton
+          :title="item.title"
+          :data="item.url"/>
+            <footer>
+              {{item.date}}
+            </footer>
+        </li>
       </ul>
       <div class="grayr">
         <span>&lt;</span>
         <button  v-for="(item,index) in list"
-        :key="index"
-        @click="toggleFocus(index)">{{index + 1}}</button>
-          <span>&gt;</span> </div>
+          :key="index"
+          @click="toggleFocus(index)">{{index + 1}}
+        </button>
+        <span>&gt;</span>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -37,7 +39,6 @@ export default {
     toggleFocus: function (index) {
       for (var i = 0; i < 3; i++) {
         this.list[i].tag = false;
-        console.log(this.list[i].tag);
       }
       this.list[index].tag = true;
     }
@@ -69,7 +70,7 @@ export default {
 
 <style lang="less" scoped>
 .focus{
-    display: flex;
+  display: flex;
 }
 .list{
   width: 100%;

@@ -1,6 +1,6 @@
 <template>
-  <nav>
-    <div v-for="(list,i) in menu" :key="i">
+  <div>
+    <div class="container" v-for="(list,i) in menu" :key="i">
      <IMButton v-for="(item,j) in list"
       :images="item.tag"
       :data="item.id"
@@ -8,7 +8,7 @@
       :key="j"
       @click="click" />
     </div>
- </nav>
+ </div>
 </template>
 
 <script>
@@ -21,17 +21,31 @@ export default {
   },
   data () {
     return {
-      tag: 0
+      tag: 0,
+      isActive: []
     };
   },
   props: ['menu'],
   methods: {
     click (payload) {
       let id = payload.data;
-      this.isActive[id].active = !this.isActive[id].active;
+
+      this.isActive.forEach(item => {
+        if (item.id !== id) {
+          return;
+        }
+
+        item.active = !item.active;
+      });
+
+      this.tag = 0;
 
       this.isActive.forEach(item => {
         if (item.active) { this.tag += 1 << item.id; }
+      });
+
+      this.$emit('select', {
+        tag: this.tag
       });
     }
   },
@@ -49,6 +63,19 @@ export default {
 
       this.isActive = isActive;
     }
+  },
+  mounted () {
+    this.$children.forEach(item => { item.isActive = false; });
+
+    let isActive = [];
+
+    this.menu.forEach(item => {
+      item.forEach(item => isActive.push(
+        { active: false, id: item.id }
+      ));
+    });
+
+    this.isActive = isActive;
   }
 };
 </script>
@@ -67,9 +94,9 @@ button {
   background-color: #1990ff;
   color: white;
 }
-div{
+.container {
+  flex-wrap: wrap;
   width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
+  display: flex;
 }
 </style>

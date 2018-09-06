@@ -1,11 +1,8 @@
 <template>
   <section>
-
     <p @click="click_title">{{item.notice_title}}</p>
 
-    <footer class="date"
-      @click="click_date">{{newdate}}</footer>
-
+    <p class="date" @click="click_date">{{newdate}}</p>
   </section>
 </template>
 
@@ -14,7 +11,7 @@ import dayjs from 'dayjs';
 
 export default {
   name: 'BillboardItem',
-  props: ['item'],
+  props: ['item', 'sectionId'],
   computed: {
     newdate: function () {
       return dayjs(this.item.notice_time * 1000).format('YYYY-MM-DD');
@@ -22,8 +19,7 @@ export default {
   },
   methods: {
     click_title (payload) {
-      // 此处待完善，要改找我
-      let sectionId = 1;
+      let sectionId = this.sectionId;
       let noticeId = this.item._id;
 
       this.$router.push(`/notification/${sectionId}/notice/${noticeId}`);

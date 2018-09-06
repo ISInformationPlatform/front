@@ -5,8 +5,7 @@
     <BillboardItem v-for="(item,index) in list"
       :key="index"
       :item="item"
-      @click_title="click_title"
-      @click_date="click_date" />
+      :sectionId="sectionId"/>
 
     <VPagination
       @click_page="click_page"
@@ -45,12 +44,6 @@ export default {
         obj.list = data.notice_list;
         obj.total_page_num = data.total_page_num;
       });
-    },
-    newBill (payload) {
-      this.$router.push(`/notification/post`);
-    },
-    click_date (payload) {
-      alert(`你点了时间：${payload.title}`);
     },
     click_page (payload) {
       let obj = this;

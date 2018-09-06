@@ -25,11 +25,6 @@ export default {
     return {
       list: config.notice
     };
-  },
-  methods: {
-    newBill (payload) {
-      this.$router.push(`/notice`);
-    }
   }
 };
 </script>
@@ -38,11 +33,21 @@ export default {
 aside {
   margin: 0;
   background-color: #f7f7fb;
+  position: relative;
+}
+
+.submit {
+  position: absolute;
+  padding: 5px;
+  bottom: 10px;
+  right: 10px;
 }
 
 .submit > a{
   border: 2px solid #cccccc;
   background: none;
+  height: 100%;
+  width: 100%;
 
   padding: 5px 10px;
   color: #cccccc;

@@ -59,10 +59,10 @@ export default {
       this.$router.push(payload.data);
     },
     click_signIn (payload) {
-      this.$router.push('/SignIn');
+      this.$router.push('/sign/in');
     },
     click_signUp (payload) {
-      this.$router.push('/SignUp');
+      this.$router.push('/sign/up');
     }
   },
   components: {

@@ -44,14 +44,14 @@ export default {
   methods: {
 
     update () {
-      let forumId = this.$route.params.forumId;
+      let sectionId = this.$route.params.sectionId;
       let noticeId = this.$route.params.noticeId;
 
       let obj = this;
 
-      if (!forumId || !noticeId) { return; }
+      if (!sectionId || !noticeId) { return; }
 
-      getNotice(forumId, noticeId)
+      getNotice(sectionId, noticeId)
         .then(data => {
           obj.title = data.notice_title;
           obj.author = data.notice_author;

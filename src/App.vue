@@ -42,4 +42,10 @@ body {
 #Content {
   margin: 0 10%;
 }
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: black;
+}
 </style>

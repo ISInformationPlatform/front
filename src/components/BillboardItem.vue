@@ -22,9 +22,11 @@ export default {
   },
   methods: {
     click_title (payload) {
-      let forumId = this.$route.params.forumId;
+      // 此处待完善，要改找我
+      let sectionId = 1;
       let noticeId = this.item._id;
-      this.$router.push(`/forum/${forumId}/notice/${noticeId}`);
+
+      this.$router.push(`/notification/${sectionId}/notice/${noticeId}`);
     },
     click_date (event) {
       this.$emit('click_date', { title: this.date });

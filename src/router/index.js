@@ -1,16 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import forum from '@/page/forum';
-import post from '@/page/post';
-import newPost from '@/page/newPost';
-import home from '@/page/home';
-import newBill from '@/page/newBill';
-import billboard from '@/page/Billboard';
+import forum from './forum';
+import notice from './notice';
+import sign from './sign';
 
+import Home from '@/page/Home';
 import ThePerson from '@/components/ThePerson';
-import TheSignIn from '@/components/TheSignIn';
-import TheSignUp from '@/components/TheSignUp';
 
 Vue.use(Router);
 
@@ -19,31 +15,7 @@ export default new Router({
     {
       path: '/',
       components: {
-        Content: home
-      }
-    },
-    {
-      path: '/forum/:forumId',
-      components: {
-        Content: forum
-      }
-    },
-    {
-      path: '/forum/:forumId/post/:postId',
-      components: {
-        Content: post
-      }
-    },
-    {
-      path: '/forum/:forumId/post',
-      components: {
-        Content: newPost
-      }
-    },
-    {
-      path: '/notice',
-      components: {
-        Content: newBill
+        Content: Home
       }
     },
     {
@@ -51,24 +23,9 @@ export default new Router({
       components: {
         Content: ThePerson
       }
-    },
-    {
-      path: '/SignIn',
-      components: {
-        Content: TheSignIn
-      }
-    },
-    {
-      path: '/forum/:forumId/notice/:noticeId',
-      components: {
-        Content: billboard
-      }
-    },
-    {
-      path: '/SignUp',
-      components: {
-        Content: TheSignUp
-      }
     }
   ]
+    .concat(forum)
+    .concat(notice)
+    .concat(sign)
 });

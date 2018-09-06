@@ -3,8 +3,9 @@
     <slot name="before"/>
 
     <div class="title">
-        <span>帖子</span>
+      <span>帖子</span>
     </div>
+
     <div class="postContainer">
 
       <ForumItem

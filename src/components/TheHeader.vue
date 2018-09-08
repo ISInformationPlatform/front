@@ -16,13 +16,22 @@
           @click="click_nav" />
       </div>
 
-      <div>
+      <div v-show="!log_in">
         <VButton class="navbar"
-          :title="signIn"
+          :title="'登录'"
           @click="click_signIn" />
         <VButton class="navbar"
-          :title="signUp"
+          :title="'注册'"
           @click="click_signUp" />
+      </div>
+
+      <div v-show="log_in">
+        <VButton class="navbar"
+          :title="username"
+          @click="click_user" />
+        <VButton class="navbar"
+          :title="'登出'"
+          @click="click_logOut" />
       </div>
     </nav>
 
@@ -36,8 +45,6 @@ export default {
   name: 'TheHeader',
   data () {
     return {
-      signIn: '登陆',
-      signUp: '注册',
       icon: '/static/icon.jpg',
       logo: '/static/icon.jpg',
       links: [{
@@ -54,6 +61,14 @@ export default {
       }]
     };
   },
+  computed: {
+    log_in: function () {
+      return !!this.$store.state.USERNAME;
+    },
+    username: function () {
+      return this.$store.state.USERNAME;
+    }
+  },
   methods: {
     click_nav (payload) {
       this.$router.push(payload.data);
@@ -63,6 +78,12 @@ export default {
     },
     click_signUp (payload) {
       this.$router.push('/sign/up');
+    },
+    click_logOut (payload) {
+      this.$store.commit('log_out');
+    },
+    click_user (payload) {
+      this.$router.push(`/person/${this.$store.state.ID}`);
     }
   },
   components: {

@@ -1,19 +1,18 @@
 <template>
-    <footer>
-        <div class="top">
-            <div>{{top}}</div>
-            <ul>
-                <li v-for="(item,index) in links"
-                    :key="index">
-                    <a :href="item.url">
-                        {{item.title}}
-                    </a>
-                </li>
-            </ul>
-        </div>
+  <footer>
+    <div class="top">
+      <div>{{top}}</div>
+      <ul>
+        <li v-for="(item,index) in links" :key="index">
+          <a :href="item.url">
+            {{item.title}}
+          </a>
+        </li>
+      </ul>
+    </div>
 
-        <div class="bottom">{{bottom}}</div>
-    </footer>
+    <div class="bottom">{{bottom}}</div>
+  </footer>
 </template>
 
 <script>
@@ -60,7 +59,7 @@ footer {
         float: left;
         list-style: none;
         margin-right: 20px;
-        a{
+        a {
           text-decoration: none;
           color: #8b8b8b;
         }

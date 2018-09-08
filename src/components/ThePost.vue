@@ -9,7 +9,6 @@
 import { getPost } from '@/service/getData';
 
 export default {
-  name: 'ThePost',
   props: ['forumId', 'postId'],
   data () {
     return {

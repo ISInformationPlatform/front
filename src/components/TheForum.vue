@@ -11,8 +11,8 @@
       <ForumItem
         :ID="item._id"
         :item="item"
-        :viewlogo="viewlogo"
         :key="index"
+        :tag_list="tag_list"
         @click_title="click_title"
         @click_icon="click_icon"
         @click_tag="click_tag"
@@ -43,22 +43,10 @@ export default {
     return {
       list: '',
       total_page_num: 0,
-      current_page: 0,
-      links: [
-        {
-          title: '日程',
-          url: 'www.baidu.com'
-        },
-        {
-          title: '基础科学',
-          url: 'www.baidu.com'
-        }
-      ],
-      viewlogo: '/static/viewLogo.png',
-      title: '分享'
+      current_page: 0
     };
   },
-  props: ['forumId', 'tag_filter'],
+  props: ['forumId', 'tag_filter', 'tag_list'],
   watch: {
     forumId: 'update',
     tag_filter: 'update'

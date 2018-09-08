@@ -1,137 +1,153 @@
 <template>
-  <div class="focus">
-    <div class="title">
-      <h6>重要通知</h6>
-    </div>
-    <div class="list">
-      <ul>
+  <div class="container">
+    <aside>
+      <h6>置顶</h6>
+    </aside>
+
+    <article>
+      <ul class="content">
         <li v-for="(item,index) in list"
-        :key="index"
-        v-show="item.tag">
+        :key="index">
           <VButton
-          :title="item.title"
-          :data="item.url"/>
-            <footer>
-              {{item.date}}
-            </footer>
+          :title="item.post_title"
+          :data="item._id"
+          @click="click_title"/>
         </li>
       </ul>
-      <div class="grayr">
-        <span>&lt;</span>
-        <button  v-for="(item,index) in list"
-          :key="index"
-          @click="toggleFocus(index)">{{index + 1}}
-        </button>
-        <span>&gt;</span>
-      </div>
-    </div>
+
+      <VPagination class="pagination"
+        @click_page="click_page"
+        :totalNum="total_page_num"
+        :currentPage="current_page"/>
+    </article>
   </div>
 </template>
 
 <script>
+import { getPostList } from '@/service/getData';
 import VButton from '@/components/VButton';
+import VPagination from '@/components/VPagination';
+
 export default {
-  name: 'TheFocus',
   components: {
-    'VButton': VButton
-  },
-  methods: {
-    toggleFocus: function (index) {
-      for (var i = 0; i < 3; i++) {
-        this.list[i].tag = false;
-      }
-      this.list[index].tag = true;
-    }
+    'VButton': VButton,
+    'VPagination': VPagination
   },
   data () {
     return {
-      list: [{
-        title: '重要通知啊啊啊',
-        url: '/forum/1',
-        date: '2018.7.10',
-        tag: true
-      },
-      {
-        title: '就是很重要',
-        url: '/forum/2',
-        date: '2018.04.11',
-        tag: false
-      },
-      {
-        title: '读很重要的通知',
-        url: '/forum/3',
-        date: '2017.02.02',
-        tag: false
-      }]
+      list: [],
+      total_page_num: 0,
+      current_page: 0
     };
+  },
+  mounted () {
+    this.update();
+  },
+  props: ['forumId', 'tag_filter'],
+  watch: {
+    forumId: 'update',
+    tag_filter: 'update'
+  },
+  methods: {
+    update () {
+      let obj = this;
+      let tagFilter = this.tag_filter;
+
+      getPostList(this.forumId, {
+        tag_filter: tagFilter, sticky: true
+      }).then(data => {
+        obj.list = data.post_list;
+        obj.total_page_num = data.total_page_num;
+      });
+    },
+    click_title (payload) {
+      let forumId = this.$route.params.forumId;
+      let postId = payload.data;
+
+      this.$router.push(`/forum/${forumId}/post/${postId}`);
+    },
+    click_page (payload) {
+      let obj = this;
+      let pageNum = payload.page_num;
+      let tagFilter = this.tag_filter;
+
+      getPostList(this.forumId, {
+        page_num: pageNum, tag_filter: tagFilter, sticky: true
+      }).then(data => {
+        obj.list = data.post_list;
+        obj.total_page_num = data.total_page_num;
+      });
+    }
   }
 };
 </script>
 
 <style lang="less" scoped>
-.focus{
+.container{
   display: flex;
-}
-.list{
-  width: 100%;
-  position: relative;
-}
-.focus{
-  border:2px solid #eeeeee;
-}
-h6{
-  text-align: center;
-}
-ul {
-  padding: 10px 10px;
-  list-style: none;
-  width: 85%;
+  border: 2px solid #eeeeee;
 }
 
-li {
-  margin: 10px 0;
-}
-
-button {
-  font-size: 1.25em;
-}
-.title{
+aside {
   width: 40px;
   font-size: 35px;
   word-wrap: break-word;
   background-color: rgb(235, 235, 235);
-}
-.grayr {
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-  text-align: center;
-  PADDING-RIGHT: 2px;
-  PADDING-LEFT: 2px;
-  FONT-SIZE: 11px;
-  PADDING-BOTTOM: 2px;
-  PADDING-TOP: 2px;
-  FONT-FAMILY: Tahoma, Arial,Helvetica, Sans-serif;
-  BACKGROUND-COLOR: #c1c1c1
-}
-.grayr button {
-  PADDING-RIGHT: 5px;
-  PADDING-LEFT: 5px;
-  PADDING-BOTTOM: 2px;
-  MARGIN: 2px;
-  COLOR: #000;
-  PADDING-TOP: 2px;
-  BACKGROUND-COLOR: #c1c1c1;
-  TEXT-DECORATION: none;
-  border:none;
-  cursor: pointer;
-}
-.grayr > button:hover {
-  COLOR: #000;
-  BACKGROUND-COLOR: white;
+
+  h6{
+    text-align: center;
+  }
 }
 
-footer{
-  text-align: right;
+article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .content {
+    padding: 5px 10px;
+    list-style: none;
+    width: 85%;
+
+    li {
+      margin: 5px 0;
+    }
+
+    button {
+      font-size: 1.25em;
+    }
+
+    p {
+      margin: 0;
+      text-align: right;
+    }
+  }
 }
+
+.pagination {
+  margin: 0;
+  text-align: center;
+
+  padding: 0 2px;
+  font-size: 0.75em;
+  font-family: Tahoma, Arial,Helvetica, Sans-serif;
+  background-color: #c1c1c1;
+
+  button {
+    padding: 2px 5px;
+    color: #000;
+    background-color: #c1c1c1;
+    text-decoration: none;
+
+    border:none;
+    cursor: pointer;
+
+    &:hover {
+      color: #000;
+      background-color: white;
+    }
+  }
+}
+
 </style>

@@ -1,16 +1,16 @@
 <template>
-  <main>
+  <div>
     <p>{{contentCut}}</p>
-  </main>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'ForumItemContent',
-  props: ['content', 'isToggle'],
+  props: ['content'],
   computed: {
     contentCut: function () {
-      if (this.content.length > 99 && this.isToggle) {
+      if (this.content.length > 99) {
         return `${this.content.substring(0, 99)} ......`;
       } else {
         return this.content;

@@ -1,25 +1,23 @@
 <template>
-    <section>
-        <ForumItemTitle :title="item.post_title"
-          @click="click_title" />
+  <section>
+    <ForumItemTitle :title="item.post_title"
+      @click="click_title" />
 
-        <VPin class="pin"
-          :icon="icon"
-          :username="item.post_author"
-          @click="click_icon" />
+    <VPin class="pin"
+      :icon="icon"
+      :username="item.post_author"
+      @click="click_icon" />
 
-        <ForumItemContent :content="item.post_content"
-          :isToggle="isToggle"/>
+    <ForumItemContent :content="item.post_content"/>
 
-        <ForumItemFooter :tag="item.tag"
-           :viewlogo="viewlogo"
-           :view="item.visited"
-           :content="item.post_title"
+    <ForumItemFooter :tag="item.post_tag"
+      :content="item.post_title"
+      :visited="item.visited"
 
-           :isToggle="isToggle"
-           @click-tag="click_tag"
-           @click-toggle="click_toggle"/>
-    </section>
+      :tag_list="tag_list"
+      :viewlogo="viewlogo"
+      @click_tag="click_tag"/>
+ </section>
 </template>
 
 <script>
@@ -30,10 +28,9 @@ import ForumItemFooter from '@/components/ForumItemFooter';
 
 export default {
   name: 'ForumItem',
-  props: ['item', 'ID'],
+  props: ['item', 'ID', 'tag_list'],
   data () {
     return {
-      isToggle: true,
       viewlogo: '/static/viewLogo.png',
       icon: '/static/icon.jpg'
     };

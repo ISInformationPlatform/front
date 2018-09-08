@@ -41,7 +41,7 @@ export default {
       this.tag = 0;
 
       this.isActive.forEach(item => {
-        if (item.active) { this.tag += 1 << item.id; }
+        if (item.active) { this.tag += 1 << (item.id - 1); }
       });
 
       this.$emit('select', {

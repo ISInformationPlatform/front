@@ -1,15 +1,12 @@
 <template>
-  <main>
+  <div>
     <ul class="container">
       <li :key="index" v-for="(item,index) in list">
-        <icon class="icon"
-          :icon="icon"
+        <icon :icon="icon"
           :username="item.comment_author"
           @click="click_icon" />
 
-        <div class="content">
-          {{item.comment_content}}
-        </div>
+        <div>{{item.comment_content}}</div>
       </li>
     </ul>
 
@@ -20,7 +17,7 @@
           :title="'发布'"/>
       </div>
    </VEditor>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -36,7 +33,7 @@ export default {
     'icon': VPin,
     'VEditor': VEditor,
     'VButton': VButton,
-    'content': ''
+    'comment': ''
   },
   watch: {
     forumId: 'update',
@@ -54,10 +51,10 @@ export default {
         });
     },
     updateHtml (payload) {
-      this.content = payload.html;
+      this.comment = payload.html;
     },
     submit () {
-      submitComment(this.forumId, this.postId, 'hwfhc', this.content, this.postId)
+      submitComment(this.forumId, this.postId, 'hwfhc', this.comment, this.postId)
         .then(() => {
           alert('上传成功');
         });
@@ -94,11 +91,11 @@ ul {
     }
   }
 
-  .icon {
+  icon {
     margin-top: 10px;
   }
 
-  .content {
+  div {
     padding: 10px 0;
   }
 }

@@ -2,11 +2,14 @@
   <main>
     <VEditor @input="updateHtml" class="editor">
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
+
       <div class="btn_cnt" slot="after">
         <VButton
           @click="upload"
           :title="'发布'"/>
         <VTagSelect @select="tagSelected" :menu="menu"/>
+
+        <input type="checkbox" v-model="sticky">
       </div>
    </VEditor>
   </main>
@@ -28,6 +31,7 @@ export default {
       content: '',
       menu: [],
       tag: 0,
+      sticky: false,
       sectionId: 1
     };
   },
@@ -51,16 +55,16 @@ export default {
   methods: {
     tagSelected (payload) {
       this.tag = payload.tag;
-      console.log(payload.tag);
     },
     updateHtml (payload) {
       this.content = payload.html;
     },
     upload () {
-      submitPost(this.sectionId, this.title, 'hwfhc', this.content, this.tag)
-        .then(() => {
-          alert('上传成功');
-        });
+      submitPost(this.sectionId, this.title, 'hwfhc', this.content, this.tag, {
+        sticky: this.sticky
+      }).then(() => {
+        alert('上传成功');
+      });
     }
   }
 };

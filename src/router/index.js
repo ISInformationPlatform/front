@@ -6,7 +6,7 @@ import notice from './notice';
 import sign from './sign';
 
 import Home from '@/page/Home';
-import ThePerson from '@/components/ThePerson';
+import Person from '@/page/Person';
 
 Vue.use(Router);
 
@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/person/:personId',
       components: {
-        Content: ThePerson
+        Content: Person
       }
     }
   ]

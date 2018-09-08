@@ -1,41 +1,50 @@
 <template>
-    <footer>
+  <footer>
+    <div>
+      <img :src="viewlogo">
+      <span>{{visited}}</span>
+    </div>
+
+    <ul>
+      <li v-for="(item, index) in display_tag" :key="index">
         <button @click="clickTag">
-            {{tag[0]}}
+          {{item}}
         </button>
-        <ul>
-            <li>
-              <img :src="viewlogo">
-                <span>{{view}}</span>
-            </li>
-        </ul>
-        <button class="toggleContent"
-          v-show="this.content.length > 99"
-          @click="toggleContent" >
-            {{btn}}
-          </button>
-    </footer>
+      </li>
+    </ul>
+  </footer>
 </template>
 
 <script>
 export default {
   name: 'ForumItemFooter',
-  props: ['tag', 'viewlogo', 'view', 'content', 'isToggle'],
+  props: ['tag', 'viewlogo', 'visited', 'tag_list'],
   methods: {
     clickTag (event) {
-      this.$emit('click-tag', { title: this.tag });
-    },
-    toggleContent () {
-      this.$emit('click-toggle');
+      // this.$emit('click_tag', { title: this.tag });
     }
   },
   computed: {
-    btn: function () {
-      if (this.isToggle) {
-        return '展开';
-      } else {
-        return '隐藏';
+    display_tag: function () {
+      var tagMap = new Map();
+      var tagFilter = this.tag;
+      var arr = [];
+
+      this.tag_list.forEach(i => {
+        i.forEach(j => {
+          tagMap.set(parseInt(j.id), j.title);
+        });
+      });
+
+      for (let i = 1; tagFilter > 0; i++) {
+        if (tagFilter & 1) {
+          arr.push(tagMap.get(i));
+        }
+
+        tagFilter = tagFilter >> 1;
       }
+
+      return arr;
     }
   }
 };
@@ -43,34 +52,43 @@ export default {
 
 <style lang="less" scoped>
 footer {
-  height: 26px;
-  button {
-    float: left;
-    cursor: pointer;
-    padding: 3px 5px;
-    color: #aaaaaa;
-    background-color: white;
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
+  display: flex;
+ }
+
+div {
+  display: inherit;
+  align-items: center;
+  img {
+    height: 20px;
   }
-  .toggleContent{
-    float: right;
+  span {
+    display: inline-block;
+    font-size: 12px;
+    color: #cccccc;
+    height: 20px;
+    vertical-align: middle;
+    line-height: 20px;
   }
-  ul {
-    li {
-      list-style: none;
-      margin-left: 5px;
-      img {
-        float: left;
-        height: 24px;
-      }
-      span {
-        height: 24px;
-        line-height: 24px;
-        float: left;
-        color: #aaaaaa;
-        font-size: 0.75em;
-      }
+}
+
+ul {
+  display: inherit;
+  margin: 0 0 0 10px;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 0 0 0 5px;
+
+    button {
+      font-size: 12px;
+      padding: 3px 3px;
+      border-radius: 5px;
+      border: 1px solid #aaaaaa;
+
+      cursor: pointer;
+      color: #aaaaaa;
+      background-color: white;
     }
   }
 }

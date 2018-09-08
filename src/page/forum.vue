@@ -3,13 +3,13 @@
     <template>
       <TheBillboard class="left"/>
 
-      <TheForum :tag_filter="tag_filter" :forumId="forumId" class="right">
+      <TheForum :tag_filter="tag_filter" :tag_list="menu" :forumId="forumId" class="right">
         <template slot="before">
-          <h2>{{title}}板块</h2>
+          <h2>{{title}}</h2>
 
           <VTagSelect @select="tagSelected" :menu="menu"/>
 
-          <TheFocus/>
+          <TheFocus :tag_filter="tag_filter" :forumId="forumId"/>
         </template>
 
         <template slot="after">

@@ -5,11 +5,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    forumId: 0
+    USERNAME: null,
+    ID: null
   },
   mutations: {
-    increment (state) {
-      state.count++;
+    log_in (state, username) {
+      state.USERNAME = username;
+    },
+    log_out (state) {
+      state.USERNAME = null;
+    },
+    update_id (state, id) {
+      state.ID = id;
     }
   }
 });

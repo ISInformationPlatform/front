@@ -39,6 +39,8 @@ export default {
 
       signIn(username, password).then((result) => {
         if (result) {
+          this.$store.commit('log_in', result.username);
+          this.$store.commit('update_id', result.id);
           alert('登录成功');
         } else {
           alert('登录失败');

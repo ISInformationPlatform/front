@@ -127,9 +127,9 @@ article {
 
 .pagination {
   margin: 0;
+  padding: 0;
   text-align: center;
 
-  padding: 0 2px;
   font-size: 0.75em;
   font-family: Tahoma, Arial,Helvetica, Sans-serif;
   background-color: #c1c1c1;
@@ -140,7 +140,7 @@ article {
     background-color: #c1c1c1;
     text-decoration: none;
 
-    border:none;
+    border: none;
     cursor: pointer;
 
     &:hover {

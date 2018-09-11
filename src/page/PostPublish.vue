@@ -7,6 +7,10 @@
         <VButton
           @click="upload"
           :title="'发布'"/>
+
+        <div class="line"></div>
+
+        <span>标签选择</span>
         <VTagSelect @select="tagSelected" :menu="menu"/>
 
         <input type="checkbox" v-model="sticky">
@@ -35,6 +39,11 @@ export default {
       sectionId: 1
     };
   },
+  components: {
+    'VEditor': VEditor,
+    'VButton': VButton,
+    'VTagSelect': VTagSelect
+  },
   mounted () {
     let obj = this;
     this.sectionId = parseInt(this.$route.params.forumId);
@@ -46,11 +55,6 @@ export default {
 
       obj.menu = item.type;
     });
-  },
-  components: {
-    'VEditor': VEditor,
-    'VButton': VButton,
-    'VTagSelect': VTagSelect
   },
   methods: {
     tagSelected (payload) {
@@ -105,6 +109,19 @@ input{
 
 .btn_cnt{
   text-align: center;
+
+  .line {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    margin: 20px 0;
+  }
+
+  span {
+    color: #1990ff;
+    display: block;
+    font-size: 24px;
+    margin: 20px 0;
+  }
 
   button{
     border: none;

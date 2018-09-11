@@ -5,18 +5,25 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    USERNAME: null,
-    ID: null
+    username: null,
+    user_id: null
   },
   mutations: {
-    log_in (state, username) {
-      state.USERNAME = username;
+    update_log_state (state, { username, id }) {
+      state.username = username;
+      state.user_id = id;
     },
-    log_out (state) {
-      state.USERNAME = null;
+    delete_log_state (state, id) {
+      state.user_id = null;
+      state.username = null;
+    }
+  },
+  actions: {
+    logIn (context, { id, username }) {
+      context.commit('update_log_state', { id, username });
     },
-    update_id (state, id) {
-      state.ID = id;
+    logOut (context) {
+      context.commit('delete_log_state');
     }
   }
 });

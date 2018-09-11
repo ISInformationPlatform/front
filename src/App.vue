@@ -15,11 +15,27 @@
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
 
+import { isLogIn } from '@/service/getData';
+import { mapActions } from 'vuex';
+
 export default {
   name: 'App',
   components: {
     'TheHeader': TheHeader,
     'TheFooter': TheFooter
+  },
+  methods: {
+    ...mapActions([
+      'logIn'
+    ])
+  },
+  created () {
+    isLogIn().then(data => {
+      var username = data.username;
+      var id = data._id;
+
+      this.logIn({ id, username });
+    });
   }
 };
 </script>

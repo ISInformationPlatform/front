@@ -17,12 +17,8 @@
       </div>
 
       <div v-show="!log_in">
-        <VButton class="navbar"
-          :title="'登录'"
-          @click="click_signIn" />
-        <VButton class="navbar"
-          :title="'注册'"
-          @click="click_signUp" />
+        <router-link class="navbar" :to="'/sign/in'">登录</router-link>
+        <router-link class="navbar" :to="'/sign/up'">注册</router-link>
       </div>
 
       <div v-show="log_in">
@@ -30,8 +26,8 @@
           :title="username"
           @click="click_user" />
         <VButton class="navbar"
-          :title="'登出'"
-          @click="click_logOut" />
+          :title="'注销'"
+          @click="logOut" />
       </div>
     </nav>
 
@@ -39,55 +35,50 @@
 </template>
 
 <script>
+import config from '@/page/config';
+
+import { mapState, mapActions } from 'vuex';
 import VButton from '@/components/VButton';
 
+var arr = [];
+
+config.forum.forEach(item => {
+  arr.push({
+    title: item.title,
+    url: `/forum/${item.section_id}`
+  });
+});
+
 export default {
-  name: 'TheHeader',
   data () {
     return {
       icon: '/static/icon.jpg',
       logo: '/static/icon.jpg',
-      links: [{
-        title: '工作',
-        url: '/forum/1'
-      },
-      {
-        title: '出国',
-        url: '/forum/2'
-      },
-      {
-        title: '读研',
-        url: '/forum/3'
-      }]
+      links: arr
     };
-  },
-  computed: {
-    log_in: function () {
-      return !!this.$store.state.USERNAME;
-    },
-    username: function () {
-      return this.$store.state.USERNAME;
-    }
-  },
-  methods: {
-    click_nav (payload) {
-      this.$router.push(payload.data);
-    },
-    click_signIn (payload) {
-      this.$router.push('/sign/in');
-    },
-    click_signUp (payload) {
-      this.$router.push('/sign/up');
-    },
-    click_logOut (payload) {
-      this.$store.commit('log_out');
-    },
-    click_user (payload) {
-      this.$router.push(`/person/${this.$store.state.ID}`);
-    }
   },
   components: {
     'VButton': VButton
+  },
+  computed: {
+    ...mapState([
+      'user_id',
+      'username'
+    ]),
+    log_in: function () {
+      return !!this.username;
+    }
+  },
+  methods: {
+    ...mapActions([
+      'logOut'
+    ]),
+    click_nav (payload) {
+      this.$router.push(payload.data);
+    },
+    click_user (payload) {
+      this.$router.push(`/person/${this.user_id}`);
+    }
   }
 };
 </script>
@@ -112,6 +103,10 @@ header {
   }
 }
 
+div {
+  display: inherit;
+}
+
 .navbar {
   padding: 0 10px;
   margin: 10px 0;
@@ -121,6 +116,7 @@ header {
   font-size: 20px;
   background-color: white;
   color: #1990ff;
+
   &:last-child {
     border-right: none;
   }

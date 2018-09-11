@@ -11,11 +11,10 @@
       <ForumItem
         :ID="item._id"
         :item="item"
-        :key="index"
         :tag_list="tag_list"
+        :key="index"
         @click_title="click_title"
         @click_icon="click_icon"
-        @click_tag="click_tag"
         v-for="(item,index) in list" />
     </div>
 
@@ -41,25 +40,30 @@ export default {
   },
   data () {
     return {
-      list: '',
+      list: [],
       total_page_num: 0,
       current_page: 0
     };
   },
   props: ['forumId', 'tag_filter', 'tag_list'],
   watch: {
-    forumId: 'update',
-    tag_filter: 'update'
+    forumId: 'getData',
+    tag_filter: 'getData',
+    current_page: 'getData'
   },
-  mounted () {
-    this.update();
+  created () {
+    this.getData();
   },
   methods: {
-    update () {
+    getData () {
+      this.list = [];
+
       let obj = this;
+      let pageNum = this.current_page;
+      let tagFilter = this.tag_filter;
 
       getPostList(this.forumId, {
-        tag_filter: this.tag_filter
+        tag_filter: tagFilter, page_num: pageNum
       }).then(data => {
         obj.list = data.post_list;
         obj.total_page_num = data.total_page_num;
@@ -75,22 +79,8 @@ export default {
       let personId = 1;
       this.$router.push(`/person/${personId}`);
     },
-    click_tag (payload) {
-      alert(`你点了标签：${payload.title}`);
-      this.tag = true;
-      this.$router.push('/tag');
-    },
     click_page (payload) {
-      let obj = this;
-      let pageNum = payload.page_num;
-      let tagFilter = this.tag_filter;
-
-      getPostList(this.forumId, {
-        page_num: pageNum, tag_filter: tagFilter
-      }).then(data => {
-        obj.list = data.post_list;
-        obj.total_page_num = data.total_page_num;
-      });
+      this.current_page = payload.page_num;
     }
   }
 };

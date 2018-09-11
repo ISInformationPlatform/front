@@ -10,7 +10,7 @@
 
     <ForumItemContent :content="item.post_content"/>
 
-    <ForumItemFooter :tag="item.post_tag"
+    <ForumItemFooter :tag_filter="item.post_tag"
       :content="item.post_title"
       :visited="item.visited"
 
@@ -51,9 +51,6 @@ export default {
     },
     click_tag (payload) {
       this.$emit('click_tag', payload);
-    },
-    click_toggle () {
-      this.isToggle = !this.isToggle;
     }
   }
 };

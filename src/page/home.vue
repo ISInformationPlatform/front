@@ -1,22 +1,19 @@
 <template>
-    <main>
-            <button
-            :key="index"
-            v-for="(item,index) in List"
-            @click="clickpush(index)">
-                <div class="out">
-                    <div class="pic"><img :src="item.pic"></div>
-                    <div class="name">{{item.name}}</div>
-                </div>
-            </button>
-    </main>
+  <main>
+    <button :key="index" v-for="(item,index) in list" @click="clickpush(index)">
+      <div class="out">
+        <div class="pic"><img :src="item.pic"></div>
+        <div class="name">{{item.name}}</div>
+      </div>
+    </button>
+  </main>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      List: [
+      list: [
         {
           pic: '/static/work.png',
           name: '工 作'
@@ -40,7 +37,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-main{
+main {
   display: flex;
   justify-content: space-around;
 }
@@ -55,7 +52,7 @@ button {
   border: 2px solid #eeeeee;
   cursor: pointer;
 }
-.name{
+.name {
   font-weight: bold;
   font-weight: 1.4em;
 }

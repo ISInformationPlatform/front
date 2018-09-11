@@ -14,7 +14,7 @@
 
         <template slot="after">
           <div class="submit">
-            <button @click="post">发帖</button>
+            <router-link :to="`/forum/${forumId}/post`">发帖</router-link>
           </div>
         </template>
       </TheForum>
@@ -56,9 +56,6 @@ export default {
       this.title = item.title;
       this.menu = item.type;
       this.forumId = id;
-    },
-    post () {
-      this.$router.push(`/forum/${this.forumId}/post`);
     }
   },
   beforeRouteUpdate (to, from, next) {
@@ -109,8 +106,9 @@ input{
   width: 100%;
 }
 
-.submit > button{
-  border:2px solid #cccccc;
+.submit > a {
+  padding: 5px 10px;
+  border: 2px solid #cccccc;
   background: none;
   color: #cccccc;
 }

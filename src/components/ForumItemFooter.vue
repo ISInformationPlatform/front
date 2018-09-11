@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'ForumItemFooter',
-  props: ['tag', 'viewlogo', 'visited', 'tag_list'],
+  props: ['tag_filter', 'viewlogo', 'visited', 'tag_list'],
   methods: {
     clickTag (event) {
       // this.$emit('click_tag', { title: this.tag });
@@ -27,7 +27,7 @@ export default {
   computed: {
     display_tag: function () {
       var tagMap = new Map();
-      var tagFilter = this.tag;
+      var tagFilter = this.tag_filter;
       var arr = [];
 
       this.tag_list.forEach(i => {

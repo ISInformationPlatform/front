@@ -31,3 +31,17 @@ export const signUp = async (username, password) => {
 
   return true;
 };
+
+export const isLogIn = async (username, password) => {
+  let stream = await fetch(`/sign/id`);
+  let json = await stream.json();
+
+  return json;
+};
+
+export const logOut = async (username, password) => {
+  let stream = await fetch(`/sign/id`);
+  let json = await stream.json();
+
+  return json;
+};

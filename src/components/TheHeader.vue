@@ -16,18 +16,18 @@
           @click="click_nav" />
       </div>
 
-      <div v-show="!log_in">
+      <div v-show="!username">
         <router-link class="navbar" :to="'/sign/in'">登录</router-link>
         <router-link class="navbar" :to="'/sign/up'">注册</router-link>
       </div>
 
-      <div v-show="log_in">
+      <div v-show="!!username">
         <VButton class="navbar"
           :title="username"
           @click="click_user" />
         <VButton class="navbar"
           :title="'注销'"
-          @click="logOut" />
+          @click="click_logOut" />
       </div>
     </nav>
 
@@ -36,6 +36,7 @@
 
 <script>
 import config from '@/page/config';
+import { logOut } from '@/service/getData';
 
 import { mapState, mapActions } from 'vuex';
 import VButton from '@/components/VButton';
@@ -64,15 +65,20 @@ export default {
     ...mapState([
       'user_id',
       'username'
-    ]),
-    log_in: function () {
-      return !!this.username;
-    }
+    ])
   },
   methods: {
     ...mapActions([
       'logOut'
     ]),
+    click_logOut () {
+      var action = this.logOut;
+
+      logOut().then(() => {
+        action();
+        alert('注销成功');
+      });
+    },
     click_nav (payload) {
       this.$router.push(payload.data);
     },

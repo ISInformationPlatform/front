@@ -40,7 +40,7 @@ export const isLogIn = async (username, password) => {
 };
 
 export const logOut = async (username, password) => {
-  let stream = await fetch(`/sign/id`);
+  let stream = await fetch(`/sign/logout`);
   let json = await stream.json();
 
   return json;

@@ -3,7 +3,11 @@
     <template>
       <TheBillboard class="left"/>
 
-      <TheForum :tag_filter="tag_filter" :tag_list="menu" :forumId="forumId" class="right">
+      <TheForum class="right"
+        :tag_filter="tag_filter"
+        :person_post="person_post"
+        :tag_list="menu"
+        :forumId="forumId">
         <template slot="before">
           <h2>{{title}}</h2>
 
@@ -15,6 +19,7 @@
         <template slot="after">
           <div class="submit">
             <router-link :to="`/forum/${forumId}/post`">发帖</router-link>
+            <a @click="click_my_post">我的帖子</a>
           </div>
         </template>
       </TheForum>
@@ -30,6 +35,7 @@ import TheFocus from '@/components/TheFocus';
 import VTagSelect from '@/components/VTagSelect';
 import TheForum from '@/components/TheForum';
 import TheBillboard from '@/components/TheBillboard';
+import { mapState } from 'vuex';
 
 const forumMap = new Map();
 
@@ -43,8 +49,20 @@ export default {
       title: config.forum[0].title,
       menu: config.forum[0].type,
       forumId: config.forum[0].section_id,
-      tag_filter: 0
+      tag_filter: 0,
+      person_post: null
     };
+  },
+  computed: {
+    ...mapState([
+      'username'
+    ])
+  },
+  components: {
+    'TheForum': TheForum,
+    'VTagSelect': VTagSelect,
+    'TheFocus': TheFocus,
+    'TheBillboard': TheBillboard
   },
   methods: {
     tagSelected (payload) {
@@ -56,18 +74,15 @@ export default {
       this.title = item.title;
       this.menu = item.type;
       this.forumId = id;
+    },
+    click_my_post () {
+      this.person_post = this.username;
     }
   },
   beforeRouteUpdate (to, from, next) {
     this.init(parseInt(to.params.forumId));
 
     next();
-  },
-  components: {
-    'TheForum': TheForum,
-    'VTagSelect': VTagSelect,
-    'TheFocus': TheFocus,
-    'TheBillboard': TheBillboard
   }
 };
 </script>
@@ -111,5 +126,7 @@ input{
   border: 2px solid #cccccc;
   background: none;
   color: #cccccc;
+
+  cursor: pointer;
 }
 </style>

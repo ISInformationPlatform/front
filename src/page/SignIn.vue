@@ -24,6 +24,7 @@
 </template>
 <script>
 import { signIn } from '@/service/getData';
+import { mapActions } from 'vuex';
 
 export default {
   data () {
@@ -33,14 +34,16 @@ export default {
     };
   },
   methods: {
+    ...mapActions([
+      'logIn'
+    ]),
     signIn () {
       let username = this.username;
       let password = this.password;
 
       signIn(username, password).then((result) => {
         if (result) {
-          this.$store.commit('log_in', result.username);
-          this.$store.commit('update_id', result.id);
+          this.logIn(result.id, result.username);
           alert('登录成功');
         } else {
           alert('登录失败');

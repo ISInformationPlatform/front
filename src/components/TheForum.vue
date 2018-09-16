@@ -45,10 +45,11 @@ export default {
       current_page: 0
     };
   },
-  props: ['forumId', 'tag_filter', 'tag_list'],
+  props: ['forumId', 'tag_filter', 'person_post', 'tag_list'],
   watch: {
     forumId: 'getData',
     tag_filter: 'getData',
+    person_post: 'getData',
     current_page: 'getData'
   },
   created () {
@@ -61,10 +62,18 @@ export default {
       let obj = this;
       let pageNum = this.current_page;
       let tagFilter = this.tag_filter;
+      let personPost = this.person_post;
 
-      getPostList(this.forumId, {
-        tag_filter: tagFilter, page_num: pageNum
-      }).then(data => {
+      var opt = {
+        tag_filter: tagFilter,
+        page_num: pageNum
+      };
+
+      if (personPost) {
+        opt.person_post = personPost;
+      }
+
+      getPostList(this.forumId, opt).then(data => {
         obj.list = data.post_list;
         obj.total_page_num = data.total_page_num;
       });

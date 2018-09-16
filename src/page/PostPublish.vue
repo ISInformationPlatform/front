@@ -27,6 +27,7 @@ import { submitPost } from '@/service/getData';
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
 import VTagSelect from '@/components/VTagSelect';
+import { mapState } from 'vuex';
 
 export default {
   data () {
@@ -38,6 +39,11 @@ export default {
       sticky: false,
       sectionId: 1
     };
+  },
+  computed: {
+    ...mapState([
+      'username'
+    ])
   },
   components: {
     'VEditor': VEditor,
@@ -64,7 +70,7 @@ export default {
       this.content = payload.html;
     },
     upload () {
-      submitPost(this.sectionId, this.title, 'hwfhc', this.content, this.tag, {
+      submitPost(this.sectionId, this.title, this.username, this.content, this.tag, {
         sticky: this.sticky
       }).then(() => {
         alert('上传成功');

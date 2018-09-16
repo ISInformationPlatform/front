@@ -3,9 +3,19 @@ import 'whatwg-fetch';
 export const getPostList = async (sectionId, opt = {}) => {
   let pageNum = opt.page_num || 1;
   let tagFilter = opt.tag_filter || 0;
+  let personPost = opt.person_post || null;
   let sticky = opt.sticky || false;
 
-  let res = await fetch(`/forum/${sectionId}/post?page_num=${pageNum}&tag_filter=${tagFilter}&sticky=${sticky}`);
+  var url = `/forum/${sectionId}/post?` +
+    `page_num=${pageNum}&` +
+    `tag_filter=${tagFilter}&` +
+    `sticky=${sticky}`;
+
+  if (personPost) {
+    url += `&person_post=${personPost}`;
+  }
+
+  let res = await fetch(url);
   let json = await res.json();
 
   return json.data;

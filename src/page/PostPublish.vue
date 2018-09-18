@@ -72,9 +72,8 @@ export default {
     upload () {
       submitPost(this.sectionId, this.title, this.username, this.content, this.tag, {
         sticky: this.sticky
-      }).then(() => {
-        alert('上传成功');
       });
+      this.$router.push('/JumpPage');
     }
   }
 };

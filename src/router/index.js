@@ -7,6 +7,7 @@ import sign from './sign';
 
 import Home from '@/page/Home';
 import Person from '@/page/Person';
+import JumpPage from '@/page/JumpPage';
 
 Vue.use(Router);
 
@@ -22,6 +23,12 @@ export default new Router({
       path: '/person/:personId',
       components: {
         Content: Person
+      }
+    },
+    {
+      path: '/JumpPage',
+      components: {
+        Content: JumpPage
       }
     }
   ]

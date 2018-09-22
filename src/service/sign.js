@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
 export const signIn = async (username, password) => {
-  let response = await fetch(`/sign/in`, {
+  let res = await fetch(`/sign/in`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -12,7 +12,11 @@ export const signIn = async (username, password) => {
     })
   });
 
-  let json = await response.json();
+  let json = await res.json();
+
+  if (res.status !== 200) {
+    throw json;
+  }
 
   return json.data;
 };
@@ -33,15 +37,23 @@ export const signUp = async (username, password) => {
 };
 
 export const isLogIn = async (username, password) => {
-  let stream = await fetch(`/sign/id`);
-  let json = await stream.json();
+  let res = await fetch(`/sign/status`);
+  let json = await res.json();
 
-  return json;
+  if (res.status !== 200) {
+    throw json;
+  }
+
+  return json.data;
 };
 
 export const logOut = async (username, password) => {
-  let stream = await fetch(`/sign/logout`);
-  let json = await stream.json();
+  let res = await fetch(`/sign/out`);
+  let json = await res.json();
+
+  if (res.status !== 200) {
+    throw json;
+  }
 
   return json;
 };

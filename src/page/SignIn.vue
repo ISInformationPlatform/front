@@ -16,7 +16,7 @@
       </section>
 
       <footer>
-        <button class="login" @click="signIn">登陆</button>
+        <button class="login" @click="click_signIn">登陆</button>
         <button class="forget">忘记密码</button>
       </footer>
     </form>
@@ -25,6 +25,8 @@
 <script>
 import { signIn } from '@/service/getData';
 import { mapActions } from 'vuex';
+
+import { JUMP_WAITING, JUMP_SUCCESS, JUMP_FAIL } from '@/page/Jump';
 
 export default {
   data () {
@@ -35,19 +37,33 @@ export default {
   },
   methods: {
     ...mapActions([
-      'logIn'
+      'logIn', 'jump'
     ]),
-    signIn () {
+    click_signIn () {
       let username = this.username;
       let password = this.password;
 
+      this.jump({
+        obj: this,
+        status: JUMP_WAITING
+      });
+
+      let obj = this;
+
       signIn(username, password).then((result) => {
-        if (result) {
-          this.logIn(result.id, result.username);
-          alert('登录成功');
-        } else {
-          alert('登录失败');
-        }
+        this.logIn({ id: result.id, username: result.username });
+
+        obj.jump({
+          obj: obj,
+          message: '登录成功',
+          status: JUMP_SUCCESS
+        });
+      }).catch(err => {
+        obj.jump({
+          obj: obj,
+          message: err.message,
+          status: JUMP_FAIL
+        });
       });
     }
   }

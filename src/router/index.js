@@ -7,7 +7,7 @@ import sign from './sign';
 
 import Home from '@/page/Home';
 import Person from '@/page/Person';
-import JumpPage from '@/page/JumpPage';
+import Jump from '@/page/Jump';
 
 Vue.use(Router);
 
@@ -26,9 +26,9 @@ export default new Router({
       }
     },
     {
-      path: '/JumpPage',
+      path: '/jump',
       components: {
-        Content: JumpPage
+        Content: Jump
       }
     }
   ]

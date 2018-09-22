@@ -40,6 +40,7 @@ import { logOut } from '@/service/getData';
 
 import { mapState, mapActions } from 'vuex';
 import VButton from '@/components/VButton';
+import { JUMP_WAITING, JUMP_SUCCESS } from '../page/Jump.vue';
 
 var arr = [];
 
@@ -69,14 +70,24 @@ export default {
   },
   methods: {
     ...mapActions([
-      'logOut'
+      'logOut', 'jump'
     ]),
     click_logOut () {
       var action = this.logOut;
 
+      this.jump({
+        obj: this,
+        status: JUMP_WAITING
+      });
+
       logOut().then(() => {
         action();
-        alert('注销成功');
+
+        this.jump({
+          obj: this,
+          message: '注销成功',
+          status: JUMP_SUCCESS
+        });
       });
     },
     click_nav (payload) {

@@ -26,15 +26,18 @@ export default {
   },
   methods: {
     ...mapActions([
-      'logIn'
+      'logIn', 'logOut'
     ])
   },
   created () {
     isLogIn().then(data => {
+      var id = data.id;
       var username = data.username;
-      var id = data._id;
 
       this.logIn({ id, username });
+    }).catch(err => {
+      this.logOut();
+      err = null;
     });
   }
 };

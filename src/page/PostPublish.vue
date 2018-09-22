@@ -27,7 +27,7 @@ import { submitPost } from '@/service/getData';
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
 import VTagSelect from '@/components/VTagSelect';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data () {
@@ -63,6 +63,9 @@ export default {
     });
   },
   methods: {
+    ...mapActions([
+      'jump'
+    ]),
     tagSelected (payload) {
       this.tag = payload.tag;
     },
@@ -70,10 +73,15 @@ export default {
       this.content = payload.html;
     },
     upload () {
-      submitPost(this.sectionId, this.title, this.username, this.content, this.tag, {
+      let promise = submitPost(this.sectionId, this.title, this.username, this.content, this.tag, {
         sticky: this.sticky
       });
-      this.$router.push('/JumpPage');
+
+      this.jump({
+        message: '发布成功',
+        obj: this,
+        promise
+      });
     }
   }
 };

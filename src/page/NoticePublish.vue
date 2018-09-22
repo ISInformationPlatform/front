@@ -25,6 +25,7 @@ import config from '@/page/config';
 import { submitNotice } from '@/service/getData';
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
+import { mapActions } from 'vuex';
 
 export default {
   components: {
@@ -43,14 +44,20 @@ export default {
     };
   },
   methods: {
+    ...mapActions([
+      'jump'
+    ]),
     updateHtml (payload) {
       this.content = payload.html;
     },
     upload () {
-      submitNotice(this.sectionId, this.title, 'hwfhc', this.content)
-        .then(() => {
-          alert('发布成功');
-        });
+      let promise = submitNotice(this.sectionId, this.title, 'hwfhc', this.content);
+
+      this.jump({
+        message: '发布成功',
+        obj: this,
+        promise
+      });
     }
   }
 };

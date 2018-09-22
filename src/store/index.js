@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import { JUMP_WAITING, JUMP_SUCCESS, JUMP_FAIL } from '@/page/Jump';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -31,13 +33,20 @@ export default new Vuex.Store({
     logOut (context) {
       context.commit('delete_log_state');
     },
-    jump (context, { obj, message, status }) {
-      if (status === 0) {
-        message = '加载中';
-      }
-
-      context.commit('update_jump', { message, status });
+    jump (context, { message, obj, promise }) {
+      // let message = '加载中';
       obj.$router.push('/jump');
+      context.commit('update_jump', { message: '加载中', status: JUMP_WAITING });
+
+      promise.then(data => {
+        context.commit('update_jump', { message: message, status: JUMP_SUCCESS });
+        obj.$router.push('/jump');
+      });
+
+      promise.catch(err => {
+        context.commit('update_jump', { message: err.message, status: JUMP_FAIL });
+        obj.$router.push('/jump');
+      });
     }
   }
 });

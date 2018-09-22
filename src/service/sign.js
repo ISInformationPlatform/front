@@ -22,7 +22,7 @@ export const signIn = async (username, password) => {
 };
 
 export const signUp = async (username, password) => {
-  await fetch(`/sign/up`, {
+  let res = await fetch(`/sign/up`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -32,6 +32,12 @@ export const signUp = async (username, password) => {
       password: password
     })
   });
+
+  let json = await res.json();
+
+  if (res.status !== 200) {
+    throw json;
+  }
 
   return true;
 };

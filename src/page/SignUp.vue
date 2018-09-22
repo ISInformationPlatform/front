@@ -40,6 +40,7 @@
 import { signUp } from '@/service/getData';
 
 import VTip from '@/components/VTip';
+import { mapActions } from 'vuex';
 
 var emailReg = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
@@ -57,12 +58,19 @@ export default {
     'VTip': VTip
   },
   methods: {
+    ...mapActions([
+      'jump'
+    ]),
     signUp () {
       let username = this.username;
       let password = this.password;
 
-      signUp(username, password).then(() => {
-        alert('注册成功');
+      let promise = signUp(username, password);
+
+      this.jump({
+        message: '发布成功',
+        obj: this,
+        promise
       });
     }
   },

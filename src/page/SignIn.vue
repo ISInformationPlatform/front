@@ -26,8 +26,6 @@
 import { signIn } from '@/service/getData';
 import { mapActions } from 'vuex';
 
-import { JUMP_WAITING, JUMP_SUCCESS, JUMP_FAIL } from '@/page/Jump';
-
 export default {
   data () {
     return {
@@ -43,27 +41,14 @@ export default {
       let username = this.username;
       let password = this.password;
 
-      this.jump({
-        obj: this,
-        status: JUMP_WAITING
+      let promise = signIn(username, password).then((result) => {
+        this.logIn({ id: result.id, username: result.username });
       });
 
-      let obj = this;
-
-      signIn(username, password).then((result) => {
-        this.logIn({ id: result.id, username: result.username });
-
-        obj.jump({
-          obj: obj,
-          message: '登录成功',
-          status: JUMP_SUCCESS
-        });
-      }).catch(err => {
-        obj.jump({
-          obj: obj,
-          message: err.message,
-          status: JUMP_FAIL
-        });
+      this.jump({
+        message: '登录成功',
+        obj: this,
+        promise
       });
     }
   }

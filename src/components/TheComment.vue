@@ -26,6 +26,7 @@ import { getComment, submitComment } from '@/service/getData';
 import VButton from '@/components/VButton';
 import VEditor from '@/components/VEditor';
 import VPin from '@/components/VPin';
+import { mapActions } from 'vuex';
 
 export default {
   props: ['forumId', 'postId'],
@@ -40,6 +41,9 @@ export default {
     postId: 'update'
   },
   methods: {
+    ...mapActions([
+      'jump'
+    ]),
     update () {
       let obj = this;
 
@@ -54,10 +58,13 @@ export default {
       this.comment = payload.html;
     },
     submit () {
-      submitComment(this.forumId, this.postId, 'hwfhc', this.comment, this.postId)
-        .then(() => {
-          alert('上传成功');
-        });
+      let promise = submitComment(this.forumId, this.postId, 'hwfhc', this.comment, this.postId);
+
+      this.jump({
+        message: '发布成功',
+        obj: this,
+        promise: promise
+      });
     },
     click_icon (payload) {
       let personId = 1;

@@ -34,7 +34,7 @@ export const getPost = async (sectionId, postId) => {
 export const submitPost = async (sectionId, title, author, content, tag, opt = {}) => {
   let sticky = opt.sticky || false;
 
-  await fetch(`/forum/${sectionId}/post`, {
+  let res = await fetch(`/forum/${sectionId}/post`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -48,6 +48,12 @@ export const submitPost = async (sectionId, title, author, content, tag, opt = {
     })
   });
 
+  let json = await res.json();
+
+  if (res.status !== 200) {
+    throw json;
+  }
+
   return true;
 };
 
@@ -59,7 +65,7 @@ export const getComment = async (sectionId, postId) => {
 };
 
 export const submitComment = async (sectionId, postId, author, content) => {
-  await fetch(`/forum/${sectionId}/post/${postId}/comment`, {
+  let res = await fetch(`/forum/${sectionId}/post/${postId}/comment`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -69,6 +75,12 @@ export const submitComment = async (sectionId, postId, author, content) => {
       comment_content: content
     })
   });
+
+  let json = await res.json();
+
+  if (res.status !== 200) {
+    throw json;
+  }
 
   return true;
 };

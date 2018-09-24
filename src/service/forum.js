@@ -4,6 +4,7 @@ export const getPostList = async (sectionId, opt = {}) => {
   let pageNum = opt.page_num || 1;
   let tagFilter = opt.tag_filter || 0;
   let personPost = opt.person_post || null;
+  let searchText = opt.search_text || null;
   let sticky = opt.sticky || false;
 
   var url = `/forum/${sectionId}/post?` +
@@ -13,6 +14,10 @@ export const getPostList = async (sectionId, opt = {}) => {
 
   if (personPost) {
     url += `&person_post=${personPost}`;
+  }
+
+  if (searchText) {
+    url += `&search_text=${searchText}`;
   }
 
   let res = await fetch(url);

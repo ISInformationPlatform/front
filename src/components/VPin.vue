@@ -9,8 +9,8 @@
 
 <script>
 export default {
-  props: ['icon', 'username'],
   name: 'ForumItemIcon',
+  props: ['icon', 'username'],
   methods: {
     click (event) {
       this.$emit('click', { title: this.username });

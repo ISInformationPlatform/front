@@ -15,7 +15,7 @@
 import IMButton from '@/components/IMButton';
 
 export default {
-  name: 'TheNav',
+  name: 'VTagSelect',
   components: {
     'IMButton': IMButton
   },

@@ -51,15 +51,16 @@ config.forum.forEach(item => {
 });
 
 export default {
+  name: 'TheHeader',
+  components: {
+    'VButton': VButton
+  },
   data () {
     return {
       icon: '/static/icon.jpg',
       logo: '/static/icon.jpg',
       links: arr
     };
-  },
-  components: {
-    'VButton': VButton
   },
   computed: {
     ...mapState([

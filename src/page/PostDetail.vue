@@ -16,20 +16,19 @@ import TheComment from '@/components/TheComment';
 import VEditor from '@/components/VEditor';
 
 export default {
-  data () {
-    return {
-      forumId: null,
-      postId: null
-    };
-  },
-  mounted () {
-    this.forumId = this.$route.params.forumId;
-    this.postId = this.$route.params.postId;
-  },
+  name: 'PostDetail',
   components: {
     'ThePost': ThePost,
     'TheComment': TheComment,
     'VEditor': VEditor
+  },
+  computed: {
+    forumId: function () {
+      return this.$route.params.forumId;
+    },
+    postId: function () {
+      return this.$route.params.postId;
+    }
   }
 };
 </script>

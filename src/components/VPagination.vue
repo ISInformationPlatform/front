@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'VPagination',
   props: ['totalNum', 'currentPage'],
   watch: {
     forumId: 'update'

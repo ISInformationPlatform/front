@@ -24,13 +24,14 @@ const stateMap = {
 };
 
 export default {
+  name: 'VTip',
+  props: ['state', 'fail', 'success'],
   data () {
     return {
       path: fail,
       isShow: false
     };
   },
-  props: ['state', 'fail', 'success'],
   watch: {
     'state': function () {
       let state = this.state;
@@ -41,11 +42,12 @@ export default {
 
       stateMap[state].call(this);
     }
-  },
-  NULL: 0,
-  INVALID: 1,
-  VALID: 2
+  }
 };
+
+export const TIP_NULL = 0;
+export const TIP_INVALID = 1;
+export const TIP_VALID = 2;
 </script>
 
 <style lang="less" scoped>

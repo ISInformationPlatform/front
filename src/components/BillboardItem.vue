@@ -1,8 +1,10 @@
 <template>
   <section>
-    <p @click="click_title">{{item.notice_title}}</p>
+    <router-link tag="p" :to="`/notification/${sectionId}/notice/${item._id}`">
+      {{item.notice_title}}
+    </router-link>
 
-    <p class="date" @click="click_date">{{newdate}}</p>
+    <p class="date">{{date}}</p>
   </section>
 </template>
 
@@ -13,19 +15,8 @@ export default {
   name: 'BillboardItem',
   props: ['item', 'sectionId'],
   computed: {
-    newdate: function () {
+    date: function () {
       return dayjs(this.item.notice_time * 1000).format('YYYY-MM-DD');
-    }
-  },
-  methods: {
-    click_title (payload) {
-      let sectionId = this.sectionId;
-      let noticeId = this.item._id;
-
-      this.$router.push(`/notification/${sectionId}/notice/${noticeId}`);
-    },
-    click_date (event) {
-      this.$emit('click_date', { title: this.date });
     }
   }
 };
@@ -38,12 +29,10 @@ p {
   cursor: pointer;
 
   color: black;
-  font-family: Arial, "Microsoft YaHei", sans-serif;
   font-size: .9em;
 
   &:hover {
     color: blue;
-    text-transform: capitalize;
   }
 }
 section {

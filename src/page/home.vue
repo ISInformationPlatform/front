@@ -1,16 +1,22 @@
 <template>
   <main>
-    <button :key="index" v-for="(item,index) in list" @click="clickpush(index)">
+    <router-link :key="index"
+      v-for="(item,index) in list"
+      tag="button"
+      :to="`/forum/${index + 1}`">
+
       <div class="out">
         <div class="pic"><img :src="item.pic"></div>
         <div class="name">{{item.name}}</div>
       </div>
-    </button>
+
+    </router-link>
   </main>
 </template>
 
 <script>
 export default {
+  name: 'Home',
   data () {
     return {
       list: [
@@ -28,11 +34,6 @@ export default {
         }
       ]
     };
-  },
-  methods: {
-    clickpush (index) {
-      this.$router.push(`/forum/${index + 1}`);
-    }
   }
 };
 </script>

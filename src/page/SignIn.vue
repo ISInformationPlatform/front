@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <main class="container">
     <form>
       <section>
         <h3>用户名</h3>
@@ -20,13 +20,14 @@
         <button class="forget">忘记密码</button>
       </footer>
     </form>
-  </div>
+  </main>
 </template>
 <script>
 import { signIn } from '@/service/getData';
 import { mapActions } from 'vuex';
 
 export default {
+  name: 'SignIn',
   data () {
     return {
       username: '',

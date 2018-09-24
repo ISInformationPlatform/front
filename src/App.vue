@@ -44,6 +44,9 @@ export default {
 </script>
 
 <style lang="less">
+* {
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+}
 .w-e-text{
   overflow-y: auto;
   /*

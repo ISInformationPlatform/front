@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <main class="container">
     <form>
       <section>
         <h3>用户名</h3>
@@ -34,12 +34,12 @@
         <button @click="signUp">注册</button>
       </footer>
     </form>
-  </div>
+  </main>
 </template>
 <script>
 import { signUp } from '@/service/getData';
 
-import VTip from '@/components/VTip';
+import VTip, { TIP_NULL, TIP_INVALID, TIP_VALID } from '@/components/VTip';
 import { mapActions } from 'vuex';
 
 var emailReg = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -77,42 +77,42 @@ export default {
   computed: {
     state_username: function () {
       if (!this.username) {
-        return VTip.NULL;
+        return TIP_NULL;
       } else if (this.username.length <= 5) {
-        return VTip.INVALID;
+        return TIP_INVALID;
       } else {
-        return VTip.VALID;
+        return TIP_VALID;
       }
     },
     state_password: function () {
       if (!this.password) {
-        return VTip.NULL;
+        return TIP_NULL;
       } else if (this.password.length <= 5) {
-        return VTip.INVALID;
+        return TIP_INVALID;
       } else {
-        return VTip.VALID;
+        return TIP_VALID;
       }
     },
     state_dup_password: function () {
       if (!this.dup_password) {
-        return VTip.NULL;
+        return TIP_NULL;
       }
 
       if (this.password !== this.dup_password) {
-        return VTip.INVALID;
+        return TIP_INVALID;
       } else {
-        return VTip.VALID;
+        return TIP_VALID;
       }
     },
     state_email: function () {
       if (!this.email) {
-        return VTip.NULL;
+        return TIP_NULL;
       }
 
       if (!emailReg.test(this.email)) {
-        return VTip.INVALID;
+        return TIP_INVALID;
       } else {
-        return VTip.VALID;
+        return TIP_VALID;
       }
     }
   }

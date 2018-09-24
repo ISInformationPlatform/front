@@ -13,7 +13,7 @@
 import E from 'wangeditor';
 
 export default {
-  name: 'editor',
+  name: 'VEditor',
   props: ['type'],
   mounted () {
     var editor = new E(this.$refs.toolbar, this.$refs.editor);

@@ -9,6 +9,7 @@
 import { getPost } from '@/service/getData';
 
 export default {
+  name: 'ThePost',
   props: ['forumId', 'postId'],
   data () {
     return {
@@ -33,7 +34,7 @@ export default {
         });
     }
   },
-  mounted () { this.update(); }
+  created () { this.update(); }
 };
 </script>
 

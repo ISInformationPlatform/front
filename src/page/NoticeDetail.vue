@@ -1,14 +1,17 @@
 <template>
-  <div class="container">
+  <main>
     <h2 class="title">{{title}}</h2>
-    <p class="author">
+
+    <h4 class="author">
       {{author}}
-    </p>
+    </h4>
+
     <article v-html="content"/>
-    <footer v-show="ifShow" class="DT">
-        {{newdate}}
+
+    <footer class="DT">
+      {{date}}
     </footer>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -16,7 +19,7 @@ import { getNotice } from '@/service/getData';
 import dayjs from 'dayjs';
 
 export default {
-  name: 'billboard',
+  name: 'NoticeDetail',
   data () {
     return {
       title: '',
@@ -26,41 +29,27 @@ export default {
     };
   },
   computed: {
-    newdate: function () {
-      return dayjs(this.notice_time * 1000).format('YYYY-MM-DD');
-    },
-    ifShow: function () {
-      if (this.notice_time === null) {
-        return false;
-      } else {
-        return true;
+    date: function () {
+      if (!this.notice_time) {
+        return '';
       }
+
+      return dayjs(this.notice_time * 1000).format('YYYY-MM-DD');
     }
   },
-  watch: {
-    forumId: 'update',
-    noticeId: 'update'
-  },
-  methods: {
+  created () {
+    let sectionId = this.$route.params.sectionId;
+    let noticeId = this.$route.params.noticeId;
 
-    update () {
-      let sectionId = this.$route.params.sectionId;
-      let noticeId = this.$route.params.noticeId;
+    if (!sectionId || !noticeId) { return; }
 
-      let obj = this;
-
-      if (!sectionId || !noticeId) { return; }
-
-      getNotice(sectionId, noticeId)
-        .then(data => {
-          obj.title = data.notice_title;
-          obj.author = data.notice_author;
-          obj.notice_time = data.notice_time;
-          obj.content = data.notice_content;
-        });
-    }
-  },
-  mounted () { this.update(); }
+    getNotice(sectionId, noticeId).then(data => {
+      this.title = data.notice_title;
+      this.author = data.notice_author;
+      this.notice_time = data.notice_time;
+      this.content = data.notice_content;
+    });
+  }
 };
 </script>
 

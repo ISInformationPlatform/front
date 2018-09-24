@@ -7,7 +7,9 @@
         :tag_filter="tag_filter"
         :person_post="person_post"
         :tag_list="menu"
-        :forumId="forumId">
+        :forumId="forumId"
+        :search_text="search_text">
+
         <template slot="before">
           <h2>{{title}}</h2>
 
@@ -20,6 +22,7 @@
           <div class="submit">
             <router-link :to="`/forum/${forumId}/post`">发帖</router-link>
             <a @click="click_my_post">我的帖子</a>
+            <input v-model="search_text" placeholder="搜索">{{search_text}}
           </div>
         </template>
       </TheForum>
@@ -35,6 +38,7 @@ import TheFocus from '@/components/TheFocus';
 import VTagSelect from '@/components/VTagSelect';
 import TheForum from '@/components/TheForum';
 import TheBillboard from '@/components/TheBillboard';
+
 import { mapState } from 'vuex';
 
 const forumMap = new Map();
@@ -44,25 +48,27 @@ config.forum.forEach(item => {
 });
 
 export default {
+  name: 'Forum',
+  components: {
+    'TheForum': TheForum,
+    'VTagSelect': VTagSelect,
+    'TheFocus': TheFocus,
+    'TheBillboard': TheBillboard
+  },
   data () {
     return {
       title: config.forum[0].title,
       menu: config.forum[0].type,
       forumId: config.forum[0].section_id,
       tag_filter: 0,
-      person_post: null
+      person_post: null,
+      search_text: ''
     };
   },
   computed: {
     ...mapState([
       'username'
     ])
-  },
-  components: {
-    'TheForum': TheForum,
-    'VTagSelect': VTagSelect,
-    'TheFocus': TheFocus,
-    'TheBillboard': TheBillboard
   },
   methods: {
     tagSelected (payload) {
@@ -111,14 +117,6 @@ main{
     width: 20%;
     padding:2%;
   }
-}
-
-input{
-  border: none;
-  outline: none;
-
-  font-size: 2em;
-  width: 100%;
 }
 
 .submit > a {

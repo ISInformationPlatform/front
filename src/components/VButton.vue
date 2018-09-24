@@ -24,7 +24,6 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-    alert('sdf');
     this.isActive = false;
   }
 };

@@ -2,6 +2,7 @@
   <main>
     <VEditor @input="updateHtml" class="editor">
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
+
       <div class="btn_cnt" slot="after">
         <form>
           <select v-model="sectionId">
@@ -12,10 +13,10 @@
             </option>
           </select>
         </form>
-        <VButton
-          @click="upload"
-          :title="'发布'"/>
+
+        <VButton @click="upload" :title="'发布'"/>
       </div>
+
    </VEditor>
   </main>
 </template>
@@ -23,23 +24,22 @@
 <script>
 import config from '@/page/config';
 import { submitNotice } from '@/service/getData';
-import VEditor from '@/components/VEditor';
-import VButton from '@/components/VButton';
 import { mapActions } from 'vuex';
 
+import VEditor from '@/components/VEditor';
+import VButton from '@/components/VButton';
+
 export default {
+  name: 'NoticePublish',
   components: {
     'VEditor': VEditor,
     'VButton': VButton
-  },
-  mounted () {
-    this.sectionId = this.$route.params.sectionId;
   },
   data () {
     return {
       title: '',
       content: '',
-      sectionId: '',
+      sectionId: null,
       list: config.notice
     };
   },

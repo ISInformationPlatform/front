@@ -4,19 +4,19 @@
       <img :src='path'>
     </div>
 
-    <button @click="TurnToHome">{{jump_message}}</button>
+    <button>{{jump_message}}</button>
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
+export const JUMP_WAITING = 0;
+export const JUMP_SUCCESS = 1;
+export const JUMP_FAIL = 2;
+
 export default {
-  methods: {
-    TurnToHome () {
-      this.$router.push(`/forum/1/`);
-    }
-  },
+  name: 'Jump',
   computed: {
     ...mapState([
       'jump_status', 'jump_message'
@@ -42,10 +42,6 @@ export default {
     }
   }
 };
-
-export const JUMP_WAITING = 0;
-export const JUMP_SUCCESS = 1;
-export const JUMP_FAIL = 2;
 </script>
 
 <style less="lang" scoped>

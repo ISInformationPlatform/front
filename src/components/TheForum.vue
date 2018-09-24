@@ -7,7 +7,6 @@
     </div>
 
     <div class="postContainer">
-
       <ForumItem
         :ID="item._id"
         :item="item"
@@ -34,6 +33,14 @@ import ForumItem from '@/components/ForumItem';
 import VPagination from '@/components/VPagination';
 
 export default {
+  name: 'TheForum',
+  props: [
+    'forumId',
+    'tag_filter',
+    'person_post',
+    'tag_list',
+    'search_text'
+  ],
   components: {
     'ForumItem': ForumItem,
     'VPagination': VPagination
@@ -45,12 +52,12 @@ export default {
       current_page: 0
     };
   },
-  props: ['forumId', 'tag_filter', 'person_post', 'tag_list'],
   watch: {
     forumId: 'getData',
     tag_filter: 'getData',
     person_post: 'getData',
-    current_page: 'getData'
+    current_page: 'getData',
+    search_text: 'getData'
   },
   created () {
     this.getData();
@@ -63,6 +70,7 @@ export default {
       let pageNum = this.current_page;
       let tagFilter = this.tag_filter;
       let personPost = this.person_post;
+      let searchText = this.search_text;
 
       var opt = {
         tag_filter: tagFilter,
@@ -71,6 +79,10 @@ export default {
 
       if (personPost) {
         opt.person_post = personPost;
+      }
+
+      if (searchText) {
+        opt.search_text = searchText;
       }
 
       getPostList(this.forumId, opt).then(data => {

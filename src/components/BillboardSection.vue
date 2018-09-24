@@ -21,10 +21,8 @@ import BillboardItem from '@/components/BillboardItem';
 import VPagination from '@/components/VPagination';
 
 export default {
+  name: 'BillboardSection',
   props: ['sectionId', 'title'],
-  mounted () {
-    this.update();
-  },
   components: {
     'BillboardItem': BillboardItem,
     'VPagination': VPagination
@@ -36,21 +34,17 @@ export default {
       current_page: 0
     };
   },
+  created () {
+    getNoticeList(this.sectionId).then(data => {
+      this.list = data.notice_list;
+      this.total_page_num = data.total_page_num;
+    });
+  },
   methods: {
-    update () {
-      let obj = this;
-
-      getNoticeList(this.sectionId).then(data => {
-        obj.list = data.notice_list;
-        obj.total_page_num = data.total_page_num;
-      });
-    },
     click_page (payload) {
-      let obj = this;
-
       getNoticeList(this.sectionId, payload.page_num).then(data => {
-        obj.list = data.notice_list;
-        obj.total_page_num = data.total_page_num;
+        this.list = data.notice_list;
+        this.total_page_num = data.total_page_num;
       });
     }
   }

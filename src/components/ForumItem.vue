@@ -1,7 +1,8 @@
 <template>
   <section>
-    <ForumItemTitle :title="item.post_title"
-      @click="click_title" />
+    <h4 @click="click_title">
+      {{item.post_title}}
+    </h4>
 
     <VPin class="pin"
       :icon="icon"
@@ -13,8 +14,8 @@
     <ForumItemFooter :tag_filter="item.post_tag"
       :content="item.post_title"
       :visited="item.visited"
-
       :tag_list="tag_list"
+
       :viewlogo="viewlogo"
       @click_tag="click_tag"/>
  </section>
@@ -22,24 +23,22 @@
 
 <script>
 import VPin from '@/components/VPin';
-import ForumItemTitle from '@/components/ForumItemTitle';
 import ForumItemContent from '@/components/ForumItemContent';
 import ForumItemFooter from '@/components/ForumItemFooter';
 
 export default {
   name: 'ForumItem',
   props: ['item', 'ID', 'tag_list'],
+  components: {
+    'VPin': VPin,
+    'ForumItemContent': ForumItemContent,
+    'ForumItemFooter': ForumItemFooter
+  },
   data () {
     return {
       viewlogo: '/static/viewLogo.png',
       icon: '/static/icon.jpg'
     };
-  },
-  components: {
-    'VPin': VPin,
-    'ForumItemTitle': ForumItemTitle,
-    'ForumItemContent': ForumItemContent,
-    'ForumItemFooter': ForumItemFooter
   },
   methods: {
     click_title (payload) {
@@ -62,5 +61,12 @@ section {
 }
 .pin {
   margin-top: 5px;
+}
+
+h4 {
+  cursor: pointer;
+  margin: 0;
+  font-size: 1.1em;
+  color: #1990ff;
 }
 </style>

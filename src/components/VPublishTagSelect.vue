@@ -1,22 +1,30 @@
 <template>
   <div>
+    <span>标签选择</span>
     <div class="container" v-for="(list,i) in menu" :key="i">
-     <IMButton v-for="(item,j) in list"
-      :images="item.tag"
-      :data="item.id"
-      :title="item.title"
-      :key="j"
-      @click="click" />
+     <PTSButton v-for="(item,q) in list"
+     :key="q"
+     :data="item.id"
+     :title="item.title"
+     @click="click">
+     </PTSButton>
+    </div>
+    <span>发布位置</span>
+    <div class="container">
+      <button><p>置顶</p></button>
+      <button><p>非置顶</p></button>
     </div>
  </div>
 </template>
 
 <script>
-import IMButton from '@/components/IMButton';
+
+import PTSButton from '@/components/PTSButton';
+
 export default {
-  name: 'VTagSelect',
+  name: 'VPublishTagSelect',
   components: {
-    'IMButton': IMButton
+    'PTSButton': PTSButton
   },
   data () {
     return {
@@ -49,7 +57,7 @@ export default {
       let isActive = [];
       this.menu.forEach(item => {
         item.forEach(item => isActive.push(
-          { active: false, id: item.id }
+          {active: false, id: item.id}
         ));
       });
       this.isActive = isActive;
@@ -60,29 +68,44 @@ export default {
     let isActive = [];
     this.menu.forEach(item => {
       item.forEach(item => isActive.push(
-        { active: false, id: item.id }
+        {active: false, id: item.id}
       ));
     });
     this.isActive = isActive;
   }
 };
 </script>
-
 <style lang="less" scoped>
-button {
-  margin-bottom: 30px;
-  padding: 0;
-  font-size: 20px;
-  background-color: white;
+span {
+  text-align: left;
   color: #1990ff;
-}
-.active {
-  background-color: #1990ff;
-  color: white;
+  display: block;
+  font-size: 24px;
+  margin: 20px 0;
+  }
+button{
+  background: none;
+  border: 1px solid #1990ff;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0 20px;
+  width: 87px;
+  height: 26px; 
+  margin-left: 3%;
+  margin-bottom: 30px;
+  p{
+    margin: 0;
+    font-size: 15px;
+    color: #1990ff;
+  }
 }
 .container {
   flex-wrap: wrap;
   width: 100%;
   display: flex;
+}
+.active {
+  background-color: #1990ff;
+  color: white;
 }
 </style>

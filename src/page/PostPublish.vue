@@ -4,14 +4,11 @@
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
 
       <div class="btn_cnt" slot="after">
+        <VPublishTagSelect @select="tagSelected" :menu="menu"/>
         <VButton
           @click="upload"
           :title="'发布'"/>
-
         <div class="line"></div>
-
-        <span>标签选择</span>
-        <VTagSelect @select="tagSelected" :menu="menu"/>
 
         <input type="checkbox" v-model="sticky">
       </div>
@@ -26,7 +23,7 @@ import { submitPost } from '@/service/getData';
 
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
-import VTagSelect from '@/components/VTagSelect';
+import VPublishTagSelect from '@/components/VPublishTagSelect';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -48,7 +45,7 @@ export default {
   components: {
     'VEditor': VEditor,
     'VButton': VButton,
-    'VTagSelect': VTagSelect
+    'VPublishTagSelect': VPublishTagSelect
   },
   mounted () {
     let obj = this;
@@ -126,13 +123,6 @@ input{
   .line {
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
-    margin: 20px 0;
-  }
-
-  span {
-    color: #1990ff;
-    display: block;
-    font-size: 24px;
     margin: 20px 0;
   }
 

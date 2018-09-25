@@ -1,6 +1,5 @@
 <template>
   <button :class="{ active: isActive }" @click="click">
-    <img :src="images" >
     <p>{{title}}</p>
   </button>
 </template>
@@ -32,11 +31,9 @@ export default {
 
 <style lang="less" scoped>
 button{
-  background: none;
-  border: 2px solid #eeeeee;
-  cursor: pointer;
-  padding: 0 20px;
+  color:#1990ff;
   p{
+    margin: 0px;
     font-size: 15px;
   }
 }

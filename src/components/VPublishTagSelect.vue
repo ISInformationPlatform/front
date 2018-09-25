@@ -90,7 +90,7 @@ button{
   cursor: pointer;
   padding: 0 20px;
   width: 87px;
-  height: 26px; 
+  height: 26px;
   margin-left: 3%;
   margin-bottom: 30px;
   p{

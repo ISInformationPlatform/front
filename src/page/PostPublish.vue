@@ -4,13 +4,19 @@
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
 
       <div class="btn_cnt" slot="after">
-        <VPublishTagSelect @select="tagSelected" :menu="menu"/>
-        <VButton
+        <VTextTagSelect @select="tagSelected" :menu="menu"/>
+
+        <h4>发布位置</h4>
+
+        <section>
+          <VButton class="sticky"
+            :title="'非置顶'"
+            @click="click_sticky"/>
+        </section>
+
+        <VButton class="publish"
           @click="upload"
           :title="'发布'"/>
-        <div class="line"></div>
-
-        <input type="checkbox" v-model="sticky">
       </div>
    </VEditor>
   </main>
@@ -23,7 +29,7 @@ import { submitPost } from '@/service/getData';
 
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
-import VPublishTagSelect from '@/components/VPublishTagSelect';
+import VTextTagSelect from '@/components/VTextTagSelect';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -45,7 +51,7 @@ export default {
   components: {
     'VEditor': VEditor,
     'VButton': VButton,
-    'VPublishTagSelect': VPublishTagSelect
+    'VTextTagSelect': VTextTagSelect
   },
   mounted () {
     let obj = this;
@@ -63,6 +69,9 @@ export default {
     ...mapActions([
       'jump'
     ]),
+    click_sticky () {
+      this.sticky = !this.sticky;
+    },
     tagSelected (payload) {
       this.tag = payload.tag;
     },
@@ -120,13 +129,36 @@ input{
 .btn_cnt{
   text-align: center;
 
-  .line {
-    border-top: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
+  h4 {
+    text-align: left;
+    color: #1990ff;
+    font-weight: normal;
+
+    font-size: 24px;
     margin: 20px 0;
   }
 
-  button{
+  section {
+    display: flex;
+  }
+
+  .sticky {
+    color:#1990ff;
+    border: 1px solid #1990ff;
+    border-radius: 3px;
+
+    padding: 0 20px;
+    width: 87px;
+    height: 26px;
+    margin: 0 5px 30px 0;
+  }
+
+  .active {
+    background-color: #1990ff;
+    color: white;
+  }
+
+  .publish {
     border: none;
     background-color: cornflowerblue;
     color: white;

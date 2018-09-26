@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container" v-for="(list,i) in menu" :key="i">
-     <IMButton v-for="(item,j) in list"
+     <VImgButton v-for="(item,j) in list"
       :images="item.tag"
       :data="item.id"
       :title="item.title"
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import IMButton from '@/components/IMButton';
+import VImgButton from '@/components/VImgButton';
 export default {
   name: 'VTagSelect',
   components: {
-    'IMButton': IMButton
+    'VImgButton': VImgButton
   },
   data () {
     return {

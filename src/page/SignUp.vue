@@ -45,7 +45,7 @@ import { mapActions } from 'vuex';
 var emailReg = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
 export default {
-  name: 'TheSignUp',
+  name: 'SignUp',
   data () {
     return {
       username: '',

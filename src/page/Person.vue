@@ -9,7 +9,7 @@
       <form class="detail">
         <section>
           <h5>毕业去向</h5>
-          <input type="text" v-model="graduate">
+          <input type="text" v-model="employment">
         </section>
 
         <section>
@@ -23,16 +23,16 @@
         </section>
 
         <footer>
-          <button>保存</button>
+          <VButton @click="save_detail" :title="'保存'"/>
         </footer>
       </form>
     </section>
 
     <section class="introduction">
       <h3>个人简介</h3>
-      <p>{{message}}</p>
+      <p>{{introduction}}</p>
       <footer>
-        <button>保存</button>
+        <VButton @click="save_introduction" :title="'保存'"/>
       </footer>
     </section>
   </article>
@@ -40,9 +40,10 @@
 
 <script>
 import VButton from '@/components/VButton';
+import { getPersonDetail, updatePersonDetail } from '@/service/getData';
 
 export default {
-  name: 'ThePerson',
+  name: 'Person',
   components: {
     'VButton': VButton
   },
@@ -51,10 +52,41 @@ export default {
       icon: '/static/icon.jpg',
       username: 'hwfhc',
       tel: '156156156',
-      graduate: '阿里',
+      employment: '阿里',
       grade: '2018',
-      message: '壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙。壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙'
+      introduction: '壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙。壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙壬戌之秋，七月既望，苏子与客泛舟游于赤壁之下。清风徐来，水波不兴。举酒属客，诵明月之诗，歌窈窕之章。少焉，月出于东山之上，徘徊于斗牛之间。白露横江，水光接天。纵一苇之所如，凌万顷之茫然。浩浩乎如冯虚御风，而不知其所止；飘飘乎如遗世独立，羽化而登仙'
     };
+  },
+  methods: {
+    save_detail () {
+      let personId = this.$route.params.personId;
+
+      let employment = this.employment;
+      let grade = this.grade;
+      let tel = this.tel;
+      let introduction = this.introduction;
+
+      updatePersonDetail(personId, {
+        employment,
+        grade,
+        tel,
+        introduction
+      });
+    },
+    save_introduction () {
+
+    }
+  },
+  mounted () {
+    let personId = this.$route.params.personId;
+    let obj = this;
+
+    getPersonDetail(personId).then(data => {
+      obj.tel = data.tel;
+      obj.employment = data.employment;
+      obj.grade = data.grade;
+      obj.introduction = data.introduction;
+    });
   }
 };
 </script>

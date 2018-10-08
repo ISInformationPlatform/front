@@ -87,7 +87,7 @@ h4 {
   margin: 20px 0;
 }
 
-button{
+button {
   color:#1990ff;
   border: 1px solid #1990ff;
   border-radius: 3px;

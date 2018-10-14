@@ -1,6 +1,6 @@
 <template>
   <main>
-    <VEditor @input="updateHtml" class="editor">
+    <VEditor @input="updateHtml" :defaultContent="content" class="editor">
       <input v-model="title" placeholder="请输入标题" slot="before" type="text">
 
       <div class="btn_cnt" slot="after">
@@ -10,7 +10,7 @@
 
         <section>
           <VButton class="sticky"
-            :title="'非置顶'"
+            :title="stickyText"
             @click="click_sticky"/>
         </section>
 
@@ -30,13 +30,15 @@ import { submitPost } from '@/service/getData';
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';
 import VTextTagSelect from '@/components/VTextTagSelect';
+
 import { mapState, mapActions } from 'vuex';
+import { getTitle, setTitle, getContent, setContent } from '@/store/localStorage';
 
 export default {
   data () {
     return {
-      title: '',
-      content: '',
+      title: getTitle(),
+      content: getContent(),
       menu: [],
       tag: 0,
       sticky: false,
@@ -46,15 +48,31 @@ export default {
   computed: {
     ...mapState([
       'username'
-    ])
+    ]),
+    stickyText () {
+      if (this.sticky) {
+        return '置顶';
+      } else {
+        return '非置顶';
+      }
+    }
   },
   components: {
     'VEditor': VEditor,
     'VButton': VButton,
     'VTextTagSelect': VTextTagSelect
   },
+  watch: {
+    'title': function () {
+      setTitle(this.title);
+    },
+    'content': function () {
+      setContent(this.content);
+    }
+  },
   mounted () {
     let obj = this;
+
     this.sectionId = parseInt(this.$route.params.forumId);
 
     config.forum.forEach(item => {

@@ -34,7 +34,6 @@ export default new Vuex.Store({
       context.commit('delete_log_state');
     },
     jump (context, { message, obj, promise }) {
-      // let message = '加载中';
       obj.$router.push('/jump');
       context.commit('update_jump', { message: '加载中', status: JUMP_WAITING });
 

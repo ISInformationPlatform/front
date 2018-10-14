@@ -14,9 +14,23 @@ import E from 'wangeditor';
 
 export default {
   name: 'VEditor',
-  props: ['type'],
+  props: ['type', 'defaultContent'],
+  data () {
+    return {
+      editor: null,
+      isSetDetaultContent: false
+    };
+  },
+  beforeUpdate () {
+    if (!this.isSetDetaultContent) {
+      this.editor.txt.html(this.defaultContent);
+    }
+
+    this.isSetDetaultContent = true;
+  },
   mounted () {
     var editor = new E(this.$refs.toolbar, this.$refs.editor);
+    this.editor = editor;
 
     editor.customConfig.onchange = html => {
       this.$emit('input', {

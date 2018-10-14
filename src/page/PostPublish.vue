@@ -32,13 +32,13 @@ import VButton from '@/components/VButton';
 import VTextTagSelect from '@/components/VTextTagSelect';
 
 import { mapState, mapActions } from 'vuex';
-import { getTitle, setTitle, getContent, setContent } from '@/store/localStorage';
+import localStorage from '@/store/localStorage';
 
 export default {
   data () {
     return {
-      title: getTitle(),
-      content: getContent(),
+      title: localStorage.post_title,
+      content: localStorage.post_content,
       menu: [],
       tag: 0,
       sticky: false,
@@ -64,10 +64,10 @@ export default {
   },
   watch: {
     'title': function () {
-      setTitle(this.title);
+      localStorage.post_title = this.title;
     },
     'content': function () {
-      setContent(this.content);
+      localStorage.post_content = this.content;
     }
   },
   mounted () {

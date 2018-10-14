@@ -1,18 +1,19 @@
-var title = window.localStorage.title || '';
-var content = window.localStorage.content || '';
+var postTitle = window.localStorage.post_title || '';
+var postContent = window.localStorage.post_content || '';
 
-export function getTitle () {
-  return title;
-}
+var localStorage = {
+  get post_title () {
+    return postTitle;
+  },
+  set post_title (data) {
+    window.localStorage.post_title = data;
+  },
+  get post_content () {
+    return postContent;
+  },
+  set post_content (data) {
+    window.localStorage.post_content = data;
+  }
+};
 
-export function setTitle (data) {
-  window.localStorage.title = data;
-}
-
-export function getContent () {
-  return content;
-}
-
-export function setContent (data) {
-  window.localStorage.content = data;
-}
+export default localStorage;

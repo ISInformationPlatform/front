@@ -23,7 +23,7 @@
   </main>
 </template>
 <script>
-import { signIn } from '@/service/getData';
+import { signIn } from '@/service/API';
 import { mapActions } from 'vuex';
 
 export default {

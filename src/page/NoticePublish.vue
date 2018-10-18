@@ -23,7 +23,7 @@
 
 <script>
 import config from '@/page/config';
-import { submitNotice } from '@/service/getData';
+import { submitNotice } from '@/service/API';
 import { mapActions } from 'vuex';
 
 import VEditor from '@/components/VEditor';

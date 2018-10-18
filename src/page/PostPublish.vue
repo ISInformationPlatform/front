@@ -25,7 +25,7 @@
 <script>
 import config from '@/page/config';
 
-import { submitPost } from '@/service/getData';
+import { submitPost } from '@/service/API';
 
 import VEditor from '@/components/VEditor';
 import VButton from '@/components/VButton';

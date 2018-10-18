@@ -40,7 +40,7 @@
 
 <script>
 import VButton from '@/components/VButton';
-import { getPersonDetail, updatePersonDetail } from '@/service/getData';
+import { getPersonDetail, updatePersonDetail } from '@/service/API';
 
 export default {
   name: 'Person',

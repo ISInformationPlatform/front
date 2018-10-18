@@ -36,7 +36,7 @@
 
 <script>
 import config from '@/page/config';
-import { logOut } from '@/service/getData';
+import { logOut } from '@/service/API';
 
 import { mapState, mapActions } from 'vuex';
 import VButton from '@/components/VButton';

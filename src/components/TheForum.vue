@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { getPostList } from '@/service/getData';
+import { getPostList } from '@/service/API';
 import ForumItem from '@/components/ForumItem';
 import VPagination from '@/components/VPagination';
 

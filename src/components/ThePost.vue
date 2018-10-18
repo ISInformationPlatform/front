@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getPost } from '@/service/getData';
+import { getPost } from '@/service/API';
 
 export default {
   name: 'ThePost',

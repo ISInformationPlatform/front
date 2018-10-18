@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { getNotice } from '@/service/getData';
+import { getNotice } from '@/service/API';
 import dayjs from 'dayjs';
 
 export default {

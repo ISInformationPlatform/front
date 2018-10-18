@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getComment, submitComment } from '@/service/getData';
+import { getComment, submitComment } from '@/service/API';
 
 import VButton from '@/components/VButton';
 import VEditor from '@/components/VEditor';

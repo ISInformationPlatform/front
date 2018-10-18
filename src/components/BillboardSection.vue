@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { getNoticeList } from '@/service/getData';
+import { getNoticeList } from '@/service/API';
 
 import BillboardItem from '@/components/BillboardItem';
 import VPagination from '@/components/VPagination';

@@ -37,7 +37,7 @@
   </main>
 </template>
 <script>
-import { signUp } from '@/service/getData';
+import { signUp } from '@/service/API';
 
 import VTip, { TIP_NULL, TIP_INVALID, TIP_VALID } from '@/components/VTip';
 import { mapActions } from 'vuex';

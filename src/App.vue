@@ -15,7 +15,7 @@
 import TheHeader from '@/components/TheHeader';
 import TheFooter from '@/components/TheFooter';
 
-import { isLogIn } from '@/service/getData';
+import { isLogIn } from '@/service/API';
 import { mapActions } from 'vuex';
 
 export default {

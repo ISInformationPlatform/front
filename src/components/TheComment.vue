@@ -3,7 +3,7 @@
     <ul class="container">
       <li :key="index" v-for="(item,index) in list">
         <icon :icon="icon"
-          :username="item.comment_author"
+          :username="item.comment_nickname"
           @click="click_icon" />
 
         <div>{{item.comment_content}}</div>
@@ -29,7 +29,15 @@ import VPin from '@/components/VPin';
 import { mapActions } from 'vuex';
 
 export default {
+  name: 'TheComment',
   props: ['forumId', 'postId'],
+  data () {
+    return {
+      icon: '/static/icon.jpg',
+      list: [],
+      content: ''
+    };
+  },
   components: {
     'icon': VPin,
     'VEditor': VEditor,
@@ -58,7 +66,7 @@ export default {
       this.comment = payload.html;
     },
     submit () {
-      let promise = submitComment(this.forumId, this.postId, 'hwfhc', this.comment, this.postId);
+      let promise = submitComment(this.forumId, this.postId, this.comment, this.postId);
 
       this.jump({
         message: '发布成功',
@@ -71,14 +79,7 @@ export default {
       this.$router.push(`/person/${personId}`);
     }
   },
-  mounted () { this.update(); },
-  data () {
-    return {
-      icon: '/static/icon.jpg',
-      list: [],
-      content: ''
-    };
-  }
+  mounted () { this.update(); }
 };
 </script>
 

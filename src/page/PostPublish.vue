@@ -97,7 +97,7 @@ export default {
       this.content = payload.html;
     },
     upload () {
-      let promise = submitPost(this.sectionId, this.title, this.username, this.content, this.tag, {
+      let promise = submitPost(this.sectionId, this.title, this.content, this.tag, {
         sticky: this.sticky
       });
 

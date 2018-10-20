@@ -32,9 +32,9 @@ export default {
   created () {
     isLogIn().then(data => {
       var id = data.id;
-      var username = data.username;
+      var nickname = data.nickname;
 
-      this.logIn({ id, username });
+      this.logIn({ id, nickname });
     }).catch(err => {
       this.logOut();
       err = null;

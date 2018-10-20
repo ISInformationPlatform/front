@@ -21,7 +21,9 @@ export const signIn = async (username, password) => {
   return json.data;
 };
 
-export const signUp = async (username, password) => {
+export const signUp = async (username, password, opt = {}) => {
+  var nickname = opt.nickname || null;
+
   let res = await fetch(`/sign/up`, {
     method: 'POST',
     headers: {
@@ -29,7 +31,8 @@ export const signUp = async (username, password) => {
     },
     body: JSON.stringify({
       username: username,
-      password: password
+      password: password,
+      nickname: nickname
     })
   });
 

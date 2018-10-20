@@ -43,7 +43,7 @@ export default {
       let password = this.password;
 
       let promise = signIn(username, password).then((result) => {
-        this.logIn({ id: result.id, username: result.username });
+        this.logIn({ id: result.id, nickname: result.nickname });
       });
 
       this.jump({

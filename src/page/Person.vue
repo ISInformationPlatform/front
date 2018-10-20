@@ -3,7 +3,7 @@
     <section class="top">
       <aside class="icon">
         <img :src="icon">
-        <h2>{{username}}</h2>
+        <h2>{{nickname}}</h2>
       </aside>
 
       <form class="detail">
@@ -41,6 +41,7 @@
 <script>
 import VButton from '@/components/VButton';
 import { getPersonDetail, updatePersonDetail } from '@/service/API';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Person',
@@ -50,14 +51,21 @@ export default {
   data () {
     return {
       icon: '/static/icon.jpg',
-      username: 'hwfhc',
       tel: '',
       employment: '',
       grade: '',
       introduction: ''
     };
   },
+  computed: {
+    ...mapState([
+      'nickname'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'jump'
+    ]),
     save_detail () {
       let personId = this.$route.params.personId;
 
@@ -66,11 +74,17 @@ export default {
       let tel = this.tel;
       let introduction = this.introduction;
 
-      updatePersonDetail(personId, {
+      var promise = updatePersonDetail(personId, {
         employment,
         grade,
         tel,
         introduction
+      });
+
+      this.jump({
+        message: '保存成功',
+        obj: this,
+        promise
       });
     },
     save_introduction () {

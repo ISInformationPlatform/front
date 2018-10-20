@@ -36,7 +36,7 @@ export const getPost = async (sectionId, postId) => {
   };
 };
 
-export const submitPost = async (sectionId, title, author, content, tag, opt = {}) => {
+export const submitPost = async (sectionId, title, content, tag, opt = {}) => {
   let sticky = opt.sticky || false;
 
   let res = await fetch(`/forum/${sectionId}/post`, {
@@ -46,7 +46,6 @@ export const submitPost = async (sectionId, title, author, content, tag, opt = {
     },
     body: JSON.stringify({
       post_title: title,
-      post_author: author,
       post_tag: tag,
       post_content: content,
       sticky: sticky
@@ -69,14 +68,13 @@ export const getComment = async (sectionId, postId) => {
   return json.data;
 };
 
-export const submitComment = async (sectionId, postId, author, content) => {
+export const submitComment = async (sectionId, postId, content) => {
   let res = await fetch(`/forum/${sectionId}/post/${postId}/comment`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
     },
     body: JSON.stringify({
-      comment_author: author,
       comment_content: content
     })
   });

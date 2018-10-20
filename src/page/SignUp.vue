@@ -2,9 +2,9 @@
   <main class="container">
     <form>
       <section>
-        <h3>用户名</h3>
+        <h3>学号</h3>
         <div>
-          <input type="text" v-model="username" placeholder="请输入用户名">
+          <input type="text" v-model="username" placeholder="请输入学号">
           <VTip :state="state_username"/>
         </div>
       </section>
@@ -21,6 +21,14 @@
           <VTip :state="state_dup_password"/>
         </div>
      </section>
+
+     <section>
+        <h3>昵称</h3>
+        <div>
+          <input type="text" v-model="nickname" placeholder="请输入昵称">
+          <VTip :state="state_nickname"/>
+        </div>
+      </section>
 
       <section>
         <h3>邮箱地址</h3>
@@ -51,6 +59,7 @@ export default {
       username: '',
       password: '',
       dup_password: '',
+      nickname: '',
       email: ''
     };
   },
@@ -62,10 +71,13 @@ export default {
       'jump'
     ]),
     signUp () {
-      let username = this.username;
-      let password = this.password;
+      var username = this.username;
+      var password = this.password;
+      var nickname = this.nickname;
 
-      let promise = signUp(username, password);
+      var promise = signUp(username, password, {
+        nickname
+      });
 
       this.jump({
         message: '发布成功',
@@ -99,6 +111,17 @@ export default {
       }
 
       if (this.password !== this.dup_password) {
+        return TIP_INVALID;
+      } else {
+        return TIP_VALID;
+      }
+    },
+    state_nickname: function () {
+      if (!this.nickname) {
+        return TIP_NULL;
+      }
+
+      if (this.nickname.length > 8) {
         return TIP_INVALID;
       } else {
         return TIP_VALID;

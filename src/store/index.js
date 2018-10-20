@@ -7,19 +7,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    username: null,
-    user_id: null,
+    nickname: undefined,
+    user_id: undefined,
     jump_status: 0,
     jump_message: 'test'
   },
   mutations: {
-    update_log_state (state, { username, id }) {
-      state.username = username;
+    update_log_state (state, { nickname, id }) {
+      state.nickname = nickname;
       state.user_id = id;
     },
     delete_log_state (state, id) {
-      state.user_id = null;
-      state.username = null;
+      state.user_id = undefined;
+      state.nickname = undefined;
     },
     update_jump (state, { message, status }) {
       state.jump_message = message;
@@ -27,8 +27,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    logIn (context, { id, username }) {
-      context.commit('update_log_state', { id, username });
+    logIn (context, { id, nickname }) {
+      context.commit('update_log_state', { id, nickname });
     },
     logOut (context) {
       context.commit('delete_log_state');

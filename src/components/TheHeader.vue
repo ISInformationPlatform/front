@@ -16,14 +16,14 @@
           @click="click_nav" />
       </div>
 
-      <div v-show="!username">
+      <div v-show="!nickname">
         <router-link class="navbar" :to="'/sign/in'">登录</router-link>
         <router-link class="navbar" :to="'/sign/up'">注册</router-link>
       </div>
 
-      <div v-show="!!username">
+      <div v-show="!!nickname">
         <VButton class="navbar"
-          :title="username"
+          :title="nickname"
           @click="click_user" />
         <VButton class="navbar"
           :title="'注销'"
@@ -65,7 +65,7 @@ export default {
   computed: {
     ...mapState([
       'user_id',
-      'username'
+      'nickname'
     ])
   },
   methods: {

@@ -118,20 +118,25 @@ button{
 .title{
   position: relative;
   margin-top: 30px;
-  height:40px;
+  height: 40px;
   background-color: rgb(235,235,235);
   font-size: 1em;
   font-weight: bold;
+
   span{
     position: absolute;
     top: 10px;
   }
+
   input{
     position: absolute;
     right: 5px;
     top: 10px;
     width: 20%;
 
+    border: none;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
     text-decoration: none;
     outline: none;
   }

@@ -34,7 +34,7 @@ export default {
 
     editor.customConfig.onchange = html => {
       this.$emit('input', {
-        html
+        html, text: editor.txt.text()
       });
     };
 

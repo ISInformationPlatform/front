@@ -39,6 +39,7 @@ export default {
     return {
       title: localStorage.post_title,
       content: localStorage.post_content,
+      text: '',
       menu: [],
       tag: 0,
       sticky: false,
@@ -95,9 +96,10 @@ export default {
     },
     updateHtml (payload) {
       this.content = payload.html;
+      this.text = payload.text;
     },
     upload () {
-      let promise = submitPost(this.sectionId, this.title, this.content, this.tag, {
+      let promise = submitPost(this.sectionId, this.title, this.content, this.text, this.tag, {
         sticky: this.sticky
       });
 

@@ -36,7 +36,7 @@ export const getPost = async (sectionId, postId) => {
   };
 };
 
-export const submitPost = async (sectionId, title, content, tag, opt = {}) => {
+export const submitPost = async (sectionId, title, content, text, tag, opt = {}) => {
   let sticky = opt.sticky || false;
 
   let res = await fetch(`/forum/${sectionId}/post`, {
@@ -48,6 +48,7 @@ export const submitPost = async (sectionId, title, content, tag, opt = {}) => {
       post_title: title,
       post_tag: tag,
       post_content: content,
+      post_text: text,
       sticky: sticky
     })
   });

@@ -22,7 +22,7 @@
           <div class="submit">
             <router-link :to="`/forum/${forumId}/post`">发帖</router-link>
             <a @click="click_my_post">我的帖子</a>
-            <input v-model="search_text" placeholder="搜索">{{search_text}}
+            <!--<input v-model="search_text" placeholder="搜索">{{search_text}}-->
           </div>
         </template>
       </TheForum>

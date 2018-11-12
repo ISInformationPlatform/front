@@ -4,7 +4,7 @@
       <section>
         <h3>用户名</h3>
         <div>
-          <input type="text" v-model="username" placeholder="请输入用户名">
+          <input :type="'text'" v-model="username" placeholder="请输入用户名">
         </div>
       </section>
 
@@ -14,12 +14,12 @@
           <input :type="'password'" v-model="password" placeholder="请输入密码">
         </div>
       </section>
-
-      <footer>
-        <button class="login" @click="click_signIn">登陆</button>
-        <button class="forget">忘记密码</button>
-      </footer>
     </form>
+
+    <footer>
+      <button class="login" @click="click_signIn">登陆</button>
+      <button class="forget">忘记密码</button>
+    </footer>
   </main>
 </template>
 <script>
@@ -53,13 +53,14 @@ export default {
       });
     }
   }
-
 };
 </script>
 <style lang="less" scoped>
 .container {
   padding: 50px 100px;
+  text-align: center;
 }
+
 form {
   padding: 50px;
   box-shadow: 1px 1px 2px 2px gray;
@@ -99,28 +100,28 @@ form {
     font-size: 1.5em;
     margin: 40px 0 20px 0;
   }
+}
 
-  footer {
-    margin-top: 40px;
-  }
+footer {
+  margin-top: 40px;
+}
 
-  button {
-    padding: 10px 20px;
-    margin: 0 20px;
+button {
+  padding: 10px 20px;
+  margin: 0 20px;
 
-    color: white;
-    font-weight: bold;
-    box-shadow: 0.1px 0.1px 0.1px 0.1px black;
-    border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0.1px 0.1px 0.1px 0.1px black;
+  border-radius: 4px;
 
-    background-color: #3f89ec;
-    border: none;
-    cursor: pointer;
-    outline: 0;
+  background-color: #3f89ec;
+  border: none;
+  cursor: pointer;
+  outline: 0;
 
-    &:hover {
-      background: #1990ff;
-    }
+  &:hover {
+    background: #1990ff;
   }
 }
 </style>

@@ -37,7 +37,7 @@ export default new Vuex.Store({
       obj.$router.push('/jump');
       context.commit('update_jump', { message: '加载中', status: JUMP_WAITING });
 
-      promise.then(data => {
+      promise.then(() => {
         context.commit('update_jump', { message: message, status: JUMP_SUCCESS });
         obj.$router.push('/jump');
       });

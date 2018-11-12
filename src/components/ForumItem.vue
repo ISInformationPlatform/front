@@ -9,7 +9,7 @@
       :username="item.post_nickname"
       @click="click_icon" />
 
-    <ForumItemContent :content="item.post_content"/>
+    <ForumItemContent :content="item.post_text"/>
 
     <ForumItemFooter :tag_filter="item.post_tag"
       :content="item.post_title"

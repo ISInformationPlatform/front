@@ -4,7 +4,7 @@
 
     <div class="title">
       <span>帖子</span>
-      <input v-model="search_text" placeholder="搜索">{{search_text}}
+      <slot name="aside"/>
     </div>
 
     <div class="postContainer">
@@ -126,19 +126,6 @@ button{
   span{
     position: absolute;
     top: 10px;
-  }
-
-  input{
-    position: absolute;
-    right: 5px;
-    top: 10px;
-    width: 20%;
-
-    border: none;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    text-decoration: none;
-    outline: none;
   }
 }
 </style>

@@ -10,6 +10,10 @@
         :forumId="forumId"
         :search_text="search_text">
 
+        <input id="search" slot="aside"
+            v-model="search_text"
+            placeholder="搜索">
+
         <template slot="before">
           <h2>{{title}}</h2>
 
@@ -22,7 +26,6 @@
           <div class="submit">
             <router-link :to="`/forum/${forumId}/post`">发帖</router-link>
             <a @click="click_my_post">我的帖子</a>
-            <!--<input v-model="search_text" placeholder="搜索">{{search_text}}-->
           </div>
         </template>
       </TheForum>
@@ -126,5 +129,18 @@ main{
   color: #cccccc;
 
   cursor: pointer;
+}
+
+#search {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  width: 20%;
+
+  border: none;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  text-decoration: none;
+  outline: none;
 }
 </style>

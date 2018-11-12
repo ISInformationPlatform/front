@@ -16,6 +16,7 @@ export const getNotice = async (sectionId, noticeId) => {
 
   return json.data;
 };
+
 export const submitNotice = async (sectionId, title, author, content) => {
   let res = await fetch(`/notification/${sectionId}/notice`, {
     method: 'POST',

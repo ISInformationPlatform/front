@@ -35,6 +35,7 @@ import { mapState, mapActions } from 'vuex';
 import localStorage from '@/store/localStorage';
 
 export default {
+  name: 'PostPublish',
   data () {
     return {
       title: localStorage.post_title,
